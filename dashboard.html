@@ -778,49 +778,49 @@ btnCibil.addEventListener('click', () => {
                 linkedBanksDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
             });
 
-            // open PIN flow: mode = 'check-balance' | 'trans' | 'cibil'
-            function openPinFlow(mode) {
-                // check if a tx-pin exists in localStorage
-                const txPin = localStorage.getItem('gapy_txpin'); // stored as plain for demo
-                setPinMsg.textContent = '';
-                verifyPinMsg.textContent = '';
-                setPin1.value = setPin2.value = verifyPinInput.value = '';
+            // // open PIN flow: mode = 'check-balance' | 'trans' | 'cibil'
+            // function openPinFlow(mode) {
+            //     // check if a tx-pin exists in localStorage
+            //     const txPin = localStorage.getItem('gapy_txpin'); // stored as plain for demo
+            //     setPinMsg.textContent = '';
+            //     verifyPinMsg.textContent = '';
+            //     setPin1.value = setPin2.value = verifyPinInput.value = '';
 
-                document.getElementById('pinTitle').textContent = (mode === 'check-balance' ? 'Enter your transaction PIN to check balance' : (mode === 'trans' ? 'Enter your transaction PIN to view transactions' : 'Enter your transaction PIN to view CIBIL score'));
+            //     document.getElementById('pinTitle').textContent = (mode === 'check-balance' ? 'Enter your transaction PIN to check balance' : (mode === 'trans' ? 'Enter your transaction PIN to view transactions' : 'Enter your transaction PIN to view CIBIL score'));
 
-                if (!txPin) {
-                    // show set PIN area
-                    setPinArea.classList.remove('d-none');
-                    verifyPinArea.classList.add('d-none');
-                    pinModal.show();
-                } else {
-                    // show verify PIN area
-                    setPinArea.classList.add('d-none');
-                    verifyPinArea.classList.remove('d-none');
-                    pinModal.show();
-                    // store the mode to modal dataset so after verification we can act
-                    pinModalEl.dataset.mode = mode;
-                }
-            }
+            //     if (!txPin) {
+            //         // show set PIN area
+            //         setPinArea.classList.remove('d-none');
+            //         verifyPinArea.classList.add('d-none');
+            //         pinModal.show();
+            //     } else {
+            //         // show verify PIN area
+            //         setPinArea.classList.add('d-none');
+            //         verifyPinArea.classList.remove('d-none');
+            //         pinModal.show();
+            //         // store the mode to modal dataset so after verification we can act
+            //         pinModalEl.dataset.mode = mode;
+            //     }
+            // }
 
-            // Save PIN (first time)
-            savePinBtn.addEventListener('click', () => {
-                const p1 = setPin1.value.trim();
-                const p2 = setPin2.value.trim();
-                if (p1.length !== 4 || p2.length !== 4) { setPinMsg.textContent = 'PIN must be 4 digits'; return; }
-                if (p1 !== p2) { setPinMsg.textContent = 'PINs do not match'; return; }
-                // save to localStorage (demo). For production, call server endpoint to save securely.
-                localStorage.setItem('gapy_txpin', p1);
-                setPinMsg.textContent = 'PIN saved';
-                setTimeout(() => pinModal.hide(), 700);
+            // // Save PIN (first time)
+            // savePinBtn.addEventListener('click', () => {
+            //     const p1 = setPin1.value.trim();
+            //     const p2 = setPin2.value.trim();
+            //     if (p1.length !== 4 || p2.length !== 4) { setPinMsg.textContent = 'PIN must be 4 digits'; return; }
+            //     if (p1 !== p2) { setPinMsg.textContent = 'PINs do not match'; return; }
+            //     // save to localStorage (demo). For production, call server endpoint to save securely.
+            //     localStorage.setItem('gapy_txpin', p1);
+            //     setPinMsg.textContent = 'PIN saved';
+            //     setTimeout(() => pinModal.hide(), 700);
 
-                // If modal had a selectedBank (we came from Check Balance), reveal that bank after saving
-                const mode = pinModalEl.dataset.mode || 'set';
-                if (mode === 'check-balance') {
-                    // simulate click reveal after modal closes
-                    setTimeout(() => revealSelectedBankAfterPin(), 800);
-                }
-            });
+            //     // If modal had a selectedBank (we came from Check Balance), reveal that bank after saving
+            //     const mode = pinModalEl.dataset.mode || 'set';
+            //     if (mode === 'check-balance') {
+            //         // simulate click reveal after modal closes
+            //         setTimeout(() => revealSelectedBankAfterPin(), 800);
+            //     }
+            // });
 
             // // Verify PIN (subsequent uses)
             // document.getElementById('verify-pin-btn').addEventListener('click', () => {
