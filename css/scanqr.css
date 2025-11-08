@@ -1,0 +1,763 @@
+/* =========================================
+   Gapy — Scan QR (Light Theme, matches app)
+   (No HTML changes; same classes & IDs)
+========================================= */
+
+/* ---- Design tokens (light) ---- */
+:root{
+  --bg:#f6f7fb;
+  --panel:#ffffff;
+  --muted:#6b7280;
+  --accent:#ff7a00;
+  --accent-2:#ff9b3d;
+  --accent-soft:rgba(255,122,0,0.08);
+  --radius:14px;
+  --shadow:0 18px 46px rgba(14,28,60,0.06);
+  --shadow-soft:0 10px 30px rgba(14,28,60,0.05);
+}
+
+/* ---- Base ---- */
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Inter,system-ui,Arial,sans-serif;
+  color:#0b1724;
+  background: var(--bg);
+  -webkit-font-smoothing:antialiased;
+  min-height:100vh;
+}
+.container{display:flex;gap:22px;padding:22px}
+
+/* ---- Sidebar (left-panel) ---- */
+.left-panel{
+  width:220px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(255,255,255,0.98));
+  border-radius:14px;
+  padding:18px;
+  box-shadow: var(--shadow-soft);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  position:sticky;
+  top:18px;
+  height: calc(100vh - 36px);
+}
+.left-panel .logo{
+  font-weight:800;
+  color: var(--accent);
+  margin-bottom:12px;
+  letter-spacing:.2px;
+}
+.left-panel nav a{
+  display:block;
+  color:#556070;
+  text-decoration:none;
+  padding:12px;
+  border-radius:10px;
+  margin-bottom:6px;
+  font-weight:600;
+  transition: all .18s ease;
+}
+.left-panel nav a:hover{
+  transform: translateX(6px);
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+.left-panel nav a.active{
+  background: linear-gradient(180deg, var(--accent), var(--accent-2));
+  color:#fff;
+  box-shadow: 0 12px 30px rgba(255,122,0,0.14);
+}
+
+/* ---- Main ---- */
+.main-panel{flex:1;min-width:0}
+.top h1{margin:0;font-size:26px}
+.top .sub{color:var(--muted);margin-top:6px}
+
+/* ---- Scanner card ---- */
+.scanner-card{
+  margin-top:16px;
+  padding:18px;
+  border-radius: var(--radius);
+  background: var(--panel);
+  box-shadow: var(--shadow);
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+/* Camera area */
+.scanner-box{
+  width:100%;
+  max-width:760px;
+  aspect-ratio: 16/9;
+  border-radius:12px;
+  overflow:hidden;
+  background: linear-gradient(180deg,#ffffff,#fbfbfd);
+  border:1px solid rgba(16,24,40,0.06);
+  box-shadow: 0 10px 28px rgba(14,28,60,0.05);
+  display:flex;align-items:center;justify-content:center;
+}
+.scanner-box canvas,
+.scanner-box video{width:100%;height:100%;object-fit:cover}
+
+/* Hint + result */
+.hint{color:var(--muted);margin-top:4px;font-size:13px}
+.scan-result{
+  margin-top:10px;
+  padding:12px;
+  border-radius:10px;
+  background:#f9fafb;
+  border:1px dashed rgba(16,24,40,0.10);
+  color:#111827;
+  font-weight:600;
+}
+.hidden{display:none !important;visibility:hidden !important;opacity:0 !important;pointer-events:none !important}
+
+/* ---- Modal (payment) ---- */
+.modal{
+  position:fixed; inset:0;
+  background: rgba(6,12,18,0.45);
+  display:flex; align-items:center; justify-content:center;
+  backdrop-filter: blur(4px);
+  z-index:50;
+}
+.modal-card{
+  width:520px; max-width:92vw;
+  background: linear-gradient(180deg,#ffffff,#fbfbfd);
+  padding:18px; border-radius:12px;
+  box-shadow: 0 30px 90px rgba(12,20,40,0.14);
+  transform: translateY(12px);
+  animation: pop .24s both;
+  position:relative;
+}
+.modal-card .close{
+  position:absolute; right:14px; top:10px;
+  background:transparent; border:none;
+  color:#9aa3af; font-size:20px; cursor:pointer;
+}
+.modal-card h3{margin:0 0 10px 0; color:#0b1724}
+.pm-target{
+  color:#0f1724;
+  background:#f9fafb;
+  border:1px solid rgba(16,24,40,0.08);
+  border-radius:10px;
+  padding:10px 12px;
+  margin-bottom:8px;
+  font-weight:600;
+}
+.field{margin-bottom:10px}
+.field label{display:block;color:#1f2937;font-size:13px;margin-bottom:6px;font-weight:700}
+.field input{
+  width:100%; padding:10px 12px; border-radius:10px;
+  border:1px solid rgba(16,24,40,0.12); background:#fff; color:#0b1724;
+  outline:none; transition: box-shadow .12s ease, border-color .12s ease;
+}
+.field input:focus{
+  border-color: rgba(255,122,0,0.28);
+  box-shadow: 0 10px 30px rgba(255,122,0,0.10);
+}
+
+.actions{display:flex;gap:10px;justify-content:flex-end;margin-top:8px}
+.btn{
+  padding:10px 14px; border-radius:10px; border:1px solid rgba(16,24,40,0.10);
+  cursor:pointer; background:#fff; color:#0b1724; font-weight:700;
+  transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+}
+.btn:hover{ transform: translateY(-2px); box-shadow: 0 10px 24px rgba(14,28,60,0.06); }
+.btn.primary{
+  background: linear-gradient(180deg, var(--accent), var(--accent-2));
+  color:#fff; border:none;
+  box-shadow: 0 12px 30px rgba(255,122,0,0.18);
+}
+.pay-msg{height:18px;color:#6b7280;margin-top:6px;font-size:13px}
+
+/* ---- Recent info ---- */
+.recent-info{
+  margin-top:8px; color:var(--muted);
+  padding:12px; border-radius:10px;
+  background:#ffffff; border:1px solid rgba(16,24,40,0.06);
+}
+
+/* ---- Animation ---- */
+@keyframes pop{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* ============================================================
+   Extra Small Phones — 320px to 374px
+   Gapy Scan-QR Responsive Fixes
+============================================================ */
+@media (min-width: 320px) and (max-width: 374px) {
+
+  /* Container layout */
+  .container {
+    flex-direction: column;
+    padding: 12px;
+    gap: 12px;
+  }
+
+  /* Sidebar becomes compact */
+  .left-panel {
+    width: 100%;
+    padding: 12px;
+    height: auto;
+    border-radius: 12px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 6px;
+    overflow-x: auto;
+  }
+
+  .left-panel .logo {
+    font-size: 18px;
+    margin-bottom: 0;
+    margin-right: 8px;
+  }
+
+  .left-panel nav {
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+  }
+
+  .left-panel nav a {
+    padding: 8px 10px;
+    font-size: 12px;
+    white-space: nowrap;
+    border-radius: 8px;
+  }
+
+  /* Main panel spacing */
+  .main-panel {
+    padding: 0;
+  }
+
+  .top h1 {
+    font-size: 20px;
+  }
+
+  .top .sub {
+    font-size: 12px;
+  }
+
+  /* Scanner card adjustments */
+  .scanner-card {
+    padding: 12px;
+    border-radius: 12px;
+    margin-top: 10px;
+  }
+
+  /* Camera box smaller for small screens */
+  .scanner-box {
+    max-width: 100%;
+    width: 100%;
+    height: 260px;        /* perfect fit for 320px screens */
+    border-radius: 10px;
+  }
+
+  /* Upload button */
+  .upload-section .btn,
+  #upload-btn {
+    width: 100%;
+    font-size: 13px;
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+  /* Hint text */
+  .hint {
+    font-size: 11px;
+  }
+
+  /* Scan result box */
+  .scan-result {
+    font-size: 13px;
+    padding: 10px;
+    border-radius: 8px;
+  }
+
+  /* Recent section */
+  .saved h3 {
+    font-size: 16px;
+  }
+
+  .recent-info {
+    font-size: 12px;
+    padding: 10px;
+  }
+
+  /* Modal window */
+  .modal-card {
+    width: 92%;
+    padding: 16px;
+    border-radius: 12px;
+  }
+
+  .modal-card h3 {
+    font-size: 18px;
+  }
+
+  .field label {
+    font-size: 12px;
+  }
+
+  .field input {
+    padding: 8px 10px;
+    font-size: 14px;
+  }
+
+  .actions .btn {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+
+  .btn.primary {
+    padding: 9px 14px;
+    font-size: 13px;
+  }
+}
+
+/* ============================================================
+   Small Phones — 375px to 424px
+   Gapy Scan-QR Responsive Fixes
+============================================================ */
+@media (min-width: 374px) and (max-width: 424px) {
+
+  /* Main container stacks vertically */
+  .container {
+    flex-direction: column;
+    padding: 16px;
+    gap: 16px;
+  }
+
+  /* Sidebar becomes top horizontal bar */
+  .left-panel {
+    width: 100%;
+    padding: 14px;
+    height: auto;
+    border-radius: 12px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    overflow-x: auto;
+  }
+
+  .left-panel .logo {
+    font-size: 20px;
+    margin-bottom: 0;
+    margin-right: 10px;
+  }
+
+  .left-panel nav {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .left-panel nav a {
+    padding: 10px 14px;
+    font-size: 13px;
+    white-space: nowrap;
+    border-radius: 8px;
+  }
+
+  /* Main section spacing */
+  .main-panel {
+    padding: 0;
+  }
+
+  .top h1 {
+    font-size: 22px;
+  }
+
+  .top .sub {
+    font-size: 13px;
+  }
+
+  /* Scanner card */
+  .scanner-card {
+    padding: 14px;
+    border-radius: 12px;
+    margin-top: 12px;
+  }
+
+  /* Camera reader box */
+  .scanner-box {
+    width: 100%;
+    max-width: 100%;
+    height: 300px;            /* Slightly bigger for 375px width */
+    border-radius: 12px;
+  }
+
+  /* Upload button */
+  .upload-section .btn,
+  #upload-btn {
+    width: 100%;
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+  .hint {
+    font-size: 12px;
+  }
+
+  /* Scan result */
+  .scan-result {
+    padding: 12px;
+    font-size: 14px;
+    border-radius: 10px;
+  }
+
+  /* Recent section */
+  .saved h3 {
+    font-size: 18px;
+  }
+
+  .recent-info {
+    font-size: 13px;
+    padding: 12px;
+    border-radius: 10px;
+  }
+
+  /* Modal */
+  .modal-card {
+    width: 88%;
+    padding: 18px;
+    border-radius: 12px;
+  }
+
+  .modal-card h3 {
+    font-size: 20px;
+  }
+
+  .field label {
+    font-size: 13px;
+  }
+
+  .field input {
+    padding: 10px;
+    font-size: 15px;
+  }
+
+  .actions {
+    gap: 12px;
+  }
+
+  .actions .btn {
+    padding: 10px 14px;
+    font-size: 14px;
+  }
+
+  .btn.primary {
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+}
+/* ============================================================
+   Large Phones — 425px to 599px
+   Gapy Scan-QR Mobile Responsive Styling
+============================================================ */
+@media (min-width: 424px) and (max-width: 599px) {
+
+  /* Layout becomes vertical */
+  .container {
+    flex-direction: column;
+    padding: 20px;
+    gap: 18px;
+  }
+
+  /* Sidebar becomes horizontal bar */
+  .left-panel {
+    width: 100%;
+    padding: 16px;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 14px;
+    overflow-x: auto;
+  }
+
+  .left-panel .logo {
+    font-size: 21px;
+    margin-bottom: 0;
+    margin-right: 14px;
+  }
+
+  .left-panel nav {
+    display: flex;
+    flex-direction: row;
+    gap: 14px;
+  }
+
+  .left-panel nav a {
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+
+  /* Main area settings */
+  .main-panel {
+    padding: 0;
+  }
+
+  .top h1 {
+    font-size: 24px;
+  }
+
+  .top .sub {
+    font-size: 14px;
+  }
+
+  /* Scanner card container */
+  .scanner-card {
+    padding: 18px;
+    border-radius: 14px;
+    margin-top: 16px;
+  }
+
+  /* QR Camera Box */
+  .scanner-box {
+    height: 340px;       /* Increased for larger phones */
+    width: 100%;
+    border-radius: 12px;
+  }
+
+  /* Upload button */
+  #upload-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 15px;
+    border-radius: 10px;
+  }
+
+  .upload-section .btn {
+    width: 100%;
+  }
+
+  .hint {
+    font-size: 14px;
+    margin-top: 10px;
+  }
+
+  .scan-result {
+    font-size: 15px;
+    padding: 14px;
+    border-radius: 12px;
+  }
+
+  /* Recent Scan Section */
+  .saved h3 {
+    font-size: 20px;
+  }
+
+  .recent-info {
+    padding: 14px;
+    font-size: 14px;
+    border-radius: 12px;
+  }
+
+  /* Modal */
+  .modal-card {
+    width: 85%;
+    padding: 20px;
+    border-radius: 14px;
+  }
+
+  .modal-card h3 {
+    font-size: 22px;
+    margin-bottom: 12px;
+  }
+
+  .field label {
+    font-size: 14px;
+  }
+
+  .field input {
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 10px;
+  }
+
+  .actions {
+    gap: 14px;
+    justify-content: flex-end;
+  }
+
+  .actions .btn {
+    font-size: 15px;
+    padding: 10px 16px;
+  }
+
+  .btn.primary {
+    padding: 10px 18px;
+    font-size: 15px;
+  }
+}
+/* ============================================================
+   Small Tablets / Large Phones — 600px to 767px
+   Gapy Scan-QR Responsive Styling
+============================================================ */
+@media (min-width: 599px) and (max-width: 767px) {
+
+  /* Main container */
+  .container {
+    flex-direction: column;
+    padding: 28px 22px;
+    gap: 22px;
+  }
+
+  /* Sidebar becomes compact horizontal bar */
+  .left-panel {
+    width: 100%;
+    padding: 18px;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 18px;
+    overflow-x: auto;
+  }
+
+  .left-panel .logo {
+    font-size: 22px;
+    margin-right: 16px;
+    margin-bottom: 0;
+  }
+
+  .left-panel nav {
+    display: flex;
+    flex-direction: row;
+    gap: 18px;
+  }
+
+  .left-panel nav a {
+    padding: 10px 18px;
+    font-size: 15px;
+    border-radius: 8px;
+    white-space: nowrap;
+  }
+
+  /* Main Panel (page content) */
+  .main-panel {
+    padding: 0;
+  }
+
+  .top h1 {
+    font-size: 26px;
+  }
+
+  .top .sub {
+    font-size: 15px;
+    margin-top: 4px;
+  }
+
+  /* Scanner section */
+  .scanner-card {
+    padding: 22px;
+    border-radius: 14px;
+    margin-top: 18px;
+  }
+
+  .scanner-box {
+    height: 380px;     /* Larger display for tablets */
+    width: 100%;
+    border-radius: 14px;
+  }
+
+  /* Upload QR button */
+  .upload-section {
+    margin-top: 14px;
+  }
+
+  #upload-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 10px;
+  }
+
+  .hint {
+    font-size: 15px;
+  }
+
+  .scan-result {
+    padding: 16px;
+    font-size: 15px;
+    border-radius: 12px;
+  }
+
+  /* Recent scan section */
+  .saved h3 {
+    font-size: 22px;
+  }
+
+  .recent-info {
+    padding: 16px;
+    font-size: 15px;
+  }
+
+  /* Modal */
+  .modal-card {
+    width: 65%;       /* More space on small tablets */
+    max-width: 480px;
+    border-radius: 14px;
+    padding: 22px;
+  }
+
+  .modal-card h3 {
+    font-size: 23px;
+    margin-bottom: 14px;
+  }
+
+  .field label {
+    font-size: 14px;
+  }
+
+  .field input {
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 10px;
+  }
+
+  .actions {
+    gap: 14px;
+    justify-content: flex-end;
+  }
+
+  .actions .btn {
+    font-size: 15px;
+    padding: 10px 18px;
+  }
+
+  .btn.primary {
+    font-size: 15px;
+    padding: 10px 20px;
+  }
+}
+/* ============================================================
+   Tablets — 768px to 899px
+   Gapy Scan-QR Responsive Styling
+============================================================ */
+
+
+/* ---- Responsive ---- */
+@media (max-width: 900px){
+  .container{flex-direction:column;gap:14px;padding:16px}
+  .left-panel{
+    width:100%; height:auto; position:static;
+    display:flex; flex-direction:row; align-items:center; gap:8px; overflow:auto;
+  }
+  .left-panel nav{display:flex; gap:8px}
+  .left-panel nav a{margin-bottom:0; white-space:nowrap}
+  .scanner-box{max-width:100%}
+}
+@media (max-width:480px){
+  .scanner-card{padding:14px}
+  .saved{padding:14px}
+  .scanner-box{aspect-ratio:4/3}
+  .btn{padding:9px 12px}
+}

@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Scan QR - Gapy</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="css/scanqr.css">
+  <!-- html5-qrcode -->
+<script src="https://cdn.jsdelivr.net/npm/html5-qrcode/minified/html5-qrcode.min.js"></script>
+
+</head>
+<body>
+  <div class="container">
+    <aside class="left-panel">
+      <div class="logo">Gapy</div>
+      <nav>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/transactions.html">Transactions</a>
+        <a href="/payanyone.html">Pay Anyone</a>
+        <a class="active" href="/scanqr.html">Scan QR</a>
+        <a href="/myqr.html">My QR</a>
+      </nav>
+    </aside>
+
+    <main class="main-panel">
+      <header class="top">
+        <h1>Scan any QR</h1>
+        <div class="sub">Open camera and scan merchant or user QR to pay</div>
+      </header>
+<section class="scanner-card">
+  <div id="reader" class="scanner-box"></div>
+  <div class="upload-section">
+    <input type="file" id="qr-upload" accept="image/*" hidden>
+    <button id="upload-btn" class="btn">Upload QR Code</button>
+  </div>
+  <div class="hint">Point camera at QR code — camera permission required</div>
+  <div id="scan-result" class="scan-result hidden"></div>
+</section>
+
+      <section class="saved">
+        <h3>Recent scan</h3>
+        <div id="recent-info" class="recent-info">No scans yet</div>
+      </section>
+    </main>
+  </div>
+<div id="qr-reader-temp"></div>
+  <!-- payment modal -->
+  <div id="pay-modal" class="modal hidden">
+    <div class="modal-card">
+      <button class="close" id="close-pay">×</button>
+      <h3 id="pm-title">Pay</h3>
+      <div id="pm-target" class="pm-target"></div>
+      <div class="field">
+        <label>Amount (₹)</label>
+        <input id="pay-amount" type="number" min="1" step="0.01" placeholder="Enter amount">
+      </div>
+      <div class="field">
+  <label for="bank-select">Select Bank</label>
+  <select id="bank-select">
+    <option>Loading banks…</option>
+  </select>
+  <div id="bank-meta" class="muted small"></div>
+</div>
+      <div class="field">
+        <label>Transaction PIN</label>
+        <input id="pay-pin" type="password" maxlength="4" placeholder="4-digit PIN">
+      </div>
+      <div class="field">
+        <label>Reference (optional)</label>
+        <input id="pay-ref" type="text" placeholder="For example: Dinner">
+      </div>
+      <div id="pay-msg" class="pay-msg"></div>
+      <div class="actions">
+        <button id="pay-confirm" class="btn primary">Confirm & Send</button>
+        <button id="pay-cancel" class="btn">Cancel</button>
+      </div>
+    </div>
+  </div>
+  <script src="https://unpkg.com/html5-qrcode"></script>
+
+  <script src="js/scanqr.js"></script>
+  
+</body>
+</html>

@@ -1,0 +1,1515 @@
+/* transactions.css
+   Colorful, light dashboard style for transactions.html
+   — DOES NOT change any HTML class or ID names
+*/
+
+/* ---------- Design tokens ---------- */
+:root{
+  --page-bg: #f6f7fb;
+  --panel: #ffffff;
+  --muted: #667085;
+  --accent: #ff7a00;        /* warm orange accent like original */
+  --accent-soft: rgba(255,122,0,0.08);
+  --glass: rgba(16,24,40,0.03);
+  --card-shadow: 0 18px 46px rgba(14,28,60,0.06);
+  --inset: rgba(255,255,255,0.6);
+  --radius: 14px;
+  --glass-2: rgba(20,28,48,0.02);
+  --success: #10b981;
+  --danger: #ef4444;
+}
+
+/* ---------- Base ---------- */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: Inter, system-ui, "Helvetica Neue", Arial, sans-serif;
+  background: linear-gradient(180deg,#f8fafc 0%, #f3f4f6 100%);
+  color: #0f1724;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  min-height:100vh;
+}
+
+/* layout */
+.layout{
+  display:flex;
+  gap:28px;
+  /* padding:28px; */
+  align-items:flex-start;
+}
+
+/* ---------- Left nav (keeps same structure) ---------- */
+.left-nav{
+  width:220px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.96));
+  border-radius:18px;
+  padding:20px;
+  box-shadow: 0 10px 30px rgba(14,28,60,0.04);
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  position:sticky;
+  top:18px;
+  align-self:flex-start;
+}
+
+/* nav links */
+.left-nav a{
+  color:var(--muted);
+  text-decoration:none;
+  padding:12px 14px;
+  border-radius:10px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:600;
+  transition: all .18s cubic-bezier(.2,.9,.2,1);
+  background:transparent;
+  box-shadow:none;
+}
+
+/* active link — warm orange pill with subtle glow */
+.left-nav a.active{
+  color: #fff;
+  background: linear-gradient(180deg, var(--accent), #ff9b3d);
+  box-shadow: 0 12px 30px rgba(255,122,0,0.14);
+  transform: translateX(2px);
+}
+
+/* hover styles */
+.left-nav a:hover{
+  color: #ff7a00;
+  background: var(--accent-soft);
+  transform: translateX(6px);
+}
+
+/* ---------- Main area ---------- */
+.main{
+  flex:1;
+  min-height: calc(100vh - 56px);
+  margin-top: 20px;
+}
+
+/* header */
+.main-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:18px;
+}
+
+.main-header h1{
+  margin:0;
+  font-size:24px;
+  color:#0b1724;
+  letter-spacing:0.2px;
+}
+
+/* saved-card wrapper (reused for filters and list) */
+.saved-card{
+  background: var(--panel);
+  padding:22px;
+  border-radius:var(--radius);
+  box-shadow: var(--card-shadow);
+  margin-bottom:18px;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+
+/* subtle hover lift */
+.saved-card:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 26px 60px rgba(14,28,60,0.08);
+}
+
+/* filter row inside saved-card */
+.saved-card > div:first-child{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+
+/* form controls */
+label{font-weight:600;color:#2b3440}
+select, input[type="number"]{
+  padding:10px 12px;
+  border-radius:10px;
+  border:1px solid rgba(16,24,40,0.06);
+  background: #fff;
+  color:#071124;
+  outline:none;
+  min-width:120px;
+  transition: box-shadow .12s ease;
+}
+select:focus, input[type="number"]:focus{
+  box-shadow: 0 8px 22px rgba(255,122,0,0.06);
+  border-color: rgba(255,122,0,0.18);
+}
+
+/* btn classes (preserve existing names) */
+.btn{
+  padding:10px 14px;
+  border-radius:10px;
+  border:none;
+  cursor:pointer;
+  font-weight:700;
+  transition: transform .12s ease, box-shadow .12s;
+}
+.btn-outline{
+  background:transparent;
+  border:1px solid rgba(14,28,60,0.06);
+  color:var(--muted);
+  box-shadow: inset 0 -2px 6px rgba(255,255,255,0.02);
+}
+.btn-outline:hover{transform: translateY(-3px); box-shadow: 0 10px 30px rgba(14,28,60,0.06)}
+
+/* txn-list area */
+#txn-list{
+  margin-top:14px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+/* each transaction card (payee-card reused name) */
+.payee-card{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px;
+  border-radius:12px;
+  background: linear-gradient(180deg,#ffffff,#fbfbfd);
+  border:1px solid rgba(16,24,40,0.02);
+  box-shadow: 0 10px 30px rgba(14,28,60,0.03);
+  transition: transform .16s cubic-bezier(.2,.9,.2,1), box-shadow .16s;
+  animation: fadeUp .36s cubic-bezier(.2,.9,.2,1) both;
+}
+
+/* subtle hover */
+.payee-card:hover{
+  transform: translateY(-6px);
+  box-shadow: 0 22px 60px rgba(14,28,60,0.08);
+}
+
+/* left meta block */
+.payee-meta{display:flex;gap:12px;align-items:center;min-width:0}
+.avatar{
+  width:52px;height:52px;border-radius:10px;
+  background: linear-gradient(135deg, #fff1e6, #fff6f0);
+  color: #ff7a00;
+  display:flex;align-items:center;justify-content:center;font-weight:800;
+  box-shadow: inset 0 -6px 18px rgba(255,255,255,0.6);
+  flex-shrink:0;
+}
+.payee-info{display:flex;flex-direction:column;min-width:0}
+.payee-info .name{
+  font-weight:700;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  max-width:420px;
+  color:#0b1724;
+}
+.payee-info .meta{font-size:13px;color:var(--muted)}
+
+/* right actions/amount */
+.payee-actions{display:flex;gap:10px;align-items:center}
+.amount{
+  font-weight:800;
+  font-size:18px;
+  color:#0b1724;
+  text-align:right;
+}
+.badge{
+  margin-top:6px;
+  display:inline-block;
+  padding:6px 10px;
+  border-radius:999px;
+  font-weight:700;
+  font-size:12px;
+}
+
+/* credited / debited colors */
+.badge.credit{background: rgba(16,185,129,0.12); color: var(--success); border:1px solid rgba(16,185,129,0.12)}
+.badge.debit{background: rgba(239,68,68,0.09); color: var(--danger); border:1px solid rgba(239,68,68,0.06)}
+
+/* small muted text */
+.small-muted{color:var(--muted);font-size:13px}
+
+/* empty state */
+#txn-list .empty{
+  padding:24px;border-radius:12px;background:linear-gradient(180deg,#ffffff,#fbfbfd);
+  color:var(--muted);text-align:center;box-shadow: var(--card-shadow);
+}
+
+/* animations */
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* responsive */
+@media (max-width: 980px){
+  .layout{padding:16px;gap:12px;flex-direction:column}
+  .left-nav{width:100%;display:flex;flex-direction:row;align-items:center;gap:8px;padding:12px;border-radius:12px;overflow:auto}
+  .left-nav a{padding:10px 12px;white-space:nowrap}
+  .main-header{flex-direction:column;align-items:flex-start;gap:12px}
+  .payee-info .name{max-width:200px}
+}
+
+/* tiny decorative flourish: faint timeline separators */
+.payee-card + .payee-card{
+  border-top: 1px dashed rgba(14,28,60,0.02);
+}
+
+/* focus accessibility */
+.left-nav a:focus, .btn:focus, #search-input:focus, select:focus, input[type="number"]:focus{
+  outline: 3px solid rgba(255,122,0,0.12);
+  outline-offset: 4px;
+}
+/* ======= Transactions UI additions (summary, tabs, charts) ======= */
+
+/* Summary cards */
+.summary-card{
+  background: linear-gradient(180deg,#ffffff,#fbfbfd);
+  padding:12px 16px;
+  border-radius:12px;
+  box-shadow: 0 8px 28px rgba(14,28,60,0.04);
+  min-width:160px;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  align-items:flex-start;
+  border:1px solid rgba(16,24,40,0.02);
+}
+.summary-label{
+  font-size:13px;
+  color:var(--muted);
+  font-weight:700;
+}
+.summary-value{
+  font-size:20px;
+  font-weight:800;
+  color:#0b1724;
+}
+
+/* Tabs */
+.tab-btn{
+  padding:8px 14px;
+  border-radius:10px;
+  border:1px solid rgba(14,28,60,0.06);
+  background: transparent;
+  font-weight:700;
+  cursor:pointer;
+  transition: all .12s ease;
+  color:var(--muted);
+}
+.tab-btn:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(14,28,60,0.06);
+}
+.tab-btn.active{
+  color: #fff;
+  background: linear-gradient(180deg, var(--accent), #ff9b3d);
+  box-shadow: 0 12px 30px rgba(255,122,0,0.14);
+  transform: translateY(0);
+}
+
+/* Chart cards */
+.chart-card{
+  background: var(--panel);
+  padding:12px;
+  border-radius:12px;
+  box-shadow: var(--card-shadow);
+  min-width:260px;
+  max-width:420px;
+  flex:1;
+  border:1px solid rgba(16,24,40,0.02);
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+.chart-card--wide{ flex:2; min-width:360px; max-width:900px; }
+
+.chart-title{
+  font-weight:700;
+  font-size:14px;
+  color:#0b1724;
+}
+
+/* ===== 320–374px ULTRA-SMALL FIX (transactions page) ===== */
+@media (min-width: 320px) and (max-width: 374px) {
+
+  /* kill any horizontal creep */
+  html, body { overflow-x: hidden !important; }
+
+  /* keep two columns, but tighten spacing so main never hides under sidebar */
+  .layout { 
+    display: flex;
+    flex-direction: row !important;
+    gap: 8px !important;
+    padding: 0 !important;
+  }
+
+  /* ---- SIDEBAR: compact icon rail ---- */
+  .layout .sidebar {
+    width: 84px !important;              /* <= key: shrink from 220px */
+    padding: 12px 6px !important;
+    border-right: 0 !important;
+    border-radius: 12px !important;
+    box-shadow: 0 6px 20px rgba(14,28,60,0.06) !important;
+    position: sticky !important;
+    top: 8px !important;
+    height: calc(100vh - 16px) !important;
+    align-self: flex-start !important;
+  }
+  .layout .sidebar .brand-circle{
+    width: 38px !important; height: 38px !important;
+    font-size: 16px !important; border-radius: 12px !important;
+    margin: 0 auto 8px !important;
+  }
+
+  /* menu tiles: ICON-ONLY */
+  .layout .sidebar .menu{ padding: 0 !important; text-align: center !important; }
+  .layout .sidebar .menu-item{
+    padding: 10px 6px !important; margin-bottom: 6px !important; border-radius: 12px !important;
+  }
+  .layout .sidebar .menu-item a{
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 4px !important;
+    text-decoration: none !important;
+    font-size: 0 !important;            /* hides labels cleanly */
+    color: #666 !important;
+  }
+  .layout .sidebar .menu-item a i{ font-size: 18px !important; display: block !important; }
+  .layout .sidebar .menu-item.active{
+    background: #fff4e6 !important; color: #ff7a00 !important; border-left: 0 !important;
+  }
+  .layout .sidebar .menu-item:hover{
+    background: #fff7ef !important; color: #ff7a00 !important;
+  }
+
+  /* bottom profile: avatar only (your screenshot shows text leaking) */
+  .layout .sidebar .profile-thumb{ width: 36px !important; height: 36px !important; border-width: 1px !important; }
+  .layout .sidebar #side-profile-name{ display: none !important; }
+  .layout .sidebar .sidebar-bottom{ padding: 8px 0 6px !important; }
+
+  /* ---- MAIN: never slide under sidebar ---- */
+  .layout .main{
+    width: calc(100% - 84px) !important;   /* reserve space for the rail */
+    margin: 0 !important;
+    padding: 0 10px !important;
+    min-height: auto !important;
+    overflow-x: hidden !important;
+  }
+
+  /* header */
+  .main-header{
+    margin-bottom: 10px !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 6px !important;
+  }
+  .main-header h1{ font-size: 18px !important; }
+
+  /* filter card */
+  .saved-card{
+    padding: 14px 12px !important;
+    border-radius: 12px !important;
+    box-shadow: 0 10px 28px rgba(14,28,60,0.05) !important;
+    margin-bottom: 12px !important;
+  }
+  .saved-card > div:first-child{ gap: 8px !important; align-items: stretch !important; }
+  .saved-card label{ font-size: 12px !important; }
+  #month-filter, #year-filter{
+    width: 100% !important; height: 36px !important; padding: 8px 10px !important; font-size: 13px !important;
+    min-width: 0 !important;
+  }
+  #apply-filter.btn{ width: 100% !important; padding: 8px 10px !important; font-size: 13px !important; }
+
+  /* summary cards -> 2-up grid */
+  #summary-cards{
+    width: 100% !important;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+  }
+  .summary-card{ padding: 10px 12px !important; min-width: 0 !important; }
+  .summary-label{ font-size: 12px !important; }
+  .summary-value{ font-size: 16px !important; }
+
+  /* tabs (small) */
+  .tab-btn{ padding: 8px 10px !important; font-size: 12px !important; border-radius: 10px !important; }
+
+  /* charts: full width, responsive canvas */
+  .chart-card{ width: 100% !important; max-width: 100% !important; padding: 10px !important; }
+  .chart-card--wide{ min-width: 0 !important; }
+  .chart-title{ font-size: 13px !important; }
+  canvas{ width: 100% !important; height: auto !important; }
+
+  /* transactions list */
+  #txn-list{ margin-top: 10px !important; gap: 10px !important; }
+  .payee-card{
+    padding: 12px !important; border-radius: 12px !important; gap: 10px !important;
+    flex-direction: column !important; align-items: flex-start !important;
+  }
+  .payee-meta{ gap: 10px !important; }
+  .avatar{ width: 40px !important; height: 40px !important; font-size: 14px !important; border-radius: 10px !important; }
+  .payee-info .name{ max-width: 200px !important; font-size: 14px !important; }
+  .payee-info .meta{ font-size: 12px !important; }
+  .payee-actions{ width: 100% !important; justify-content: space-between !important; }
+  .amount{ font-size: 16px !important; }
+  .badge{ font-size: 11px !important; padding: 5px 8px !important; }
+
+  /* globals */
+  .btn{ padding: 8px 10px !important; font-size: 13px !important; }
+  .muted-small, .small-muted{ font-size: 11px !important; }
+}
+/* ===== SMALL PHONES: 375–424px (Transactions page, hardened) ===== */
+@media (min-width: 374px) and (max-width: 424px) {
+
+  /* prevent sneaky horizontal scroll */
+  html, body { overflow-x: hidden !important; }
+
+  /* keep two columns with a small rail */
+  .layout{
+    display: flex;
+    flex-direction: row !important;
+    gap: 10px !important;
+    padding: 0 !important;
+  }
+
+  /* ---------- SIDEBAR: compact w/ tiny labels ---------- */
+  .layout .sidebar{
+    width: 106px !important;                /* room for small text under icons */
+    padding: 14px 8px !important;
+    border-right: 0 !important;
+    border-radius: 12px !important;
+    box-shadow: 0 6px 22px rgba(14,28,60,0.06) !important;
+    position: sticky !important;
+    top: 10px !important;
+    height: calc(100vh - 20px) !important;
+    align-self: flex-start !important;
+  }
+  .layout .sidebar .brand-circle{
+    width: 42px !important; height: 42px !important;
+    font-size: 18px !important; border-radius: 12px !important;
+    margin: 0 auto 8px !important;
+  }
+  .layout .sidebar .menu{ padding: 0 !important; text-align: center !important; }
+
+  .layout .sidebar .menu-item{
+    padding: 10px 8px !important; margin-bottom: 8px !important; border-radius: 12px !important;
+  }
+  /* icon-first + tiny label below (visible at this width) */
+  .layout .sidebar .menu-item a{
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 6px !important;
+    text-decoration: none !important;
+    font-size: 11px !important;            /* show short label */
+    line-height: 1.05 !important;
+    color: #555 !important;
+    white-space: nowrap !important;
+  }
+  .layout .sidebar .menu-item a i{ font-size: 20px !important; display: block !important; }
+
+  .layout .sidebar .menu-item.active{
+    background: #fff4e6 !important; color: #ff7a00 !important; border-left: 0 !important; font-weight: 600 !important;
+  }
+  .layout .sidebar .menu-item:hover{
+    background: #fff7ef !important; color: #ff7a00 !important;
+  }
+
+  /* bottom profile: avatar only (keeps rail clean) */
+  .layout .sidebar .profile-thumb{ width: 40px !important; height: 40px !important; border-width: 1px !important; }
+  .layout .sidebar #side-profile-name{ display: none !important; }
+  .layout .sidebar .sidebar-bottom{ padding: 10px 0 8px !important; }
+
+  /* ---------- MAIN: never slide under the rail ---------- */
+  .layout .main{
+    width: calc(100% - 106px) !important;   /* reserve space for sidebar */
+    margin: 0 !important;
+    padding: 0 12px !important;
+    min-height: auto !important;
+    overflow-x: hidden !important;
+  }
+
+  /* header */
+  .main-header{
+    margin-bottom: 12px !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 8px !important;
+  }
+  .main-header h1{ font-size: 19px !important; }
+
+  /* filter card */
+  .saved-card{
+    padding: 16px 14px !important;
+    border-radius: 12px !important;
+    box-shadow: 0 10px 28px rgba(14,28,60,0.05) !important;
+    margin-bottom: 14px !important;
+  }
+  .saved-card > div:first-child{ gap: 10px !important; align-items: stretch !important; }
+  .saved-card label{ font-size: 12px !important; }
+
+  #month-filter, #year-filter{
+    min-width: 0 !important;
+    width: 100% !important;
+    height: 36px !important;
+    padding: 8px 10px !important;
+    font-size: 13px !important;
+  }
+  #apply-filter.btn{
+    width: 100% !important;
+    padding: 9px 12px !important;
+    font-size: 13px !important;
+  }
+
+  /* summary cards */
+  #summary-cards{
+    width: 100% !important;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+  }
+  .summary-card{ padding: 12px !important; min-width: 0 !important; }
+  .summary-label{ font-size: 12px !important; }
+  .summary-value{ font-size: 17px !important; }
+
+  /* tabs */
+  .tab-btn{ padding: 8px 12px !important; font-size: 12.5px !important; border-radius: 10px !important; }
+
+  /* charts */
+  .chart-card{ width: 100% !important; max-width: 100% !important; padding: 12px !important; }
+  .chart-card--wide{ min-width: 0 !important; }
+  .chart-title{ font-size: 13.5px !important; }
+  canvas{ width: 100% !important; height: auto !important; }
+
+  /* transaction list */
+  #txn-list{ margin-top: 10px !important; gap: 10px !important; }
+  .payee-card{
+    padding: 12px !important;
+    border-radius: 12px !important;
+    gap: 10px !important;
+    flex-direction: column !important;      /* stack on small screens */
+    align-items: flex-start !important;
+  }
+  .payee-meta{ gap: 10px !important; }
+  .avatar{ width: 42px !important; height: 42px !important; font-size: 15px !important; border-radius: 10px !important; }
+  .payee-info .name{ max-width: 240px !important; font-size: 15px !important; }
+  .payee-info .meta{ font-size: 12.5px !important; }
+
+  .payee-actions{ width: 100% !important; justify-content: space-between !important; }
+  .amount{ font-size: 17px !important; }
+  .badge{ font-size: 11.5px !important; padding: 6px 9px !important; }
+
+  /* general buttons + small text */
+  .btn{ padding: 9px 12px !important; font-size: 14px !important; }
+  .muted-small, .small-muted{ font-size: 12px !important; }
+}
+/* ===== SMALL/MID PHONES: 425–599px (Transactions, hardened) ===== */
+@media (min-width: 424px) and (max-width: 599px) {
+
+  html, body { overflow-x: hidden !important; }
+
+  /* two columns with small rail */
+  .layout{
+    display: flex;
+    flex-direction: row !important;
+    gap: 12px !important;
+    padding: 0 !important;
+  }
+
+  /* ---------- SIDEBAR (compact, labels visible) ---------- */
+  .layout .sidebar{
+    width: 130px !important;
+    padding: 16px 10px !important;
+    border-right: 0 !important;
+    border-radius: 12px !important;
+    box-shadow: 0 8px 22px rgba(14,28,60,0.06) !important;
+    position: sticky !important;
+    top: 12px !important;
+    height: calc(100vh - 24px) !important;
+    align-self: flex-start !important;
+  }
+  .layout .sidebar .brand-circle{
+    width: 44px !important; height: 44px !important;
+    font-size: 18px !important; border-radius: 12px !important;
+    margin: 0 auto 10px !important;
+  }
+  .layout .sidebar .menu{ padding: 0 !important; text-align: center !important; }
+  .layout .sidebar .menu-item{
+    padding: 12px 8px !important; margin-bottom: 8px !important; border-radius: 12px !important;
+  }
+  .layout .sidebar .menu-item a{
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 6px !important;
+    font-size: 12px !important;            /* short label visible */
+    line-height: 1.1 !important;
+    color: #555 !important;
+    text-decoration: none !important;
+    white-space: nowrap !important;
+  }
+  .layout .sidebar .menu-item a i{ font-size: 20px !important; display:block !important; }
+  .layout .sidebar .menu-item.active{
+    background:#fff4e6 !important; color:#ff7a00 !important; border-left:0 !important; font-weight:600 !important;
+  }
+  .layout .sidebar .menu-item:hover{ background:#fff7ef !important; color:#ff7a00 !important; }
+
+  .layout .sidebar .profile-thumb{ width: 44px !important; height: 44px !important; border-width: 1px !important; }
+  .layout .sidebar #side-profile-name{ font-size: 12px !important; }
+  .layout .sidebar .sidebar-bottom{ padding: 10px 0 8px !important; }
+
+  /* ---------- MAIN (never underlap) ---------- */
+  .layout .main{
+    width: calc(100% - 130px) !important;
+    margin: 0 !important;
+    padding: 0 14px !important;
+    min-height: auto !important;
+    overflow-x: hidden !important;
+  }
+
+  /* header */
+  .main-header{
+    margin-bottom: 14px !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 8px !important;
+  }
+  .main-header h1{ font-size: 20px !important; }
+
+  /* filter card */
+  .saved-card{
+    padding: 18px 16px !important;
+    border-radius: 12px !important;
+    margin-bottom: 14px !important;
+    box-shadow: 0 10px 28px rgba(14,28,60,0.05) !important;
+  }
+  .saved-card > div:first-child{ gap: 10px !important; align-items: center !important; flex-wrap: wrap !important; }
+  .saved-card label{ font-size: 12.5px !important; }
+  #month-filter, #year-filter{
+    min-width: 130px !important;
+    height: 38px !important;
+    padding: 8px 12px !important;
+    font-size: 13.5px !important;
+  }
+  #apply-filter.btn{
+    padding: 10px 12px !important;
+    font-size: 14px !important;
+  }
+
+  /* summary cards */
+  #summary-cards{
+    width: 100% !important;
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 12px !important;
+  }
+  .summary-card{ padding: 12px 14px !important; min-width: 0 !important; }
+  .summary-label{ font-size: 12.5px !important; }
+  .summary-value{ font-size: 18px !important; }
+
+  /* tabs */
+  .tab-btn{
+    padding: 9px 12px !important;
+    font-size: 13px !important;
+    border-radius: 10px !important;
+  }
+
+  /* charts */
+  .chart-card{ width: 100% !important; max-width: 100% !important; padding: 12px !important; }
+  .chart-card--wide{ min-width: 0 !important; }
+  .chart-title{ font-size: 14px !important; }
+  canvas{ width: 100% !important; height: auto !important; }
+
+  /* transaction list */
+  #txn-list{ margin-top: 12px !important; gap: 12px !important; }
+  .payee-card{
+    padding: 14px !important;
+    border-radius: 12px !important;
+    gap: 10px !important;
+    flex-direction: row !important;          /* back to horizontal at this width */
+    align-items: center !important;
+  }
+  .payee-meta{ gap: 12px !important; }
+  .avatar{ width: 44px !important; height: 44px !important; font-size: 15px !important; border-radius: 10px !important; }
+  .payee-info .name{ max-width: 280px !important; font-size: 15px !important; }
+  .payee-info .meta{ font-size: 12.5px !important; }
+  .payee-actions{ gap: 10px !important; }
+  .amount{ font-size: 18px !important; }
+  .badge{ font-size: 12px !important; padding: 6px 10px !important; }
+
+  /* buttons + small text */
+  .btn{ padding: 10px 12px !important; font-size: 14px !important; }
+  .muted-small, .small-muted{ font-size: 12.5px !important; }
+}
+/* ===== LARGE PHONES / SMALL TABLETS: 600–767px (Transactions, hardened) ===== */
+@media (min-width: 599px) and (max-width: 767px) {
+
+  html, body { overflow-x: hidden !important; }
+
+  .layout{
+    display: flex;
+    flex-direction: row !important;
+    gap: 14px !important;
+    padding: 0 !important;
+  }
+
+  /* ---------- SIDEBAR (comfortable, labels visible) ---------- */
+  .layout .sidebar{
+    width: 160px !important;
+    padding: 16px 12px !important;
+    border-right: 0 !important;
+    border-radius: 12px !important;
+    box-shadow: 0 8px 24px rgba(14,28,60,0.06) !important;
+    position: sticky !important;
+    top: 14px !important;
+    height: calc(100vh - 28px) !important;
+    align-self: flex-start !important;
+  }
+  .layout .sidebar .brand-circle{
+    width: 50px !important; height: 50px !important;
+    font-size: 22px !important; border-radius: 12px !important;
+    margin: 0 auto 10px !important;
+  }
+  .layout .sidebar .menu{ padding: 0 !important; text-align: center !important; }
+  .layout .sidebar .menu-item{
+    padding: 12px 10px !important; margin-bottom: 8px !important; border-radius: 12px !important;
+  }
+  .layout .sidebar .menu-item a{
+    display: flex !important; flex-direction: column !important; align-items: center !important;
+    gap: 6px !important; font-size: 12.5px !important; line-height: 1.1 !important; color: #555 !important;
+    text-decoration: none !important; white-space: nowrap !important;
+  }
+  .layout .sidebar .menu-item a i{ font-size: 20px !important; }
+  .layout .sidebar .menu-item.active{
+    background:#fff4e6 !important; color:#ff7a00 !important; border-left:0 !important; font-weight:600 !important;
+  }
+  .layout .sidebar .profile-thumb{ width: 48px !important; height: 48px !important; }
+  .layout .sidebar #side-profile-name{ font-size: 12.5px !important; }
+
+  /* ---------- MAIN (reserve rail width) ---------- */
+  .layout .main{
+    width: calc(100% - 160px) !important;
+    margin: 0 !important;
+    padding: 0 16px !important;
+    min-height: auto !important;
+    overflow-x: hidden !important;
+  }
+
+  /* header */
+  .main-header{
+    margin-bottom: 16px !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 8px !important;
+  }
+  .main-header h1{ font-size: 20px !important; }
+
+  /* filter card */
+  .saved-card{
+    padding: 20px 18px !important;
+    border-radius: 12px !important;
+    margin-bottom: 16px !important;
+  }
+  .saved-card > div:first-child{
+    gap: 12px !important; align-items: center !important; flex-wrap: wrap !important;
+  }
+  .saved-card label{ font-size: 13px !important; }
+  #month-filter, #year-filter{
+    min-width: 150px !important; height: 40px !important; padding: 8px 12px !important; font-size: 14px !important;
+  }
+  #apply-filter.btn{ padding: 10px 14px !important; font-size: 14px !important; }
+
+  /* summary cards */
+  #summary-cards{
+    width: 100% !important;
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 12px !important;
+  }
+  .summary-card{ padding: 12px 14px !important; }
+  .summary-label{ font-size: 13px !important; }
+  .summary-value{ font-size: 18px !important; }
+
+  /* tabs */
+  .tab-btn{ padding: 10px 12px !important; font-size: 13.5px !important; border-radius: 10px !important; }
+
+  /* charts (two-up when space allows) */
+  .chart-card{ width: 100% !important; max-width: 100% !important; padding: 12px !important; }
+  .chart-card--wide{ min-width: 0 !important; }
+  .chart-title{ font-size: 14px !important; }
+  canvas{ width: 100% !important; height: auto !important; }
+
+  /* transactions list (horizontal layout at this size) */
+  #txn-list{ margin-top: 12px !important; gap: 12px !important; }
+  .payee-card{
+    padding: 14px !important; border-radius: 12px !important; gap: 12px !important;
+    flex-direction: row !important; align-items: center !important;
+  }
+  .payee-meta{ gap: 12px !important; }
+  .avatar{ width: 48px !important; height: 48px !important; font-size: 16px !important; border-radius: 10px !important; }
+  .payee-info .name{ max-width: 360px !important; font-size: 16px !important; }
+  .payee-info .meta{ font-size: 13px !important; }
+  .payee-actions{ gap: 10px !important; }
+  .amount{ font-size: 18px !important; }
+  .badge{ font-size: 12.5px !important; padding: 6px 10px !important; }
+
+  /* buttons + small text */
+  .btn{ padding: 10px 14px !important; font-size: 14.5px !important; }
+  .muted-small, .small-muted{ font-size: 13px !important; }
+}
+/* ===== TABLETS (PORTRAIT): 768px–899px ===== */
+@media (min-width: 767px) and (max-width: 899px) {
+
+  html, body {
+    overflow-x: hidden;
+  }
+
+  /* Layout: Sidebar + Main */
+  .layout {
+    display: flex;
+    flex-direction: row;
+    gap: 18px;
+    padding: 0;
+  }
+
+  /* ---------- SIDEBAR ---------- */
+  .layout .sidebar {
+    width: 180px;
+    padding: 20px 14px;
+    border-radius: 16px;
+    position: sticky;
+    top: 16px;
+    height: calc(100vh - 32px);
+    box-shadow: 0 8px 26px rgba(0,0,0,0.06);
+  }
+
+  .layout .sidebar .brand-circle {
+    width: 54px;
+    height: 54px;
+    font-size: 24px;
+    margin: 0 auto 14px;
+  }
+
+  .layout .sidebar .menu-item {
+    padding: 12px 12px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+  }
+
+  .layout .sidebar .menu-item a {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-decoration: none;
+    align-items: center;
+    font-size: 14px;
+    color: #555;
+  }
+
+  .layout .sidebar .menu-item a i {
+    font-size: 22px;
+  }
+
+  .layout .sidebar .menu-item.active {
+    background: #fff4e6;
+    color: #ff7a00;
+  }
+
+  /* profile */
+  .layout .sidebar .profile-thumb {
+    width: 52px;
+    height: 52px;
+  }
+
+  #side-profile-name {
+    font-size: 14px;
+  }
+
+  /* ---------- MAIN ---------- */
+  .layout .main {
+    width: calc(100% - 180px);
+    padding: 0 18px;
+    overflow-x: hidden;
+  }
+
+  .main-header {
+    margin-bottom: 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .main-header h1 {
+    font-size: 24px;
+  }
+
+  /* ---------- FILTER CARD ---------- */
+  .saved-card {
+    padding: 22px 18px;
+    border-radius: 14px;
+    margin-bottom: 18px;
+  }
+
+  .saved-card > div:first-child {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  #month-filter,
+  #year-filter {
+    min-width: 150px;
+    height: 42px;
+    padding: 10px 12px;
+    font-size: 15px;
+  }
+
+  #apply-filter {
+    padding: 10px 14px;
+    font-size: 15px;
+  }
+
+  /* ---------- SUMMARY CARDS ---------- */
+  #summary-cards {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+
+  .summary-card {
+    padding: 14px 16px;
+    border-radius: 14px;
+  }
+
+  .summary-label {
+    font-size: 14px;
+  }
+
+  .summary-value {
+    font-size: 20px;
+  }
+
+  /* ---------- TABS ---------- */
+  .tab-btn {
+    padding: 10px 14px;
+    font-size: 15px;
+  }
+
+  /* ---------- CHARTS ---------- */
+  .chart-card {
+    width: 100%;
+    padding: 14px;
+    border-radius: 14px;
+  }
+
+  .chart-title {
+    font-size: 15px;
+  }
+
+  /* charts side-by-side layout */
+  .chart-card--wide {
+    flex: 2;
+  }
+
+  canvas {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  /* ---------- TRANSACTION LIST ---------- */
+  #txn-list {
+    margin-top: 14px;
+    gap: 14px;
+  }
+
+  .payee-card {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    padding: 16px;
+    border-radius: 14px;
+    align-items: center;
+  }
+
+  .avatar {
+    width: 52px;
+    height: 52px;
+    font-size: 18px;
+  }
+
+  .payee-info .name {
+    font-size: 17px;
+    max-width: 420px;
+  }
+
+  .payee-info .meta {
+    font-size: 14px;
+  }
+
+  .payee-actions {
+    gap: 14px;
+  }
+
+  .amount {
+    font-size: 20px;
+  }
+
+  .badge {
+    font-size: 13px;
+    padding: 6px 12px;
+  }
+
+  /* Buttons + misc */
+  .btn {
+    padding: 10px 14px;
+    font-size: 15px;
+  }
+
+  .muted-small,
+  .small-muted {
+    font-size: 13.5px;
+  }
+}
+
+/* ===== SMALL DESKTOP & TABLET LANDSCAPE: 900px–1023px ===== */
+@media (min-width: 899px) and (max-width: 1023px) {
+
+  html, body {
+    overflow-x: hidden;
+  }
+
+  /* -------------- LAYOUT -------------- */
+  .layout {
+    display: flex;
+    flex-direction: row;
+    gap: 22px;
+    padding: 0 12px;
+  }
+
+  /* -------------- SIDEBAR -------------- */
+  .layout .sidebar {
+    width: 200px;
+    padding: 22px 16px;
+    border-radius: 16px;
+    position: sticky;
+    top: 16px;
+    height: calc(100vh - 32px);
+    box-shadow: 0 10px 28px rgba(0,0,0,0.06);
+  }
+
+  .layout .sidebar .brand-circle {
+    width: 60px;
+    height: 60px;
+    font-size: 26px;
+    margin: 0 auto 18px;
+  }
+
+  .layout .sidebar .menu-item {
+    padding: 12px 14px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+  }
+
+  .layout .sidebar .menu-item a {
+    display: flex;
+    gap: 12px;
+    flex-direction: row;
+    font-size: 15px;
+    color: #444;
+  }
+
+  .layout .sidebar .menu-item a i {
+    font-size: 20px;
+  }
+
+  .layout .sidebar .menu-item.active {
+    background: #fff4e6;
+    color: #ff7a00;
+    border-left: 4px solid #ff7a00;
+  }
+
+  /* bottom profile */
+  .profile-thumb {
+    width: 56px;
+    height: 56px;
+  }
+
+  #side-profile-name {
+    font-size: 15px;
+  }
+
+
+  /* -------------- MAIN AREA -------------- */
+  .layout .main {
+    width: calc(100% - 200px);
+    padding: 0 10px 20px;
+  }
+
+  .main-header {
+    margin-bottom: 24px;
+  }
+
+  .main-header h1 {
+    font-size: 26px;
+  }
+
+
+  /* -------------- FILTER CARD -------------- */
+  .saved-card {
+    padding: 22px 20px;
+    border-radius: 16px;
+  }
+
+  .saved-card > div:first-child {
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  #month-filter,
+  #year-filter {
+    min-width: 160px;
+    padding: 10px 12px;
+    font-size: 15px;
+    height: 44px;
+  }
+
+  #apply-filter {
+    padding: 10px 16px;
+    font-size: 15px;
+  }
+
+
+  /* -------------- SUMMARY CARDS -------------- */
+  #summary-cards {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .summary-card {
+    padding: 16px 18px;
+    border-radius: 16px;
+  }
+
+  .summary-label {
+    font-size: 14px;
+  }
+
+  .summary-value {
+    font-size: 22px;
+  }
+
+
+  /* -------------- TABS -------------- */
+  .tab-btn {
+    padding: 10px 16px;
+    font-size: 15px;
+  }
+
+
+  /* -------------- CHARTS -------------- */
+  .chart-card {
+    padding: 16px;
+    border-radius: 16px;
+  }
+
+  .chart-title {
+    font-size: 16px;
+  }
+
+  /* keep two charts side-by-side */
+  .chart-card--wide {
+    flex: 2;
+  }
+
+  canvas {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+
+  /* -------------- TRANSACTION LIST -------------- */
+  #txn-list {
+    margin-top: 18px;
+    gap: 16px;
+  }
+
+  .payee-card {
+    padding: 16px 18px;
+    border-radius: 16px;
+    gap: 18px;
+  }
+
+  .avatar {
+    width: 55px;
+    height: 55px;
+    font-size: 20px;
+  }
+
+  .payee-info .name {
+    font-size: 18px;
+    max-width: 500px;
+  }
+
+  .payee-info .meta {
+    font-size: 14px;
+  }
+
+  .payee-actions {
+    gap: 14px;
+  }
+
+  .amount {
+    font-size: 21px;
+  }
+
+  .badge {
+    font-size: 13px;
+    padding: 6px 12px;
+    border-radius: 999px;
+  }
+
+
+  /* Buttons */
+  .btn {
+    padding: 10px 16px;
+    font-size: 15px;
+  }
+
+  .muted-small,
+  .small-muted {
+    font-size: 14px;
+  }
+}
+/* ===== SMALL LAPTOPS: 1024px–1199px ===== */
+@media (min-width: 1023px) and (max-width: 1199px) {
+
+  html, body {
+    overflow-x: hidden;
+  }
+
+  /* -------------- LAYOUT -------------- */
+  .layout {
+    display: flex;
+    flex-direction: row;
+    gap: 26px;
+    padding: 0 20px;
+  }
+
+  /* -------------- SIDEBAR -------------- */
+  .layout .sidebar {
+    width: 220px;
+    padding: 26px 18px;
+    border-radius: 18px;
+    position: sticky;
+    top: 20px;
+    height: calc(100vh - 40px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+  }
+
+  .layout .sidebar .brand-circle {
+    width: 68px;
+    height: 68px;
+    font-size: 28px;
+    margin: 0 auto 24px;
+  }
+
+  .layout .sidebar .menu-item {
+    padding: 14px 16px;
+    border-radius: 12px;
+    margin-bottom: 14px;
+  }
+
+  .layout .sidebar .menu-item a {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-direction: row;
+    font-size: 15px;
+    color: #555;
+  }
+
+  .layout .sidebar .menu-item a i {
+    font-size: 20px;
+  }
+
+  .layout .sidebar .menu-item.active {
+    background: #fff4e6;
+    color: #ff7a00;
+    border-left: 4px solid #ff7a00;
+  }
+
+  /* profile */
+  .profile-thumb {
+    width: 60px;
+    height: 60px;
+  }
+
+  #side-profile-name {
+    font-size: 15px;
+  }
+
+  /* -------------- MAIN AREA -------------- */
+  .layout .main {
+    width: calc(100% - 220px);
+    padding-bottom: 30px;
+  }
+
+  .main-header {
+    margin-bottom: 26px;
+  }
+
+  .main-header h1 {
+    font-size: 28px;
+  }
+
+  /* ---------- FILTER CARD ---------- */
+  .saved-card {
+    padding: 26px 24px;
+    border-radius: 18px;
+    margin-bottom: 26px;
+  }
+
+  .saved-card > div:first-child {
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+
+  #month-filter,
+  #year-filter {
+    min-width: 170px;
+    padding: 12px 14px;
+    font-size: 16px;
+    height: 46px;
+  }
+
+  #apply-filter {
+    padding: 12px 18px;
+    font-size: 16px;
+  }
+
+  /* -------------- SUMMARY CARDS -------------- */
+  #summary-cards {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+
+  .summary-card {
+    padding: 18px 20px;
+    border-radius: 18px;
+  }
+
+  .summary-label {
+    font-size: 15px;
+  }
+
+  .summary-value {
+    font-size: 24px;
+  }
+
+  /* -------------- TABS -------------- */
+  .tab-btn {
+    padding: 12px 18px;
+    font-size: 16px;
+  }
+
+  /* -------------- CHARTS -------------- */
+  .chart-card {
+    padding: 18px;
+    border-radius: 18px;
+    min-width: 320px;
+  }
+
+  .chart-card--wide {
+    flex: 2.2;
+    min-width: 480px;
+  }
+
+  .chart-title {
+    font-size: 16px;
+  }
+
+  canvas {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  /* -------------- TRANSACTION LIST -------------- */
+  #txn-list {
+    margin-top: 20px;
+    gap: 18px;
+  }
+
+  .payee-card {
+    padding: 20px;
+    border-radius: 18px;
+    gap: 20px;
+  }
+
+  .avatar {
+    width: 60px;
+    height: 60px;
+    font-size: 22px;
+  }
+
+  .payee-info .name {
+    font-size: 18px;
+    max-width: 600px;
+  }
+
+  .payee-info .meta {
+    font-size: 15px;
+  }
+
+  .payee-actions {
+    gap: 18px;
+  }
+
+  .amount {
+    font-size: 22px;
+  }
+
+  .badge {
+    font-size: 14px;
+    padding: 7px 14px;
+  }
+
+  /* Buttons */
+  .btn {
+    padding: 12px 18px;
+    font-size: 16px;
+  }
+
+  .muted-small,
+  .small-muted {
+    font-size: 14px;
+  }
+}
+
+/* small responsive rules */
+@media (max-width: 980px){
+  .summary-card{ min-width:140px; }
+  .chart-card{ max-width:100%; }
+  #txn-list{ margin-top:10px; }
+}
+
+/* a tiny style tweak for payee-card spacing when list is long */
+#txn-list .payee-card{
+  padding:12px;
+  align-items:center;
+}
+
+

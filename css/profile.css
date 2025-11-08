@@ -1,0 +1,1116 @@
+/* --------------------------------------
+   Gapy — Profile Page Styles
+   -------------------------------------- */
+
+body {
+  background: #f8fafc;
+  font-family: "Inter", "Poppins", sans-serif;
+  color: #222;
+}
+
+.layout {
+  min-height: 100vh;
+}
+
+/* ---------------- Sidebar ---------------- */
+.sidebar {
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 1px solid #eee;
+}
+
+.sidebar .brand-circle {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #fff5e6;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #ff7b00;
+  font-size: 22px;
+  box-shadow: 0 4px 8px rgba(255, 160, 60, 0.1);
+}
+
+.sidebar .menu {
+  flex-grow: 1;
+  text-align: left;
+}
+
+.sidebar .menu-item {
+  padding: 14px 22px;
+  font-weight: 500;
+  color: #555;
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.sidebar .menu-item:hover {
+  background: #fff9f3;
+  color: #ff7a00;
+}
+
+.sidebar .menu-item.active {
+  background: linear-gradient(90deg, #fff2e5 0%, #fff 100%);
+  border-left: 4px solid #ff7b00;
+  color: #ff7a00;
+  font-weight: 600;
+}
+
+.profile-thumb {
+  width: 54px;
+  height: 54px;
+  border: 2px solid #ffb870;
+}
+
+/* ---------------- Tabs ---------------- */
+.profile-tabs {
+  border-bottom: 2px solid #f0f0f0;
+  margin-bottom: 1rem;
+}
+
+.profile-tabs .nav-link {
+  border: none;
+  font-weight: 600;
+  color: #555;
+  padding: 10px 18px;
+  border-radius: 8px 8px 0 0;
+  transition: all 0.3s ease;
+}
+
+.profile-tabs .nav-link.active {
+  color: #ff7b00;
+  background: #fffaf4;
+  box-shadow: 0 -3px 10px rgba(255, 122, 0, 0.1);
+  transform: translateY(1px);
+}
+
+.profile-tabs .nav-link:hover {
+  color: #ff7b00;
+  background: #fff8f0;
+}
+
+/* ---------------- Cards ---------------- */
+.card {
+  border: none;
+  border-radius: 16px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: #fff;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.07);
+}
+
+.card h6 {
+  font-weight: 600;
+  color: #333;
+}
+
+.card input.form-control {
+  font-size: 14px;
+  padding: 10px;
+}
+
+.card .btn {
+  font-weight: 600;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.card .btn:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(255, 130, 0, 0.3);
+}
+
+/* ---------------- Bank List ---------------- */
+.bank-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.bank-list .bank-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fffdf9;
+  border-radius: 10px;
+  padding: 12px 16px;
+  border: 1px solid #f2f2f2;
+  transition: all 0.3s ease;
+}
+
+.bank-list .bank-card:hover {
+  background: #fff8ee;
+  box-shadow: 0 6px 16px rgba(255, 140, 0, 0.08);
+}
+
+.bank-list .bank-name {
+  font-weight: 600;
+  color: #333;
+}
+
+.bank-list .bank-meta {
+  font-size: 13px;
+  color: #777;
+}
+
+.bank-list .upi-badge {
+  font-size: 13px;
+  background: #fff3e3;
+  color: #ff7a00;
+  border-radius: 6px;
+  padding: 2px 8px;
+}
+
+/* ---------------- Security ---------------- */
+#securityTab .form-control {
+  border-radius: 10px;
+  border: 1px solid #eee;
+}
+
+#securityTab input:focus {
+  border-color: #ff9b42;
+  box-shadow: 0 0 4px rgba(255, 160, 60, 0.2);
+}
+
+#securityTab .btn-primary {
+  background-color: #ff7b00;
+  border: none;
+}
+
+#securityTab .btn-warning {
+  background-color: #ffa400;
+  border: none;
+}
+
+#securityTab .btn-primary:hover {
+  background-color: #ff6600;
+}
+
+#securityTab .btn-warning:hover {
+  background-color: #ff8c00;
+}
+
+/* ---------------- Animations ---------------- */
+.tab-pane {
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------------- Notifications ---------------- */
+.form-check-input:checked {
+  background-color: #ff7a00;
+  border-color: #ff7a00;
+}
+
+.form-check-input:focus {
+  box-shadow: 0 0 4px rgba(255, 120, 0, 0.4);
+}
+
+/* ---------------- Privacy ---------------- */
+#privacyTab button {
+  font-weight: 500;
+  transition: all 0.25s ease;
+}
+
+#privacyTab button:hover {
+  transform: translateY(-2px);
+}
+
+/* ---------------- Responsive ---------------- */
+@media (max-width: 992px) {
+  .sidebar {
+    display: none;
+  }
+  .main {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .card {
+    padding: 18px;
+  }
+  .profile-tabs .nav-link {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+}
+
+
+/* ////////// */
+/* profile.css
+   Gapy — Profile page styles + animations
+   Save as css/profile.css and keep profile.html linking it.
+*/
+
+/* ---------- design tokens ---------- */
+:root{
+  --bg: #f7f8fa;
+  --panel: #ffffff;
+  --muted: #6b7280;
+  --accent: #ff7a00;
+  --accent-soft: rgba(255,122,0,0.08);
+  --glass: rgba(16,24,40,0.03);
+  --radius: 14px;
+  --card-shadow: 0 14px 40px rgba(14,28,60,0.06);
+  --success: #10b981;
+  --danger: #ef4444;
+  --glass-2: rgba(12,18,30,0.02);
+}
+
+/* ---------- base ---------- */
+* { box-sizing: border-box; }
+html,body { height:100%; margin:0; font-family: Inter, system-ui, "Helvetica Neue", Arial, sans-serif; background: var(--bg); color: #0b1724; -webkit-font-smoothing:antialiased; }
+.layout { display:flex; gap:28px; align-items:flex-start; padding:18px; }
+
+/* ---------- sidebar ---------- */
+.sidebar{
+  width:220px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(255,255,255,0.98));
+  border-radius:14px;
+  padding:18px;
+  box-shadow: 0 8px 30px rgba(14,28,60,0.04);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  height: calc(100vh - 36px);
+  position: sticky;
+  top: 18px;
+}
+.brand-circle { width:54px; height:54px; border-radius:10px; display:inline-flex; align-items:center; justify-content:center; background: linear-gradient(180deg,#fff6ef,#fff0e6); color:var(--accent); font-weight:700; box-shadow: 0 6px 20px rgba(255,122,0,0.06); margin:0 auto; }
+.menu { margin-top:12px; }
+.menu .menu-item { margin-bottom:6px; padding:10px 8px; border-radius:8px; color:var(--muted); display:flex; align-items:center; gap:10px; font-weight:600; }
+.menu .menu-item a { text-decoration:none; color:inherit; display:flex; gap:10px; align-items:center; }
+.menu .menu-item.active, .menu .menu-item:hover { background: var(--accent-soft); color:var(--accent); transform: translateX(4px); transition: transform .16s ease, box-shadow .16s ease; }
+
+/* ---------- main ---------- */
+.main { flex:1; min-height:calc(100vh - 36px); }
+.profile-tabs .nav-link { cursor:pointer; }
+.profile-tabs .nav-link.active { background: linear-gradient(180deg,#fff7ef,#fff2e6); border-radius:8px; color:var(--accent); font-weight:700; }
+
+/* ---------- cards ---------- */
+.card { background: var(--panel); border-radius:12px; box-shadow: var(--card-shadow); border: 0; }
+.profile-card { overflow: hidden; }
+.card h6 { margin:0 0 8px 0; font-weight:700; }
+.form-control[disabled] { background: #f3f4f6; color: #374151; }
+
+/* ---------- buttons ---------- */
+.btn-ghost { background: transparent; border: 1px solid rgba(11,22,50,0.04); padding:6px 10px; border-radius:8px; }
+.btn-warning { background: linear-gradient(180deg,#ff8a00,#ff6b00); border:0; color:#fff; box-shadow: 0 10px 30px rgba(255,122,0,0.08); }
+.btn-round { border-radius:999px; }
+
+/* ---------- bank list ---------- */
+.bank-list { margin-top:8px; }
+.bank-card {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px;
+  border-radius:10px;
+  background: linear-gradient(180deg,#fffaf4,#fff8f1);
+  border:1px solid rgba(255,140,0,0.04);
+  box-shadow: 0 6px 20px rgba(255,140,20,0.02);
+  transition: transform .18s cubic-bezier(.2,.9,.2,1), box-shadow .18s ease;
+}
+.bank-card:hover { transform: translateY(-6px); box-shadow: 0 22px 60px rgba(20,30,60,0.06); }
+.bank-name { font-size:16px; font-weight:800; color:#1f2937; }
+.bank-meta { font-size:13px; color:var(--muted); margin-top:4px; }
+.upi-badge { display:inline-block; padding:6px 10px; border-radius:999px; font-weight:700; background:#fff7e6; color:var(--accent); box-shadow: inset 0 -6px 12px rgba(255,255,255,0.6); }
+
+/* action buttons in bank card */
+.bank-card .btn { margin-left:6px; }
+
+/* ---------- modal tweaks ---------- */
+.modal-content { border-radius:12px; }
+.modal .form-control { border-radius:8px; padding:12px; letter-spacing: 2px; }
+
+/* ---------- input focus ---------- */
+.form-control:focus { box-shadow: 0 8px 24px rgba(255,122,0,0.06); border-color: rgba(255,122,0,0.18); outline: none; transform: translateZ(0); }
+
+/* ---------- editable field ---------- */
+.editable { transition: box-shadow .12s; box-shadow: 0 6px 18px rgba(255,122,0,0.06); }
+
+/* ---------- small helpers ---------- */
+.small-muted { color:var(--muted); font-size:13px; }
+
+/* ---------- header controls ---------- */
+header .btn { height:36px; padding:6px 10px; border-radius:8px; }
+
+/* ---------- animations ---------- */
+/* Fade/slide in for cards */
+@keyframes fadeUp {
+  from { opacity:0; transform: translateY(10px); }
+  to { opacity:1; transform: translateY(0); }
+}
+.bank-card { animation: fadeUp .42s cubic-bezier(.2,.9,.2,1) both; }
+
+/* subtle floating for avatar images */
+@keyframes floaty {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+  100% { transform: translateY(0); }
+}
+.profile-thumb { animation: floaty 4.2s ease-in-out infinite; }
+
+/* button micro interaction */
+.btn:active { transform: translateY(2px) scale(.998); }
+
+/* tab panel entry */
+.tab-pane.show.active { animation: fadeUp .36s cubic-bezier(.2,.9,.2,1) both; }
+
+/* responsive */
+@media (max-width: 1000px) {
+
+  .layout { padding:10px; gap:12px; flex-direction:column; }
+}
+@media (max-width: 480px) {
+  .bank-card { flex-direction:column; align-items:flex-start; gap:10px; }
+  .bank-card .text-end { text-align:left; width:100%; }
+}
+
+/* ---------- accessibility ---------- */
+:focus { outline: 3px solid rgba(255,122,0,0.12); outline-offset: 4px; }
+
+/* ---------- optional toasts (simple) ---------- */
+.gapy-toast {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  background: #111827;
+  color: #fff;
+  padding:10px 14px;
+  border-radius:10px;
+  box-shadow: 0 8px 30px rgba(2,6,23,0.5);
+  z-index: 9999;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity .28s ease, transform .28s ease;
+}
+.gapy-toast.show { opacity: 1; transform: translateY(0); }
+
+/* ============================================================
+   Extra Small Phones — 320px to 374px
+   Profile Page Responsive Styles
+   ============================================================ */
+@media (min-width: 320px) and (max-width: 374px) {
+
+  html, body {
+    overflow-x: hidden !important;
+  }
+
+  /* ---------- Convert sidebar → top bar ---------- */
+  .layout {
+    flex-direction: column !important;
+    padding: 10px !important;
+    gap: 10px !important;
+  }
+
+  .sidebar {
+    width: 100% !important;
+    height: auto !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 10px 12px !important;
+    border-radius: 10px !important;
+    position: relative !important;
+    top: 0 !important;
+  }
+
+  .sidebar-top,
+  .sidebar-bottom {
+    display: none !important;
+  }
+
+  .menu {
+    width: 100% !important;
+  }
+
+  .menu .menu-item {
+    padding: 8px !important;
+    font-size: 12px !important;
+    justify-content: center !important;
+  }
+
+  .menu .menu-item i {
+    display: none !important;
+  }
+
+  /* ---------- Main Header ---------- */
+  header {
+    flex-direction: column !important;
+    gap: 12px !important;
+    text-align: left !important;
+  }
+
+  header input {
+    width: 100% !important;
+  }
+
+  header img {
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+  /* ---------- Tabs become scrollable ---------- */
+  .profile-tabs {
+    display: flex;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+    gap: 6px !important;
+    padding-bottom: 8px !important;
+    scrollbar-width: none;
+  }
+  .profile-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .profile-tabs .nav-link {
+    font-size: 13px !important;
+    padding: 8px 12px !important;
+    border-radius: 6px !important;
+  }
+
+  /* ---------- Cards & Forms ---------- */
+  .card {
+    padding: 14px !important;
+    border-radius: 12px !important;
+  }
+
+  .card h6 {
+    font-size: 15px !important;
+  }
+
+  .form-control {
+    padding: 10px !important;
+    font-size: 14px !important;
+  }
+
+  .row.g-3 > div,
+  .row.g-4 > div {
+    width: 100% !important;
+  }
+
+  /* ---------- Bank List ---------- */
+  .bank-card {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 8px !important;
+    padding: 12px !important;
+  }
+
+  .bank-card .text-end {
+    width: 100% !important;
+    text-align: left !important;
+  }
+
+  .upi-badge {
+    font-size: 12px !important;
+    padding: 4px 8px !important;
+  }
+
+  /* ---------- Security Section ---------- */
+  #securityTab .btn-primary,
+  #securityTab .btn-warning {
+    font-size: 14px !important;
+    padding: 10px !important;
+  }
+
+  /* ---------- Notifications ---------- */
+  .form-check-label {
+    font-size: 14px !important;
+  }
+
+  /* ---------- Privacy Section ---------- */
+  #privacyTab button {
+    font-size: 14px !important;
+    padding: 10px !important;
+  }
+
+  /* ---------- Modals ---------- */
+  .modal-dialog {
+    max-width: 92% !important;
+    margin: 0 auto !important;
+  }
+
+  .modal-content {
+    padding: 14px !important;
+    border-radius: 12px !important;
+  }
+
+  .modal-header h5 {
+    font-size: 16px !important;
+  }
+
+  .modal-body input {
+    font-size: 15px !important;
+    padding: 10px !important;
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn {
+    font-size: 14px !important;
+    padding: 10px !important;
+    border-radius: 10px !important;
+  }
+
+}
+
+/* ============================================================
+   Small Phones — 375px to 424px
+   Profile Page Responsive Styles
+   ============================================================ */
+@media (min-width: 374px) and (max-width: 424px) {
+
+  html, body {
+    overflow-x: hidden !important;
+  }
+
+  /* ---------- Sidebar → Top Bar ---------- */
+  .layout {
+    flex-direction: column !important;
+    padding: 14px !important;
+    gap: 14px !important;
+  }
+
+  .sidebar {
+    width: 100% !important;
+    height: auto !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 12px !important;
+    border-radius: 12px !important;
+    position: relative !important;
+    top: 0 !important;
+  }
+
+  .sidebar-top,
+  .sidebar-bottom {
+    display: none !important;
+  }
+
+  .menu {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: space-around !important;
+  }
+
+  .menu .menu-item {
+    padding: 10px !important;
+    font-size: 13px !important;
+    justify-content: center !important;
+  }
+
+  .menu .menu-item i {
+    display: none !important;
+  }
+
+  /* ---------- Header ---------- */
+  header {
+    flex-direction: column !important;
+    gap: 14px !important;
+  }
+
+  header input {
+    width: 100% !important;
+  }
+
+  header img {
+    width: 36px !important;
+    height: 36px !important;
+  }
+
+  /* ---------- Tabs Row ---------- */
+  .profile-tabs {
+    display: flex;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+    gap: 8px !important;
+    padding-bottom: 6px !important;
+    scrollbar-width: none;
+  }
+  .profile-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .profile-tabs .nav-link {
+    padding: 9px 14px !important;
+    font-size: 14px !important;
+    border-radius: 8px !important;
+  }
+
+  /* ---------- Cards ---------- */
+  .card {
+    padding: 16px !important;
+    border-radius: 14px !important;
+  }
+
+  .card h6 {
+    font-size: 16px !important;
+  }
+
+  /* ---------- Form Inputs ---------- */
+  .form-control {
+    padding: 11px !important;
+    font-size: 15px !important;
+  }
+
+  .row.g-3 > div,
+  .row.g-4 > div {
+    width: 100% !important;
+  }
+
+  /* ---------- Bank List ---------- */
+  .bank-card {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 10px !important;
+    padding: 14px !important;
+  }
+
+  .bank-card .text-end {
+    width: 100% !important;
+    text-align: left !important;
+  }
+
+  .upi-badge {
+    font-size: 12px !important;
+    padding: 5px 10px !important;
+  }
+
+  /* ---------- Security Section ---------- */
+  #securityTab input {
+    font-size: 14px !important;
+    padding: 11px !important;
+  }
+
+  #securityTab .btn-primary,
+  #securityTab .btn-warning {
+    font-size: 15px !important;
+    padding: 12px !important;
+    width: 100% !important;
+  }
+
+  /* ---------- Notification Toggles ---------- */
+  .form-check-label {
+    font-size: 15px !important;
+  }
+
+  /* ---------- Privacy Buttons ---------- */
+  #privacyTab button {
+    font-size: 15px !important;
+    padding: 12px !important;
+  }
+
+  /* ---------- Modals ---------- */
+  .modal-dialog {
+    max-width: 90% !important;
+    margin: 0 auto !important;
+  }
+
+  .modal-content {
+    padding: 18px !important;
+    border-radius: 12px !important;
+  }
+
+  .modal-header h5 {
+    font-size: 17px !important;
+  }
+
+  .modal-body input {
+    padding: 12px !important;
+    font-size: 15px !important;
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn {
+    font-size: 15px !important;
+    padding: 12px !important;
+    border-radius: 10px !important;
+  }
+}
+
+
+/* -------------------------------------------
+   Small Phones / Narrow Phablets
+   425px – 599px
+--------------------------------------------*/
+@media (min-width: 424px) and (max-width: 599px) {
+
+  /* Layout */
+  .layout {
+    flex-direction: row;
+    gap: 14px;
+    padding: 12px;
+    align-items: flex-start;
+  }
+
+  /* Compact sidebar (icon-only) */
+  .sidebar {
+    display: flex !important;
+    width: 84px !important;
+    height: calc(100vh - 24px);
+    position: sticky;
+    top: 12px;
+    padding: 10px;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border-right: 1px solid #eee;
+  }
+
+  .brand-circle {
+    width: 38px;
+    height: 38px;
+    font-size: 15px;
+  }
+
+  .menu {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+
+  /* Hide text labels safely across your varying markups */
+  .menu .menu-item {
+    padding: 10px 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    font-size: 0;              /* hides raw text like “Profile” when no <a> */
+  }
+  .menu .menu-item a {         /* for pages where text is inside <a> */
+    font-size: 0;
+    justify-content: center;
+  }
+  .menu .menu-item a span {    /* if you used <span> for labels anywhere */
+    display: none;
+  }
+  .menu .menu-item i {
+    font-size: 18px;
+    line-height: 1;
+  }
+
+  .sidebar-bottom {
+    display: block;
+    text-align: center;
+  }
+  .profile-thumb {
+    width: 40px;
+    height: 40px;
+  }
+
+  /* Main */
+  .main {
+    padding: 10px;
+    width: calc(100% - 84px);
+  }
+
+  /* Header controls */
+  header input {
+    width: 140px !important;
+  }
+  header img {
+    width: 30px;
+    height: 30px;
+  }
+  header .btn {
+    height: 34px;
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  /* Tabs become horizontally scrollable chips */
+  .profile-tabs {
+    overflow-x: auto;
+    white-space: nowrap;
+    gap: 0;
+    -webkit-overflow-scrolling: touch;
+  }
+  .profile-tabs .nav-item { display: inline-block; }
+  .profile-tabs .nav-link {
+    font-size: 13px;
+    padding: 7px 10px;
+    margin-right: 6px;
+    border-radius: 8px;
+  }
+
+  /* Cards & inputs scale down a touch */
+  .card {
+    padding: 14px;
+  }
+  .card input.form-control {
+    font-size: 13px;
+    padding: 8px 10px;
+  }
+
+  /* Bank cards stack cleanly */
+  .bank-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  .bank-card .text-end {
+    text-align: left;
+    width: 100%;
+  }
+}
+
+/* -------------------------------------------
+   Small Tablets / Big Phones
+   600px – 767px
+--------------------------------------------*/
+
+
+
+@media (min-width: 599px) and (max-width: 767px) {
+
+  /* Layout */
+  .layout {
+    flex-direction: row;
+    gap: 18px;
+    padding: 14px;
+    align-items: flex-start;
+  }
+
+  /* Compact sidebar */
+  .sidebar {
+    display: flex !important;
+    width: 90px !important;
+    height: calc(100vh - 28px);
+    position: sticky;
+    top: 14px;
+    padding: 12px;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border-right: 1px solid #eee;
+  }
+
+  /* Brand icon smaller */
+  .brand-circle {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+
+  /* Menu arranged vertically, icon-only style */
+  .menu {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+
+  .menu .menu-item {
+    padding: 10px 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+  }
+
+  .menu .menu-item i {
+    font-size: 16px;
+  }
+
+  /* Hide text inside the menu links to keep sidebar compact */
+  .menu .menu-item a {
+    flex-direction: column;
+    gap: 4px;
+    font-size: 12px;
+    text-align: center;
+  }
+
+  /* Bottom profile image */
+  .sidebar-bottom {
+    display: block;
+  }
+
+  .profile-thumb {
+    width: 42px;
+    height: 42px;
+  }
+
+  /* Main section adjusts */
+  .main {
+    padding: 10px;
+    width: calc(100% - 90px);
+  }
+
+  /* Header controls shrink */
+  header input {
+    width: 150px !important;
+  }
+
+  header img {
+    width: 32px;
+    height: 32px;
+  }
+
+  /* Tabs adjust */
+  .profile-tabs .nav-link {
+    font-size: 13px;
+    padding: 8px 10px;
+  }
+
+  /* Cards narrower */
+  .card {
+    padding: 16px;
+  }
+
+  .card input.form-control {
+    font-size: 13px;
+    padding: 8px 10px;
+  }
+
+  /* Bank card stack layout */
+  .bank-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .bank-card .text-end {
+    text-align: left;
+    width: 100%;
+  }
+}
+/* ---------------------------------------------------
+   Tablets — Portrait Mode
+   768px – 899px
+----------------------------------------------------*/
+@media (min-width: 767px) and (max-width: 899px) {
+
+  /* Overall Layout */
+  .layout {
+    flex-direction: row;
+    gap: 20px;
+    padding: 18px;
+    align-items: flex-start;
+  }
+
+  /* Sidebar stays full-size on tablets */
+  .sidebar {
+    display: flex !important;
+    width: 180px !important;
+    padding: 16px;
+    height: calc(100vh - 32px);
+    border-right: 1px solid #eee;
+  }
+
+  .brand-circle {
+    width: 44px;
+    height: 44px;
+    font-size: 18px;
+  }
+
+  /* Menu - text visible, slightly reduced spacing */
+  .menu {
+    margin-top: 10px;
+  }
+
+  .menu .menu-item {
+    padding: 10px 10px;
+    gap: 8px;
+    font-size: 14px;
+  }
+
+  .menu .menu-item i {
+    font-size: 16px;
+  }
+
+  .profile-thumb {
+    width: 48px;
+    height: 48px;
+  }
+
+  /* Main section shrinks slightly */
+  .main {
+    width: calc(100% - 180px);
+    padding: 16px;
+  }
+
+  /* Header inputs & icons */
+  header input {
+    width: 180px !important;
+    font-size: 14px;
+  }
+
+  header img {
+    width: 34px;
+    height: 34px;
+  }
+
+  header .btn {
+    font-size: 13px;
+    height: 36px;
+    padding: 6px 12px;
+  }
+
+  /* Tabs - reduced padding */
+  .profile-tabs .nav-link {
+    font-size: 14px;
+    padding: 8px 14px;
+  }
+
+  /* Card size adjustment */
+  .card {
+    padding: 18px;
+  }
+
+  .card input.form-control {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  /* Bank cards */
+  .bank-card {
+    padding: 12px;
+    gap: 8px;
+  }
+
+  .bank-card .bank-name {
+    font-size: 15px;
+  }
+
+  .bank-card .bank-meta {
+    font-size: 13px;
+  }
+
+  /* Buttons inside bank cards */
+  .bank-card .btn {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  /* Modals scale */
+  .modal-dialog {
+    max-width: 90%;
+  }
+
+  .modal-content {
+    padding: 16px !important;
+  }
+}

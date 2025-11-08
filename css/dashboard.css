@@ -1,0 +1,1476 @@
+/* frontend/css/dashboard.css */
+
+.dashboard-wrapper { min-height: 100vh; }
+
+/* ---------- sidebar ---------- */
+.sidebar{
+  width:220px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(255,255,255,0.98));
+  border-radius:14px;
+  padding:18px;
+  box-shadow: 0 8px 30px rgba(14,28,60,0.04);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  height: calc(100vh - 36px);
+  position: sticky;
+  top: 18px;
+}
+.brand-circle { width:54px; height:54px; border-radius:10px; display:inline-flex; align-items:center; justify-content:center; background: linear-gradient(180deg,#fff6ef,#fff0e6); color:var(--accent); font-weight:700; box-shadow: 0 6px 20px rgba(255,122,0,0.06); margin:0 auto; }
+.menu { margin-top:12px; }
+.menu .menu-item { margin-bottom:6px; padding:10px 8px; border-radius:8px; color:var(--muted); display:flex; align-items:center; gap:10px; font-weight:600; }
+.menu .menu-item a { text-decoration:none; color:inherit; display:flex; gap:10px; align-items:center; }
+.menu .menu-item.active, .menu .menu-item:hover { background: var(--accent-soft); color:var(--accent); transform: translateX(4px); transition: transform .16s ease, box-shadow .16s ease; }
+
+/* ---------------- Sidebar ---------------- */
+.sidebar {
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 1px solid #eee;
+}
+
+.sidebar .brand-circle {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #fff5e6;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #ff7b00;
+  font-size: 22px;
+  box-shadow: 0 4px 8px rgba(255, 160, 60, 0.1);
+}
+
+.sidebar .menu {
+  flex-grow: 1;
+  text-align: left;
+}
+
+.sidebar .menu-item {
+  padding: 14px 22px;
+  font-weight: 500;
+  color: #555;
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.sidebar .menu-item:hover {
+  background: #fff9f3;
+  color: #ff7a00;
+}
+
+.sidebar .menu-item.active {
+  background: linear-gradient(90deg, #fff2e5 0%, #fff 100%);
+  border-left: 4px solid #ff7b00;
+  color: #ff7a00;
+  font-weight: 600;
+}
+
+.profile-thumb {
+  width: 54px;
+  height: 54px;
+  border: 2px solid #ffb870;
+}
+
+/* 
+.sidebar {
+  width: 92px;
+  border-right: 1px solid #eee;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  padding: 1rem 0;
+}
+.brand-circle {
+  width:46px;height:46px;border-radius:12px;background:#f7f8fa;display:inline-flex;align-items:center;justify-content:center;font-size:18px;color:#ffbf00;margin:0 auto;
+}
+.menu { padding-left: 0; margin-top: 1rem; }
+.menu ul { padding-left: 0; }
+.menu-item {
+  padding: 18px 10px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:#8a8f95;
+  cursor:pointer;
+  transition: all .15s ease;
+  justify-content:center;
+  flex-direction: column;
+  font-size:12px;
+}
+.menu-item a i{
+    display: block;
+}
+.menu-item.active, .menu-item:hover {
+  background:#fff4e6;
+  color:#ff8c00;
+  border-radius:8px;
+}
+
+.profile-thumb { width:44px;height:44px;border-radius:50%;border:2px solid #fff; }
+.sidebar-bottom { padding-bottom: 1.2rem; } */
+
+/* Main content */
+main { min-height: 100vh; }
+header input.form-control { width: 260px; border-radius: 999px; padding-left: 14px; }
+
+/* Cards */
+.add-bank-cta { border: 1px dashed #eee; border-radius: 12px; }
+.add-bank-cta .btn-round { border-radius: 999px; }
+
+/* linked banks list */
+#linked-banks .bank-card { border-radius: 12px; padding: 12px; margin-bottom: 8px; background:#fff; border:1px solid #f0f0f0; display:flex; justify-content:space-between; align-items:center; }
+#linked-banks .bank-left { display:flex; gap:10px; align-items:center; }
+#linked-banks .upi-badge { font-weight:600; color:#ff8c00; }
+
+.popup {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,0.5); justify-content: center; align-items: center;
+}
+.box {
+  background: white; padding: 20px 30px; border-radius: 10px;
+  text-align: center; font-family: sans-serif;
+}
+
+/* responsive */
+/* @media (max-width: 900px) {
+  .sidebar { display:none; }
+  .dashboard-wrapper { padding: 0; }
+  header input.form-control { width: 140px; }
+} */
+/* ===== Improved Balance Panel Styles ===== */
+.balance-row { margin-top: 8px; }
+
+.balance-panel{
+  background: linear-gradient(180deg, #ffffff, #ffffff);
+  border-radius: 12px;
+  padding: 14px 18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 12px;
+  border: 1px solid #eef2f3;
+  background-clip: padding-box;
+}
+
+.balance-icon{
+  width:52px;
+  height:52px;
+  border-radius:10px;
+  background: linear-gradient(135deg,#e9f7ef,#f0fff4);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#2e7d32;
+  font-size:20px;
+  box-shadow: 0 6px 16px rgba(46,125,50,0.06);
+}
+
+/* left block text */
+.balance-left .small { font-size: 0.85rem; color:#7a7f84; }
+.balance-left .h5 { font-weight:700; color:#222; }
+
+/* actions */
+.balance-actions .btn-outline-success{
+  border-radius: 999px;
+  padding: 6px 12px;
+  border-color: rgba(34,197,94,0.18);
+  color: #117a34;
+  background: transparent;
+  transition: transform .12s;
+}
+.balance-actions .btn-outline-success:hover { transform: translateY(-2px); }
+
+/* primary add money button */
+.btn-round {
+  border-radius: 999px;
+  padding: 8px 18px;
+  background: linear-gradient(90deg,#ffbf00,#ffaf00);
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 8px 18px rgba(255,175,0,0.12);
+}
+.btn-round:active { transform: translateY(1px); }
+
+/* responsive */
+@media (max-width: 768px) {
+  .balance-panel {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .balance-actions { justify-content: space-between; }
+  .balance-actions .btn-outline-success { flex:1; margin-right:8px; }
+  .balance-actions .btn-round { width:100%; }
+}
+/* --- Improved feature tiles (large app-like icons) --- */
+
+.feature-icons {
+  display: flex;
+  justify-content: center;
+  gap: 2.25rem;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 28px 0 30px;
+  padding: 6px 12px;
+}
+
+/* Bigger tile */
+.feature-item {
+  width: 156px;              /* larger tile */
+  height: 156px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #ffffff 0%, #fffaf4 100%); /* subtle warm */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  cursor: pointer;
+  transition: transform .28s cubic-bezier(.2,.9,.2,1), box-shadow .22s ease, background .22s ease;
+  box-shadow: 0 12px 36px rgba(14,28,60,0.06);
+  text-align: center;
+  will-change: transform, box-shadow;
+  transform-origin: center;
+  border: 1px solid rgba(0,0,0,0.02);
+  opacity: 0;
+  animation: tileIn .5s forwards;
+}
+
+/* enlarge icon + label */
+.feature-item .fi-icon {
+  font-size: 40px;          /* bigger icon */
+  color: #ff7a00;           /* orange tone */
+  display: block;
+  line-height: 1;
+}
+.feature-item .fi-text {
+  font-size: 15px;
+  color: #2d2d2d;
+  font-weight: 600;
+  line-height: 1.05;
+}
+
+/* Hover / active */
+.feature-item:hover {
+  transform: translateY(-12px) scale(1.03) rotate(-0.5deg);
+  box-shadow: 0 26px 60px rgba(20,40,80,0.10);
+}
+.feature-item:active { transform: translateY(-6px) scale(.995); }
+
+/* active state (when banks exist) - stronger orange background */
+.feature-item.active {
+  background: linear-gradient(180deg, #fff7ef, #fff4ea);
+  box-shadow: 0 24px 52px rgba(255,138,0,0.08);
+}
+.feature-item.active .fi-icon { color: #ff6b00; }
+
+/* entrance animation (staggered) */
+@keyframes tileIn {
+  from { opacity: 0; transform: translateY(18px) scale(.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Apply stagger using nth-child in container */
+.feature-icons .feature-item:nth-child(1){ animation-delay: 0.06s; }
+.feature-icons .feature-item:nth-child(2){ animation-delay: 0.16s; }
+.feature-icons .feature-item:nth-child(3){ animation-delay: 0.28s; }
+.feature-icons .feature-item:nth-child(4){ animation-delay: 0.40s; }
+
+/* subtle pulsing glow on hover */
+.feature-item::after{
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  pointer-events: none;
+  transition: opacity .25s;
+  opacity: 0;
+}
+.feature-item:hover::after{
+  box-shadow: 0 18px 80px rgba(255,160,60,0.07);
+  opacity: 1;
+}
+
+
+/* ===== Ultra-small phones: 320–374px ===== */
+@media (min-width: 320px) and (max-width: 374px) {
+  /* Layout */
+  .dashboard-wrapper { gap: 8px; }
+  main { padding: 14px 10px; }
+
+  /* --- Sidebar: compact, icon-only --- */
+  .sidebar{
+    width: 86px;
+    padding: 10px 6px;
+    border-right: 0;
+    box-shadow: 0 6px 20px rgba(14,28,60,0.06);
+    position: sticky;
+    top: -8px;
+    height: calc(100vh - 16px);
+  }
+
+  .sidebar .brand-circle{
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    font-size: 18px;
+    box-shadow: 0 4px 12px rgba(255,160,60,0.10);
+  }
+
+  .sidebar .menu{ padding-left: 0; }
+
+  .sidebar .menu-item{
+    padding: 10px 6px;
+    border-radius: 10px;
+  }
+
+  /* Make menu vertical icons; hide text without changing HTML */
+  .sidebar .menu-item a{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    font-size: 0;                 /* hide label text */
+    text-decoration: none;
+  }
+  .sidebar .menu-item a i{
+    font-size: 18px;              /* visible icons */
+  }
+
+  /* Active/hover look without the thick left bar (no space to show it) */
+  .sidebar .menu-item.active{
+    background: #fff4e6;
+    color: #ff7a00;
+    border-left: 0;
+    font-weight: 600;
+  }
+  .sidebar .menu-item:hover{
+    background: #fff9f3;
+    color: #ff7a00;
+  }
+
+  /* Profile chip at the bottom: avatar only */
+  .profile-thumb{
+    width: 40px;
+    height: 40px;
+    border-width: 1px;
+  }
+  #side-profile-name{ display: none; }
+  .sidebar-bottom{ padding: 8px 0 6px; }
+
+  /* Header tweaks */
+  header input.form-control{ width: 140px; }
+  #top-profile-name{ display: none; } /* save space beside avatar */
+
+  /* Feature tiles a bit smaller to fit */
+  .feature-icons{ gap: 0.8rem; margin: 16px 0 18px; }
+  .feature-item{
+    width: 98px;
+    height: 98px;
+    border-radius: 14px;
+  }
+  .feature-item .fi-icon{ font-size: 26px; }
+  .feature-item .fi-text{ font-size: 12px; }
+
+  /* Linked bank rows: stack nicely */
+  #linked-banks .bank-card{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+   /* Layout + spacing */
+  .dashboard-wrapper { gap: 8px; }
+  main { padding: 12px 10px 16px; }
+  header { margin-bottom: 10px !important; }
+
+  /* Header: title + search + profile */
+  #welcome-text { font-size: 16px; line-height: 1.15; }
+  #welcome-sub  { font-size: 11px; }
+  header .search-box { width: 100%; }
+  header input.form-control{
+    width: 100%;
+    height: 34px;
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+  .profile-mini { gap: 6px; }
+  #top-profile-name { display: none; } /* keep only the avatar to save space */
+  #top-profile-img { width: 30px !important; height: 30px !important; }
+
+  /* Transient banner */
+  .transient-banner{
+    margin: 8px auto;
+    font-size: 12px;
+    padding: 8px 10px;
+    border-radius: 6px;
+    width: 100%;
+  }
+
+  /* Feature tiles (if you didn’t use my earlier values) */
+  .feature-icons{ gap: .8rem; margin: 14px 0 16px; padding: 0 2px; }
+  .feature-item{ width: 96px; height: 96px; border-radius: 14px; }
+  .feature-item .fi-icon{ font-size: 26px; }
+  .feature-item .fi-text{ font-size: 12px; }
+
+  /* Add-bank CTA card */
+  .add-bank-cta{
+    margin: 12px auto;
+    padding: 14px 12px;
+    border-radius: 10px;
+  }
+  .add-bank-cta .btn-round{
+    width: 100%;
+    padding: 8px 14px;
+    font-size: 14px;
+  }
+  #addbank-title{ font-size: 16px; }
+
+  /* Center action cards → full-width stack */
+  .center-actions{ gap: 10px; margin: 10px 0; }
+  .action-card{
+    width: 100%;
+    padding: 14px;
+    border-radius: 10px;
+  }
+  .action-card h6{ font-size: 15px; margin-bottom: 6px; }
+  .action-card p{ font-size: 12px; margin-bottom: 10px; }
+  .action-card .btn{ width: 100%; padding: 8px 12px; }
+
+  /* Linked banks list: stack + readable */
+  #linked-banks{ padding: 0 2px; }
+  #linked-banks .bank-card{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 12px;
+  }
+  #linked-banks .bank-left{ gap: 10px; }
+  #linked-banks .bank-left .bank-meta{ font-size: 13px; }
+  #linked-banks .bank-left .muted-small{ font-size: 11px; }
+  #linked-banks .bank-right{
+    width: 100%;
+    text-align: left;
+  }
+  #linked-banks .bank-right .muted-small{ font-size: 11px; }
+  #linked-banks .check-balance-btn{
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+  /* bank icon tile */
+  #linked-banks .bank-left > div:first-child{
+    width: 40px; height: 40px; border-radius: 8px; font-size: 16px;
+  }
+
+  /* Buttons (global tighten) */
+  .btn{ padding: 8px 12px; font-size: 14px; }
+  .btn-sm{ padding: 6px 10px; font-size: 12px; }
+
+  /* Balance panel (if shown anywhere) */
+  .balance-panel{
+    padding: 12px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .balance-icon{ width: 44px; height: 44px; font-size: 18px; }
+  .balance-left .h5{ font-size: 16px; }
+  .balance-left .small{ font-size: 12px; }
+
+  /* PIN Bootstrap modal (in-page one) */
+  #pinModal .modal-dialog{ margin: .75rem; }
+  #pinModal .modal-content{ padding: 14px !important; }
+  #pinTitle{ font-size: 16px; }
+  .pin-input{
+    font-size: 22px;
+    letter-spacing: 10px;
+    padding: 10px 8px;
+  }
+  #verify-pin, #set-pin-1, #set-pin-2{
+    height: 40px;
+    font-size: 16px;
+  }
+  #verify-pin-btn, #save-pin-btn{ padding: 8px 12px; font-size: 14px; }
+
+  /* Lightweight custom popups (Set/Verify PIN) */
+  .popup{ padding: 8px; }
+  .popup .popup-content{
+    width: 92vw;
+    padding: 14px;
+    border-radius: 10px;
+  }
+  .popup input{
+    height: 40px;
+    font-size: 16px;
+    width: 100%;
+  }
+  .popup button{
+    width: 100%;
+    font-size: 14px;
+    padding: 10px 12px;
+  }
+  #pinSetupError, #verifyError{ font-size: 12px; }
+
+  /* Misc text utilities */
+  .muted-small{ font-size: 11px; }
+}
+
+
+/* ===== Small Phones: 375px–424px ===== */
+@media (min-width: 374px) and (max-width: 424px) {
+
+  /* ---------- General Layout ---------- */
+  .dashboard-wrapper { gap: 10px; }
+  main { padding: 16px 14px 20px; }
+  header { margin-bottom: 14px !important; }
+
+  /* ---------- Header ---------- */
+  #welcome-text { font-size: 18px; }
+  #welcome-sub  { font-size: 12px; }
+
+  header .search-box { width: 100%; }
+  header input.form-control {
+    width: 100%;
+    height: 36px;
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 30px;
+  }
+
+  #top-profile-name { display: none; }
+  #top-profile-img {
+    width: 34px !important;
+    height: 34px !important;
+  }
+
+  /* ---------- Sidebar (compact but readable) ---------- */
+  .sidebar {
+    width: 110px;
+    padding: 14px 10px;
+  }
+
+  .sidebar .brand-circle {
+    width: 46px;
+    height: 46px;
+    font-size: 20px;
+    border-radius: 14px;
+  }
+
+  .sidebar .menu-item {
+    padding: 12px 8px;
+  }
+
+  .sidebar .menu-item a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;    /* show text (unlike 320px breakpoint) */
+  }
+
+  .sidebar .menu-item a i {
+    font-size: 20px;
+  }
+
+  /* active/hover look */
+  .sidebar .menu-item.active {
+    background: #fff4e6;
+    color: #ff7a00;
+    border-left: 0;
+    font-weight: 600;
+  }
+
+  /* bottom profile */
+  #side-profile-name {
+    font-size: 11px;
+  }
+  .profile-thumb {
+    width: 44px;
+    height: 44px;
+  }
+
+  /* ---------- Transient banner ---------- */
+  .transient-banner {
+    font-size: 13px;
+    padding: 10px 14px;
+  }
+
+  /* ---------- Feature icons ---------- */
+  .feature-icons {
+    gap: 1.2rem;
+    margin: 18px 0 20px;
+  }
+  .feature-item {
+    width: 120px;
+    height: 120px;
+    border-radius: 18px;
+  }
+  .feature-item .fi-icon {
+    font-size: 34px;
+  }
+  .feature-item .fi-text {
+    font-size: 14px;
+  }
+
+  /* ---------- Add Bank CTA ---------- */
+  .add-bank-cta {
+    padding: 16px;
+    border-radius: 12px;
+  }
+  #addbank-title { font-size: 17px; }
+  .add-bank-cta .btn-round {
+    padding: 10px 14px;
+    width: 100%;
+  }
+
+  /* ---------- Action Cards ---------- */
+  .center-actions { gap: 12px; }
+  .action-card {
+    width: 100%;
+    padding: 16px;
+  }
+  .action-card h6 { font-size: 16px; }
+  .action-card p { font-size: 13px; }
+
+  .action-card .btn {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+
+  /* ---------- Linked Banks ---------- */
+  #linked-banks {
+    padding: 0 4px;
+  }
+  #linked-banks .bank-card {
+    padding: 14px;
+    border-radius: 12px;
+    gap: 12px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #linked-banks .bank-left .bank-meta {
+    font-size: 14px;
+  }
+  #linked-banks .muted-small {
+    font-size: 12px;
+  }
+
+  #linked-banks .check-balance-btn {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+
+  #linked-banks .bank-left > div:first-child {
+    width: 42px;
+    height: 42px;
+    font-size: 17px;
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+  .btn-sm {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+
+  /* ---------- Balance Panel ---------- */
+  .balance-panel {
+    flex-direction: column;
+    gap: 12px;
+    padding: 14px;
+  }
+  .balance-icon {
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+  }
+  .balance-left .h5 {
+    font-size: 17px;
+  }
+
+  /* ---------- PIN Modal (Bootstrap) ---------- */
+  #pinModal .modal-dialog {
+    margin: 1rem;
+  }
+  #pinModal .modal-content {
+    padding: 16px !important;
+  }
+  .pin-input {
+    font-size: 24px;
+    letter-spacing: 12px;
+  }
+  #verify-pin, #set-pin-1, #set-pin-2 {
+    height: 42px;
+    font-size: 16px;
+  }
+
+  /* ---------- Custom PIN Popups ---------- */
+  .popup .popup-content {
+    width: 90vw;
+    padding: 16px;
+  }
+  .popup input {
+    height: 42px;
+    font-size: 16px;
+  }
+  .popup button {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  /* Typography tweaks */
+  .muted-small { font-size: 12px; }
+}
+/* ===== Small/Mid Phones: 425–599px ===== */
+@media (min-width: 424px) and (max-width: 599px) {
+
+  /* ---------- Layout ---------- */
+  .dashboard-wrapper { gap: 12px; }
+  main { padding: 18px 16px 22px; }
+  header { margin-bottom: 16px !important; }
+
+  /* ---------- Header ---------- */
+  #welcome-text { font-size: 19px; }
+  #welcome-sub  { font-size: 12px; }
+  header .search-box { width: 100%; }
+  header input.form-control{
+    width: 100%;
+    height: 38px;
+    padding: 8px 14px;
+    font-size: 14px;
+    border-radius: 30px;
+  }
+  #top-profile-name { display: none; }
+  #top-profile-img { width: 36px !important; height: 36px !important; }
+
+  /* ---------- Sidebar (compact with labels) ---------- */
+  .sidebar{
+    width: 130px;
+    padding: 16px 10px;
+    box-shadow: 0 8px 24px rgba(14,28,60,0.05);
+    top: 12px;
+    height: calc(100vh - 24px);
+  }
+  .sidebar .brand-circle{
+    width: 48px; height: 48px; font-size: 20px; border-radius: 14px;
+  }
+  .sidebar .menu-item{ padding: 12px 8px; }
+  .sidebar .menu-item a{
+    display: flex; flex-direction: column; align-items: center;
+    gap: 6px; font-size: 12px; text-decoration: none;
+  }
+  .sidebar .menu-item a i{ font-size: 20px; }
+  .sidebar .menu-item.active{
+    background: #fff4e6; color:#ff7a00; border-left: 0; font-weight: 600;
+  }
+  .profile-thumb{ width: 46px; height: 46px; }
+  #side-profile-name{ font-size: 12px; }
+
+  /* ---------- Transient banner ---------- */
+  .transient-banner{ font-size: 13px; padding: 10px 14px; }
+
+  /* ---------- Feature tiles ---------- */
+  .feature-icons{ gap: 1.25rem; margin: 18px 0 22px; }
+  .feature-item{
+    width: 136px; height: 136px; border-radius: 18px;
+  }
+  .feature-item .fi-icon{ font-size: 36px; }
+  .feature-item .fi-text{ font-size: 14px; }
+
+  /* ---------- Add Bank CTA ---------- */
+  .add-bank-cta{ padding: 18px; border-radius: 12px; }
+  #addbank-title{ font-size: 18px; }
+  .add-bank-cta .btn-round{ width: 100%; padding: 10px 14px; }
+
+  /* ---------- Action Cards (2-up grid) ---------- */
+  .center-actions{
+    gap: 12px; display: grid; grid-template-columns: 1fr 1fr;
+  }
+  .action-card{
+    width: 100%; padding: 16px; border-radius: 12px;
+  }
+  .action-card h6{ font-size: 16px; }
+  .action-card p{ font-size: 13px; }
+  .action-card .btn{ width: 100%; padding: 10px 12px; font-size: 14px; }
+
+  /* ---------- Linked Banks (stay horizontal) ---------- */
+  #linked-banks{ padding: 0 4px; }
+  #linked-banks .bank-card{
+    padding: 14px 16px; border-radius: 12px; gap: 10px;
+    flex-direction: row; align-items: center;
+  }
+  #linked-banks .bank-left{ gap: 12px; }
+  #linked-banks .bank-left .bank-meta{ font-size: 14px; }
+  #linked-banks .bank-right{ text-align: right; }
+  #linked-banks .muted-small{ font-size: 12px; }
+  #linked-banks .check-balance-btn{ padding: 6px 12px; font-size: 13px; }
+  #linked-banks .bank-left > div:first-child{
+    width: 35px; height: 44px; font-size: 18px; border-radius: 10px;
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn{ padding: 10px 12px; font-size: 14px; }
+  .btn-sm{ padding: 6px 12px; font-size: 13px; }
+
+  /* ---------- Balance Panel ---------- */
+  .balance-panel{
+    padding: 10px 16px; gap: 12px; align-items: center;
+    /* stays horizontal at this size */
+  }
+  .balance-icon{ width: 50px; height: 50px; font-size: 20px; }
+  .balance-left .h5{ font-size: 18px; }
+  .balance-left .small{ font-size: 12px; }
+
+  /* ---------- PIN Modal (Bootstrap) ---------- */
+  #pinModal .modal-dialog{ margin: 1rem; }
+  #pinModal .modal-content{ padding: 16px !important; }
+  #pinTitle{ font-size: 18px; }
+  .pin-input{ font-size: 24px; letter-spacing: 12px; }
+  #verify-pin, #set-pin-1, #set-pin-2{ height: 42px; font-size: 16px; }
+
+  /* ---------- Custom PIN Popups ---------- */
+  .popup .popup-content{ width: 88vw; padding: 16px; }
+  .popup input{ height: 42px; font-size: 16px; }
+  .popup button{ width: 100%; padding: 10px; font-size: 14px; }
+
+  /* ---------- Text helpers ---------- */
+  .muted-small{ font-size: 12px; }
+}
+
+
+/* ===== Large Phones / Small Tablets: 600–767px ===== */
+@media (min-width: 599px) and (max-width: 767px) {
+
+  /* ---------- Layout ---------- */
+  .dashboard-wrapper { gap: 14px; }
+  main { padding: 20px 18px 24px; }
+  header { margin-bottom: 18px !important; }
+
+  /* ---------- Header ---------- */
+  #welcome-text { font-size: 20px; }
+  #welcome-sub  { font-size: 13px; }
+
+  header .search-box { width: 100%; max-width: 360px; }
+  header input.form-control{
+    width: 100%;
+    height: 40px;
+    padding: 10px 14px;
+    font-size: 14px;
+    border-radius: 30px;
+  }
+
+  #top-profile-name { display: inline-block; font-size: 12px; }
+  #top-profile-img { width: 38px !important; height: 38px !important; }
+
+  /* ---------- Sidebar (comfortable, with labels) ---------- */
+  .sidebar{
+    width: 160px;
+    padding: 16px 12px;
+    top: 14px;
+    height: calc(100vh - 28px);
+    box-shadow: 0 8px 24px rgba(14,28,60,0.05);
+  }
+  .sidebar .brand-circle{
+    width: 50px; height: 50px; font-size: 22px; border-radius: 14px;
+  }
+  .sidebar .menu-item{ padding: 12px 10px; }
+  .sidebar .menu-item a{
+    display: flex; flex-direction: column; align-items: center;
+    gap: 6px; font-size: 12.5px; text-decoration: none;
+  }
+  .sidebar .menu-item a i{ font-size: 20px; }
+  .sidebar .menu-item.active{
+    background: #fff4e6; color:#ff7a00; border-left: 0; font-weight: 600;
+  }
+  .profile-thumb{ width: 48px; height: 48px; }
+  #side-profile-name{ font-size: 12.5px; }
+
+  /* ---------- Transient banner ---------- */
+  .transient-banner{
+    font-size: 13px;
+    padding: 10px 14px;
+    border-radius: 8px;
+  }
+
+  /* ---------- Feature tiles ---------- */
+  .feature-icons{
+    gap: 1.4rem;
+    margin: 20px 0 22px;
+  }
+  .feature-item{
+    width: 148px; height: 148px; border-radius: 20px;
+  }
+  .feature-item .fi-icon{ font-size: 38px; }
+  .feature-item .fi-text{ font-size: 14px; }
+
+  /* ---------- Add Bank CTA ---------- */
+  .add-bank-cta{
+    padding: 20px 18px;
+    border-radius: 12px;
+    max-width: 680px;
+    margin-left: auto; margin-right: auto;
+  }
+  #addbank-title{ font-size: 19px; }
+  .add-bank-cta .btn-round{
+    width: 100%;
+    padding: 10px 16px;
+    font-size: 15px;
+  }
+
+  /* ---------- Action Cards (2-up grid) ---------- */
+  .center-actions{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 14px 0;
+  }
+  .action-card{
+    width: 100%;
+    padding: 16px;
+    border-radius: 12px;
+    text-align: center;
+  }
+  .action-card h6{ font-size: 16px; }
+  .action-card p{ font-size: 13px; }
+  .action-card .btn{ width: 100%; padding: 10px 12px; font-size: 14px; }
+
+  /* ---------- Linked Banks (horizontal layout) ---------- */
+  #linked-banks{ padding: 0 6px; max-width: 760px; margin-left: auto; margin-right: auto; }
+  #linked-banks .bank-card{
+    padding: 14px 16px;
+    border-radius: 12px;
+    gap: 12px;
+    flex-direction: row;
+    align-items: center;
+  }
+  #linked-banks .bank-left{ gap: 12px; }
+  #linked-banks .bank-left .bank-meta{ font-size: 14px; }
+  #linked-banks .bank-right{ text-align: right; }
+  #linked-banks .muted-small{ font-size: 12.5px; }
+  #linked-banks .check-balance-btn{ padding: 8px 12px; font-size: 13px; }
+  #linked-banks .bank-left > div:first-child{
+    width: 46px; height: 46px; font-size: 18px; border-radius: 10px;
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn{ padding: 10px 14px; font-size: 14.5px; }
+  .btn-sm{ padding: 6px 12px; font-size: 13px; }
+
+  /* ---------- Balance Panel ---------- */
+  .balance-panel{
+    padding: 16px 18px;
+    gap: 14px;
+    align-items: center;   /* remains horizontal here */
+  }
+  .balance-icon{ width: 52px; height: 52px; font-size: 22px; }
+  .balance-left .h5{ font-size: 18px; }
+  .balance-left .small{ font-size: 13px; }
+
+  /* ---------- PIN Modal (Bootstrap) ---------- */
+  #pinModal .modal-dialog{ margin: 1.25rem; }
+  #pinModal .modal-content{ padding: 18px !important; }
+  #pinTitle{ font-size: 18px; }
+  .pin-input{ font-size: 26px; letter-spacing: 12px; }
+  #verify-pin, #set-pin-1, #set-pin-2{ height: 44px; font-size: 16px; }
+
+  /* ---------- Custom PIN Popups ---------- */
+  .popup .popup-content{
+    width: 78vw; max-width: 520px; padding: 18px;
+  }
+  .popup input{ height: 44px; font-size: 16px; }
+  .popup button{ width: 100%; padding: 10px; font-size: 15px; }
+
+  /* ---------- Text helpers ---------- */
+  .muted-small{ font-size: 12.5px; }
+}
+/* ===== Tablets Portrait / Large Phones: 768–899px ===== */
+@media (min-width: 767px) and (max-width: 899px) {
+
+  /* ---------- Layout ---------- */
+  .dashboard-wrapper { gap: 18px; }
+  main { padding: 24px 22px 32px; }
+  header { margin-bottom: 22px !important; }
+
+  /* ---------- Header ---------- */
+  #welcome-text { font-size: 22px; }
+  #welcome-sub  { font-size: 14px; }
+
+  header .search-box { width: 100%; max-width: 420px; }
+  header input.form-control {
+    height: 42px;
+    padding: 10px 16px;
+    font-size: 15px;
+    border-radius: 32px;
+  }
+
+  #top-profile-name { display: inline-block; font-size: 14px; }
+  #top-profile-img { width: 42px !important; height: 42px !important; }
+
+  /* ---------- Sidebar (full, readable) ---------- */
+  .sidebar {
+    width: 190px;
+    padding: 20px 16px;
+    top: 20px;
+    height: calc(100vh - 40px);
+    box-shadow: 0 10px 30px rgba(14,28,60,0.06);
+  }
+
+  .sidebar .brand-circle {
+    width: 54px;
+    height: 54px;
+    font-size: 24px;
+    border-radius: 14px;
+  }
+
+  .sidebar .menu-item {
+    padding: 14px 12px;
+    font-size: 15px;
+  }
+  .sidebar .menu-item a {
+    flex-direction: row;        /* side-by-side icons + labels */
+    gap: 12px;
+    font-size: 14px;
+  }
+  .sidebar .menu-item a i {
+    font-size: 20px;
+  }
+
+  .profile-thumb {
+    width: 54px;
+    height: 54px;
+  }
+  #side-profile-name {
+    font-size: 14px;
+  }
+
+  /* ---------- Transient Banner ---------- */
+  .transient-banner {
+    font-size: 14px;
+    padding: 12px 16px;
+    border-radius: 8px;
+  }
+
+  /* ---------- Feature Tiles ---------- */
+  .feature-icons {
+    gap: 1.8rem;
+    margin: 24px 0 28px;
+  }
+  .feature-item {
+    width: 160px;
+    height: 160px;
+    border-radius: 20px;
+  }
+  .feature-item .fi-icon {
+    font-size: 42px;
+  }
+  .feature-item .fi-text {
+    font-size: 15px;
+  }
+
+  /* ---------- Add Bank CTA ---------- */
+  .add-bank-cta {
+    padding: 24px;
+    border-radius: 14px;
+    max-width: 760px;
+    margin: 0 auto 24px;
+  }
+  #addbank-title {
+    font-size: 20px;
+  }
+  .add-bank-cta .btn-round {
+    width: 100%;
+    padding: 12px 18px;
+    font-size: 16px;
+  }
+
+  /* ---------- Action Cards (3-column grid) ---------- */
+  .center-actions {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin: 20px 0;
+  }
+  .action-card {
+    padding: 18px 16px;
+    border-radius: 14px;
+  }
+  .action-card h6 {
+    font-size: 17px;
+  }
+  .action-card p {
+    font-size: 14px;
+  }
+  .action-card .btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 15px;
+  }
+
+  /* ---------- Linked Banks (horizontal layout) ---------- */
+  #linked-banks {
+    padding: 0 10px;
+    max-width: 820px;
+    margin: 0 auto;
+  }
+  #linked-banks .bank-card {
+    padding: 16px 18px;
+    border-radius: 12px;
+  }
+  #linked-banks .bank-left {
+    gap: 14px;
+  }
+  #linked-banks .bank-left .bank-meta {
+    font-size: 15px;
+  }
+  #linked-banks .muted-small {
+    font-size: 13px;
+  }
+  #linked-banks .check-balance-btn {
+    padding: 8px 14px;
+    font-size: 14px;
+  }
+  #linked-banks .bank-left > div:first-child {
+    width: 52px;
+    height: 52px;
+    font-size: 20px;
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn {
+    padding: 10px 14px;
+    font-size: 15px;
+  }
+  .btn-sm {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+
+  /* ---------- Balance Panel ---------- */
+  .balance-panel {
+    padding: 18px;
+    border-radius: 14px;
+    gap: 16px;
+  }
+  .balance-icon {
+    width: 56px;
+    height: 56px;
+    font-size: 22px;
+  }
+  .balance-left .h5 {
+    font-size: 20px;
+  }
+  .balance-left .small {
+    font-size: 14px;
+  }
+
+  /* ---------- PIN Modal (Bootstrap) ---------- */
+  #pinModal .modal-dialog {
+    margin: 1.5rem;
+  }
+  #pinModal .modal-content {
+    padding: 20px !important;
+  }
+  #pinTitle {
+    font-size: 20px;
+  }
+  .pin-input {
+    font-size: 28px;
+    letter-spacing: 14px;
+  }
+  #verify-pin,
+  #set-pin-1,
+  #set-pin-2 {
+    height: 48px;
+    font-size: 18px;
+  }
+
+  /* ---------- Custom PIN Popup ---------- */
+  .popup .popup-content {
+    width: 70vw;
+    max-width: 520px;
+    padding: 20px;
+  }
+  .popup input {
+    height: 46px;
+    font-size: 16px;
+  }
+  .popup button {
+    width: 100%;
+    padding: 12px;
+    font-size: 15px;
+  }
+
+  /* ---------- Helpers ---------- */
+  .muted-small {
+    font-size: 13px;
+  }
+}
+/* ===== Tablet Landscape / Small Desktop: 900–1023px ===== */
+@media (min-width: 899px) and (max-width: 1023px) {
+
+  /* ---------- Layout ---------- */
+  .dashboard-wrapper { gap: 20px; }
+  main { padding: 28px 26px 36px; }
+  header { margin-bottom: 24px !important; }
+
+  /* ---------- Header ---------- */
+  #welcome-text { font-size: 24px; }
+  #welcome-sub  { font-size: 15px; }
+
+  header .search-box { width: 100%; max-width: 460px; }
+  header input.form-control {
+    height: 44px;
+    padding: 12px 18px;
+    font-size: 16px;
+    border-radius: 32px;
+  }
+
+  #top-profile-name { font-size: 15px; display: inline-block; }
+  #top-profile-img {
+    width: 44px !important;
+    height: 44px !important;
+  }
+
+  /* ---------- Sidebar (almost desktop size) ---------- */
+  .sidebar {
+    width: 220px;
+    padding: 22px 18px;
+    top: 24px;
+    height: calc(100vh - 48px);
+    box-shadow: 0 10px 28px rgba(14,28,60,0.05);
+  }
+
+  .sidebar .brand-circle {
+    width: 58px;
+    height: 58px;
+    font-size: 26px;
+    border-radius: 16px;
+  }
+
+  .sidebar .menu-item {
+    padding: 14px 14px;
+    font-size: 15px;
+  }
+
+  .sidebar .menu-item a {
+    flex-direction: row;
+    font-size: 15px;
+    gap: 14px;
+  }
+
+  .sidebar .menu-item a i {
+    font-size: 22px;
+  }
+
+  .profile-thumb {
+    width: 56px;
+    height: 56px;
+  }
+
+  #side-profile-name { font-size: 14px; }
+
+  /* ---------- Transient Banner ---------- */
+  .transient-banner {
+    font-size: 14px;
+    padding: 12px 18px;
+    border-radius: 10px;
+  }
+
+  /* ---------- Feature Tiles (larger) ---------- */
+  .feature-icons {
+    gap: 2rem;
+    margin: 26px 0 30px;
+  }
+
+  .feature-item {
+    width: 170px;
+    height: 170px;
+    border-radius: 22px;
+  }
+
+  .feature-item .fi-icon { font-size: 46px; }
+  .feature-item .fi-text { font-size: 16px; }
+
+  /* ---------- Add Bank CTA ---------- */
+  .add-bank-cta {
+    padding: 26px 24px;
+    border-radius: 14px;
+    max-width: 820px;
+    margin: 0 auto 30px;
+  }
+
+  #addbank-title { font-size: 21px; }
+
+  .add-bank-cta .btn-round {
+    width: auto;
+    padding: 12px 20px;
+    font-size: 16px;
+  }
+
+  /* ---------- Action Cards (3–4 column grid) ---------- */
+  .center-actions {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin: 24px 0;
+  }
+
+  /* For slightly wider devices in this range (≥1000px) show 4 columns */
+  @media (min-width: 1000px) {
+    .center-actions {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .action-card {
+    padding: 20px;
+    border-radius: 14px;
+  }
+
+  .action-card h6 { font-size: 18px; }
+  .action-card p  { font-size: 14px; }
+
+  .action-card .btn {
+    padding: 12px;
+    font-size: 15px;
+  }
+
+  /* ---------- Linked Banks ---------- */
+  #linked-banks {
+    padding: 0 12px;
+    max-width: 880px;
+    margin: 0 auto;
+  }
+
+  #linked-banks .bank-card {
+    padding: 18px 20px;
+    border-radius: 14px;
+    gap: 14px;
+  }
+
+  #linked-banks .bank-left { gap: 16px; }
+
+  #linked-banks .bank-left .bank-meta {
+    font-size: 15px;
+  }
+
+  #linked-banks .muted-small {
+    font-size: 13.5px;
+  }
+
+  #linked-banks .check-balance-btn {
+    padding: 8px 14px;
+    font-size: 14px;
+  }
+
+  #linked-banks .bank-left > div:first-child {
+    width: 56px;
+    height: 56px;
+    font-size: 22px;
+    border-radius: 12px;
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn {
+    padding: 12px 16px;
+    font-size: 15px;
+  }
+
+  .btn-sm {
+    padding: 8px 14px;
+    font-size: 14px;
+  }
+
+  /* ---------- Balance Panel ---------- */
+  .balance-panel {
+    padding: 18px 22px;
+    border-radius: 14px;
+    gap: 18px;
+  }
+
+  .balance-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+  }
+
+  .balance-left .h5 { font-size: 20px; }
+  .balance-left .small { font-size: 14px; }
+
+  /* ---------- PIN Modal (Bootstrap) ---------- */
+  #pinModal .modal-dialog { margin: 2rem; }
+
+  #pinModal .modal-content {
+    padding: 24px !important;
+  }
+
+  #pinTitle { font-size: 22px; }
+
+  .pin-input {
+    font-size: 30px;
+    letter-spacing: 14px;
+  }
+
+  #verify-pin,
+  #set-pin-1,
+  #set-pin-2 {
+    height: 48px;
+    font-size: 18px;
+  }
+
+  /* ---------- Custom PIN Popup ---------- */
+  .popup .popup-content {
+    width: 60vw;
+    padding: 24px;
+    max-width: 520px;
+  }
+
+  .popup input {
+    height: 48px;
+    font-size: 16px;
+  }
+
+  .popup button {
+    width: 100%;
+    padding: 12px;
+    font-size: 15px;
+  }
+
+  /* ---------- Text helpers ---------- */
+  .muted-small {
+    font-size: 13.5px;
+  }
+}
+
+/* responsive sizes */
+@media (max-width: 1000px) {
+  .feature-item { width: 140px; height: 140px; }
+  .feature-item .fi-icon { font-size: 36px; }
+  .feature-item .fi-text { font-size: 14px; }
+  .feature-icons { gap: 1.6rem; }
+}
+@media (max-width: 480px) {
+  .feature-item { width: 110px; height: 110px; border-radius: 14px; }
+  .feature-item .fi-icon { font-size: 30px; }
+  .feature-item .fi-text { font-size: 13px; }
+  .feature-icons { gap: 1rem; }
+}
+
+
+
+#profile-change {
+  position: relative;
+  z-index: 10;
+  cursor: pointer;
+}
+

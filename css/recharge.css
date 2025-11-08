@@ -1,0 +1,1235 @@
+:root{
+  --bg:#f5f7fa;
+  --card:#fff;
+  --muted:#7b8794;
+  --accent:#ff8a00;
+  --primary:#0b74ff;
+  --soft:#fdf6f0;
+  --shadow: 0 10px 30px rgba(11,20,30,0.12);
+  --glass: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));
+  font-family: Inter, system-ui, Arial;
+}
+
+
+/* ---------- sidebar ---------- */
+.sidebar{
+  width:220px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(255,255,255,0.98));
+  border-radius:14px;
+  padding:18px;
+  box-shadow: 0 8px 30px rgba(14,28,60,0.04);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  height: calc(100vh - 36px);
+  position: sticky;
+  top: 18px;
+}
+.brand-circle { width:54px; height:54px; border-radius:10px; display:inline-flex; align-items:center; justify-content:center; background: linear-gradient(180deg,#fff6ef,#fff0e6); color:var(--accent); font-weight:700; box-shadow: 0 6px 20px rgba(255,122,0,0.06); margin:0 auto; }
+.menu { margin-top:12px; }
+.menu .menu-item { margin-bottom:6px; padding:10px 8px; border-radius:8px; color:var(--muted); display:flex; align-items:center; gap:10px; font-weight:600; }
+.menu .menu-item a { text-decoration:none; color:inherit; display:flex; gap:10px; align-items:center; }
+.menu .menu-item.active, .menu .menu-item:hover { background: var(--accent-soft); color:var(--accent); transform: translateX(4px); transition: transform .16s ease, box-shadow .16s ease; }
+
+/* ---------------- Sidebar ---------------- */
+.sidebar {
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 1px solid #eee;
+}
+
+.sidebar .brand-circle {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #fff5e6;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #ff7b00;
+  font-size: 22px;
+  box-shadow: 0 4px 8px rgba(255, 160, 60, 0.1);
+}
+
+.sidebar .menu {
+  flex-grow: 1;
+  text-align: left;
+}
+
+.sidebar .menu-item {
+  padding: 14px 22px;
+  font-weight: 500;
+  color: #555;
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.sidebar .menu-item:hover {
+  background: #fff9f3;
+  color: #ff7a00;
+}
+
+.sidebar .menu-item.active {
+  background: linear-gradient(90deg, #fff2e5 0%, #fff 100%);
+  border-left: 4px solid #ff7b00;
+  color: #ff7a00;
+  font-weight: 600;
+}
+
+.profile-thumb {
+  width: 54px;
+  height: 54px;
+  border: 2px solid #ffb870;
+}
+
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(180deg,#f6f8fb,#eef2f7);color:#0b2330}
+.app{display:flex;min-height:100vh}
+
+.main{flex:1;padding:28px;display:flex;flex-direction:column;gap:18px}
+.main-header{display:flex;justify-content:space-between;align-items:center}
+.welcome h1{margin:0;font-size:24px}
+.welcome .sub{color:var(--muted);margin-top:6px}
+
+.recharge-panel{display:flex;gap:20px;align-items:flex-start}
+.left{width:360px;display:flex;flex-direction:column;gap:20px}
+.right{flex:1;display:flex;flex-direction:column;gap:20px}
+
+.card{background:var(--card);padding:18px;border-radius:12px;box-shadow:var(--shadow)}
+.operator-card label,.operator-list label,.circle-card label{font-weight:600;color:#20323a}
+.number-row{display:flex;gap:10px;margin-top:12px}
+.number-row input{flex:1;padding:12px;border-radius:8px;border:1px solid #e6eaef}
+.number-row select{width:120px;padding:12px;border-radius:8px;border:1px solid #e6eaef}
+
+.operators-grid{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+.operator-btn{min-width:90px;padding:10px;border-radius:10px;border:1px solid #eef2f6;background:transparent;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:6px;transition:all .28s cubic-bezier(.2,.9,.3,1)}
+.operator-btn img{width:38px;height:38px;object-fit:contain}
+.operator-btn strong{font-size:13px;color:#24343b}
+.operator-btn:hover{transform:translateY(-6px);box-shadow:0 12px 30px rgba(11,20,30,0.08)}
+.operator-btn.active{background:linear-gradient(180deg,var(--soft),#fff);box-shadow:0 10px 30px rgba(255,138,0,0.12);border-color:rgba(255,138,0,0.18)}
+
+.plans-card .plans-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.tabs{display:flex;gap:8px}
+.tab{background:transparent;border:none;padding:8px 12px;border-radius:8px;cursor:pointer;color:var(--muted)}
+.tab.active{background:rgba(11,116,255,0.08);color:var(--primary);font-weight:600;transform:translateY(-2px)}
+
+.plans-container{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.plan{padding:14px;border-radius:10px;border:1px solid #eef4fb;background:linear-gradient(180deg,#fff,#fbfdff);transition:all .24s cubic-bezier(.2,.9,.3,1);cursor:pointer;position:relative;overflow:hidden}
+.plan:hover{transform:translateY(-8px);box-shadow:0 18px 40px rgba(6,30,60,0.06)}
+.plan .price{font-weight:700;font-size:18px}
+.plan .meta{color:var(--muted);font-size:13px;margin-top:6px}
+.plan .select{position:absolute;right:10px;top:10px;padding:6px 10px;border-radius:8px;border:1px solid rgba(11,116,255,0.12);background:rgba(11,116,255,0.06);color:var(--primary);font-weight:600}
+
+.summary-card .selected-summary{min-height:80px;display:flex;align-items:center;justify-content:center}
+.selected-summary .empty{color:var(--muted)}
+.actions-row{display:flex;justify-content:flex-end;margin-top:12px}
+.btn{padding:10px 16px;border-radius:10px;border:none;cursor:pointer;background:transparent}
+.btn.primary{background:var(--accent);color:white;box-shadow:0 8px 24px rgba(255,138,0,0.14);font-weight:700}
+.btn[disabled]{opacity:0.5;cursor:not-allowed}
+
+.modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(6,12,18,0.45)}
+.modal-card{width:420px;background:#071427;color:#fff;padding:20px;border-radius:12px;box-shadow:0 30px 80px rgba(3,10,20,0.6);position:relative}
+.modal-card h3{margin:0 0 12px 0}
+.modal-card .field{margin-top:12px}
+.modal-card input{width:100%;padding:10px;border-radius:8px;border:none;background:rgba(255,255,255,0.04);color:#fff}
+.modal-card .close{position:absolute;right:12px;top:8px;background:transparent;border:none;color:#bfcbd8;font-size:22px}
+
+.hidden{display:none !important;opacity:0 !important;visibility:hidden !important}
+.toast{position:fixed;right:20px;bottom:20px;background:#0b74ff;color:#fff;padding:10px 14px;border-radius:8px;box-shadow:0 8px 30px rgba(11,20,40,0.2)}
+.small{font-size:13px}
+.muted{color:var(--muted)}
+/* ============================================================
+   RECHARGE — 320–374px (ultra-small phones)
+   ============================================================ */
+@media (min-width: 320px) and (max-width: 374px) {
+
+  html, body { overflow-x: hidden !important; }
+
+  /* ---------- Layout ---------- */
+  .app{
+    flex-direction: column !important;
+    gap: 10px !important;
+    min-height: 100dvh !important;
+  }
+
+  /* ---------- Sidebar → compact top bar (icons only) ---------- */
+  .sidebar{
+    width: 100% !important;
+    padding: 10px 8px !important;
+    border-radius: 10px !important;
+    position: static !important;
+    top: auto !important;
+    height: auto !important;
+    border-right: 0 !important;
+  }
+  .sidebar-top{ display: none !important; }
+  .sidebar .menu{ margin-top: 0 !important; flex-grow: 0 !important; }
+  .sidebar .menu .list-unstyled{
+    display: flex !important;
+    justify-content: space-around !important;
+    align-items: center !important;
+    gap: 12px !important;
+    padding-left: 0 !important;
+    margin: 0 !important;
+  }
+  .sidebar .menu-item{
+    margin: 0 !important;
+    padding: 8px 10px !important;
+    border-radius: 10px !important;
+  }
+  /* hide label text to save space; keep icons */
+  .sidebar .menu-item a{
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 4px !important;
+    text-decoration: none !important;
+    color: inherit !important;
+    font-size: 0 !important;
+  }
+  .sidebar .menu-item a i{ font-size: 18px !important; }
+  .sidebar-bottom{ display: none !important; }
+  .profile-thumb{ width: 36px !important; height: 36px !important; }
+
+  /* ---------- Main header ---------- */
+  .main{
+    padding: 12px !important;
+    gap: 12px !important;
+  }
+  .main-header{
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 8px !important;
+  }
+  .welcome h1{ font-size: 18px !important; }
+  .welcome .sub{ font-size: 12px !important; margin-top: 4px !important; }
+  .actions .search input#search-input{
+    width: 100% !important;
+    height: 42px !important;
+    font-size: 14px !important;
+    padding: 10px 12px !important;
+  }
+
+  /* ---------- Panel: single column ---------- */
+  .recharge-panel{
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+  .left, .right{
+    width: 100% !important;
+    gap: 12px !important;
+  }
+
+  .card{
+    padding: 14px !important;
+    border-radius: 12px !important;
+    box-shadow: var(--shadow);
+  }
+
+  /* Number + type */
+  .operator-card label{ font-size: 13px !important; }
+  .number-row{
+    flex-direction: column !important;
+    gap: 8px !important;
+    margin-top: 8px !important;
+  }
+  .number-row input{
+    height: 44px !important;
+    font-size: 14px !important;
+    padding: 10px 12px !important;
+  }
+  .number-row select{
+    width: 100% !important;
+    height: 44px !important;
+    font-size: 14px !important;
+    padding: 10px 12px !important;
+  }
+
+  /* Operators */
+  .operator-list label{ font-size: 13px !important; }
+  .operators-grid{
+    gap: 8px !important;
+    margin-top: 10px !important;
+    justify-content: space-between !important;
+  }
+  .operator-btn{
+    min-width: calc(33.333% - 6px) !important; /* 3 per row */
+    padding: 10px !important;
+    border-radius: 10px !important;
+  }
+  .operator-btn img{ width: 34px !important; height: 34px !important; }
+  .operator-btn strong{ font-size: 12px !important; }
+
+  /* Circle */
+  .circle-card label{ font-size: 13px !important; }
+  #circle-select{
+    width: 100% !important;
+    height: 44px !important;
+    font-size: 14px !important;
+    padding: 10px 12px !important;
+    margin-top: 8px !important;
+  }
+
+  /* Plans: 1 column */
+  .plans-card .plans-header{
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 8px !important;
+  }
+  .tabs{ gap: 6px !important; flex-wrap: wrap !important; }
+  .tab{ padding: 8px 10px !important; font-size: 13px !important; }
+  .plans-container{
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+  .plan{
+    padding: 12px !important;
+    border-radius: 10px !important;
+  }
+  .plan .price{ font-size: 16px !important; }
+  .plan .meta{ font-size: 12px !important; }
+  .plan .select{ padding: 5px 8px !important; font-size: 12px !important; }
+
+  /* Summary / actions */
+  .summary-card h4{ font-size: 16px !important; }
+  .selected-summary{ min-height: 68px !important; }
+  .actions-row{
+    margin-top: 10px !important;
+    justify-content: stretch !important;
+  }
+  .btn{
+    width: 100% !important;
+    height: 44px !important;
+    font-size: 14px !important;
+    padding: 10px 14px !important;
+  }
+
+  /* ---------- Modal ---------- */
+  /* Ensure hidden always wins */
+  .modal.hidden{ display: none !important; }
+  .modal{
+    padding: 12px !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  .modal-card{
+    width: 92vw !important;
+    max-width: 92vw !important;
+    padding: 16px !important;
+    border-radius: 12px !important;
+  }
+  .modal-card h3{
+    font-size: 18px !important;
+    margin-bottom: 10px !important;
+  }
+  .modal-card .field{ margin-top: 10px !important; }
+  .modal-card input{
+    height: 44px !important;
+    font-size: 14px !important;
+    padding: 10px 12px !important;
+  }
+  .modal-card .close{
+    font-size: 20px !important;
+    right: 10px !important;
+    top: 6px !important;
+  }
+  .modal-actions{
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+    margin-top: 12px !important;
+  }
+
+  /* Toast */
+  .toast{
+    right: 12px !important;
+    bottom: 12px !important;
+    font-size: 13px !important;
+    padding: 8px 12px !important;
+  }
+}
+/* ============================================================
+   RECHARGE — 375–424px (small phones)
+   ============================================================ */
+@media (min-width: 374px) and (max-width: 424px) {
+
+  html, body { overflow-x: hidden !important; }
+
+  /* ---------- Layout ---------- */
+  .app{
+    flex-direction: column !important;
+    gap: 12px !important;
+    min-height: 100dvh !important;
+  }
+
+  /* ---------- Sidebar → compact top bar (icons + short labels) ---------- */
+  .sidebar{
+    width: 100% !important;
+    padding: 12px 10px !important;
+    border-radius: 12px !important;
+    position: static !important;
+    top: auto !important;
+    height: auto !important;
+    border-right: 0 !important;
+  }
+  .sidebar-top{ display: none !important; }
+  .sidebar .menu{ margin-top: 0 !important; flex-grow: 0 !important; }
+  .sidebar .menu .list-unstyled{
+    display: flex !important;
+    justify-content: space-around !important;
+    align-items: center !important;
+    gap: 14px !important;
+    padding-left: 0 !important;
+    margin: 0 !important;
+  }
+  .sidebar .menu-item{
+    margin: 0 !important;
+    padding: 10px 12px !important;
+    border-radius: 10px !important;
+  }
+  .sidebar .menu-item a{
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 5px !important;
+    text-decoration: none !important;
+    color: inherit !important;
+    font-size: 11px !important;  /* show short label */
+  }
+  .sidebar .menu-item a i{ font-size: 18px !important; }
+  .sidebar-bottom{ display: none !important; }
+  .profile-thumb{ width: 40px !important; height: 40px !important; }
+
+  /* ---------- Main header ---------- */
+  .main{
+    padding: 14px !important;
+    gap: 12px !important;
+  }
+  .main-header{
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 8px !important;
+  }
+  .welcome h1{ font-size: 20px !important; margin: 0 !important; }
+  .welcome .sub{ font-size: 12.5px !important; margin-top: 4px !important; }
+  .actions .search input#search-input{
+    width: 100% !important;
+    height: 44px !important;
+    font-size: 14px !important;
+    padding: 10px 12px !important;
+  }
+
+  /* ---------- Panel: single column ---------- */
+  .recharge-panel{
+    flex-direction: column !important;
+    gap: 14px !important;
+  }
+  .left, .right{
+    width: 100% !important;
+    gap: 14px !important;
+  }
+  .card{ padding: 16px !important; border-radius: 12px !important; }
+
+  /* Number + type */
+  .operator-card label{ font-size: 13px !important; }
+  .number-row{
+    flex-direction: column !important;
+    gap: 10px !important;
+    margin-top: 8px !important;
+  }
+  .number-row input,
+  .number-row select{
+    width: 100% !important;
+    height: 46px !important;
+    font-size: 15px !important;
+    padding: 10px 12px !important;
+  }
+
+  /* Operators */
+  .operator-list label{ font-size: 13px !important; }
+  .operators-grid{
+    gap: 10px !important;
+    margin-top: 10px !important;
+    justify-content: space-between !important;
+  }
+  .operator-btn{
+    min-width: calc(33.333% - 7px) !important; /* 3 per row */
+    padding: 10px !important;
+    border-radius: 10px !important;
+  }
+  .operator-btn img{ width: 36px !important; height: 36px !important; }
+  .operator-btn strong{ font-size: 12px !important; }
+
+  /* Circle */
+  .circle-card label{ font-size: 13px !important; }
+  #circle-select{
+    width: 100% !important;
+    height: 46px !important;
+    font-size: 15px !important;
+    padding: 10px 12px !important;
+    margin-top: 8px !important;
+  }
+
+  /* Plans: keep 1 column for readability */
+  .plans-card .plans-header{
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 8px !important;
+  }
+  .tabs{ gap: 6px !important; flex-wrap: wrap !important; }
+  .tab{ padding: 8px 10px !important; font-size: 13px !important; }
+  .plans-container{
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+  .plan{ padding: 12px !important; border-radius: 10px !important; }
+  .plan .price{ font-size: 17px !important; }
+  .plan .meta{ font-size: 12.5px !important; }
+  .plan .select{ padding: 6px 10px !important; font-size: 12px !important; }
+
+  /* Summary / actions */
+  .summary-card h4{ font-size: 17px !important; }
+  .selected-summary{ min-height: 72px !important; }
+  .actions-row{
+    margin-top: 10px !important;
+    justify-content: stretch !important;
+  }
+  .btn{
+    width: 100% !important;
+    height: 46px !important;
+    font-size: 15px !important;
+    padding: 10px 14px !important;
+  }
+
+  /* ---------- Modal ---------- */
+  .modal.hidden{ display: none !important; }
+  .modal{
+    padding: 14px !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  .modal-card{
+    width: 90vw !important;
+    max-width: 90vw !important;
+    padding: 18px !important;
+    border-radius: 12px !important;
+  }
+  .modal-card h3{ font-size: 19px !important; margin-bottom: 10px !important; }
+  .modal-card .field{ margin-top: 10px !important; }
+  .modal-card input{
+    height: 46px !important;
+    font-size: 15px !important;
+    padding: 10px 12px !important;
+  }
+  .modal-card .close{ font-size: 20px !important; right: 10px !important; top: 8px !important; }
+  .modal-actions{
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+    margin-top: 12px !important;
+  }
+
+  /* Toast */
+  .toast{
+    right: 14px !important;
+    bottom: 14px !important;
+    font-size: 13px !important;
+    padding: 9px 12px !important;
+  }
+}
+/* ============================================================
+   RECHARGE — 425–599px (large phones / small tablets)
+   ============================================================ */
+@media (min-width: 424px) and (max-width: 599px) {
+
+  html, body { overflow-x: hidden !important; }
+
+  /* ---------- Layout ---------- */
+  .app{
+    flex-direction: column !important;
+    gap: 16px !important;
+    min-height: 100dvh !important;
+  }
+
+  /* ---------- Sidebar (top bar with labels visible) ---------- */
+  .sidebar{
+    width: 100% !important;
+    padding: 14px 12px !important;
+    border-radius: 14px !important;
+    position: static !important;
+    height: auto !important;
+    border-right: none !important;
+  }
+
+  .sidebar-top{ display: none !important; }
+
+  .sidebar .menu{
+    margin-top: 0 !important;
+    flex-grow: 0 !important;
+  }
+
+  .sidebar .menu .list-unstyled{
+    display: flex !important;
+    justify-content: space-around !important;
+    align-items: center !important;
+    gap: 14px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .sidebar .menu-item{
+    margin: 0 !important;
+    padding: 10px 12px !important;
+    border-radius: 10px !important;
+  }
+
+  .sidebar .menu-item a{
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    font-size: 12px !important;
+    gap: 6px !important;
+  }
+
+  .sidebar-bottom{ display: none !important; }
+
+  /* ---------- Main ---------- */
+  .main{
+    padding: 18px !important;
+    gap: 16px !important;
+  }
+
+  .main-header{
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 10px !important;
+  }
+
+  .welcome h1{ font-size: 22px !important; }
+  .welcome .sub{ font-size: 13px !important; }
+
+  .actions .search input{
+    width: 100% !important;
+    height: 46px !important;
+    font-size: 15px !important;
+  }
+
+  /* ---------- Panel (stacked) ---------- */
+  .recharge-panel{
+    flex-direction: column !important;
+    gap: 18px !important;
+  }
+
+  .left, .right{
+    width: 100% !important;
+    gap: 16px !important;
+  }
+
+  .card{
+    padding: 18px !important;
+    border-radius: 14px !important;
+  }
+
+  /* ---------- Number row ---------- */
+  .number-row{
+    flex-direction: row !important;
+    gap: 10px !important;
+  }
+
+  .number-row input{
+    flex: 1 !important;
+    height: 48px !important;
+    font-size: 15px !important;
+  }
+
+  .number-row select{
+    width: 130px !important;
+    height: 48px !important;
+    font-size: 15px !important;
+  }
+
+  /* ---------- Operators ---------- */
+  .operators-grid{
+    gap: 12px !important;
+  }
+
+  .operator-btn{
+    min-width: calc(25% - 10px) !important; /* 4 per row */
+    padding: 12px !important;
+  }
+
+  .operator-btn img{
+    width: 40px !important;
+    height: 40px !important;
+  }
+
+  /* ---------- Plans (2 columns) ---------- */
+  .plans-container{
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 14px !important;
+  }
+
+  .plan{
+    padding: 14px !important;
+    border-radius: 12px !important;
+  }
+
+  .plan .price{ font-size: 17px !important; }
+  .plan .meta{ font-size: 13px !important; }
+
+  .plan .select{
+    padding: 6px 10px !important;
+    font-size: 12px !important;
+  }
+
+  /* ---------- Summary ---------- */
+  .summary-card h4{
+    font-size: 18px !important;
+  }
+
+  .selected-summary{ min-height: 70px !important; }
+
+  .actions-row{
+    justify-content: flex-end !important;
+  }
+
+  .btn.primary{
+    padding: 12px 18px !important;
+    height: 46px !important;
+    font-size: 15px !important;
+  }
+
+  /* ---------- Modal ---------- */
+  .modal.hidden{ display: none !important; }
+
+  .modal{
+    padding: 20px !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .modal-card{
+    width: 82vw !important;
+    max-width: 420px !important;
+    padding: 20px !important;
+  }
+
+  .modal-card h3{
+    font-size: 20px !important;
+  }
+
+  .modal-card input{
+    height: 48px !important;
+    font-size: 15px !important;
+  }
+
+  .modal-actions{
+    display: flex !important;
+    gap: 10px !important;
+  }
+
+  .modal-actions .btn{
+    flex: 1 !important;
+    height: 46px !important;
+  }
+
+  /* ---------- Toast ---------- */
+  .toast{
+    right: 16px !important;
+    bottom: 18px !important;
+    padding: 10px 14px !important;
+    font-size: 14px !important;
+  }
+}
+/* ============================================================
+   RECHARGE — 600–767px (small tablets / large phones landscape)
+   ============================================================ */
+@media (min-width: 599px) and (max-width: 767px) {
+
+  html, body { overflow-x: hidden !important; }
+
+  /* ---------- App layout ---------- */
+  .app{
+    flex-direction: column !important;
+    gap: 18px !important;
+    min-height: 100dvh !important;
+  }
+
+  /* ---------- Sidebar: full-width top bar (icons + labels) ---------- */
+  .sidebar{
+    width: 100% !important;
+    padding: 16px 14px !important;
+    border-radius: 14px !important;
+    position: static !important;
+    height: auto !important;
+    border-right: 0 !important;
+  }
+  .sidebar-top{ display: none !important; }
+  .sidebar .menu{ margin-top: 0 !important; flex-grow: 0 !important; }
+  .sidebar .menu .list-unstyled{
+    display: flex !important;
+    justify-content: space-around !important;
+    align-items: center !important;
+    gap: 18px !important;
+    padding-left: 0 !important;
+    margin: 0 !important;
+  }
+  .sidebar .menu-item{
+    margin: 0 !important;
+    padding: 12px 14px !important;
+    border-radius: 12px !important;
+  }
+  .sidebar .menu-item a{
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 6px !important;
+    font-size: 13px !important;
+    text-decoration: none !important;
+    color: inherit !important;
+  }
+  .sidebar .menu-item a i{ font-size: 20px !important; }
+  .sidebar-bottom{ display: none !important; }
+
+  /* ---------- Main & header ---------- */
+  .main{
+    padding: 22px !important;
+    gap: 18px !important;
+  }
+  .main-header{
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 12px !important;
+  }
+  .welcome h1{ font-size: 24px !important; margin: 0 !important; }
+  .welcome .sub{ font-size: 13.5px !important; }
+  .actions .search input#search-input{
+    width: 320px !important;
+    max-width: 48vw !important;
+    height: 46px !important;
+    font-size: 15px !important;
+    padding: 10px 12px !important;
+  }
+
+  /* ---------- Recharge panel ---------- */
+  .recharge-panel{
+    display: grid !important;
+    grid-template-columns: 1fr 1.25fr !important; /* left form + right plans */
+    gap: 18px !important;
+    align-items: start !important;
+  }
+  .left, .right{ width: 100% !important; gap: 16px !important; }
+  .card{ padding: 18px !important; border-radius: 14px !important; }
+
+  /* Number + type row */
+  .operator-card label{ font-size: 14px !important; }
+  .number-row{
+    flex-direction: row !important;
+    gap: 12px !important;
+    margin-top: 10px !important;
+  }
+  .number-row input{
+    flex: 1 !important;
+    height: 48px !important;
+    font-size: 15px !important;
+    padding: 10px 12px !important;
+  }
+  .number-row select{
+    width: 140px !important;
+    height: 48px !important;
+    font-size: 15px !important;
+    padding: 10px 12px !important;
+  }
+
+  /* Operators */
+  .operator-list label{ font-size: 14px !important; }
+  .operators-grid{
+    gap: 12px !important;
+    margin-top: 12px !important;
+    justify-content: flex-start !important;
+  }
+  .operator-btn{
+    min-width: calc(25% - 9px) !important; /* 4 per row */
+    padding: 12px !important;
+    border-radius: 12px !important;
+  }
+  .operator-btn img{ width: 42px !important; height: 42px !important; }
+  .operator-btn strong{ font-size: 13px !important; }
+
+  /* Circle */
+  .circle-card label{ font-size: 14px !important; }
+  #circle-select{
+    width: 100% !important;
+    height: 48px !important;
+    font-size: 15px !important;
+    padding: 10px 12px !important;
+    margin-top: 8px !important;
+  }
+
+  /* Plans: 2 columns */
+  .plans-card .plans-header{
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    gap: 10px !important;
+    margin-bottom: 12px !important;
+  }
+  .tabs{ gap: 8px !important; flex-wrap: wrap !important; }
+  .tab{ padding: 8px 12px !important; font-size: 14px !important; }
+  .plans-container{
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 14px !important;
+  }
+  .plan{
+    padding: 14px !important;
+    border-radius: 12px !important;
+  }
+  .plan .price{ font-size: 18px !important; }
+  .plan .meta{ font-size: 13px !important; }
+  .plan .select{ padding: 6px 10px !important; font-size: 12px !important; }
+
+  /* Summary / actions */
+  .summary-card h4{ font-size: 18px !important; }
+  .selected-summary{ min-height: 74px !important; }
+  .actions-row{ justify-content: flex-end !important; }
+  .btn.primary{
+    height: 46px !important;
+    font-size: 15px !important;
+    padding: 12px 16px !important;
+  }
+
+  /* ---------- Modal ---------- */
+  .modal.hidden{ display: none !important; }
+  .modal{
+    padding: 20px !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  .modal-card{
+    width: 78vw !important;
+    max-width: 500px !important;
+    padding: 20px !important;
+    border-radius: 14px !important;
+  }
+  .modal-card h3{ font-size: 20px !important; margin-bottom: 12px !important; }
+  .modal-card .field{ margin-top: 12px !important; }
+  .modal-card input{
+    height: 48px !important;
+    font-size: 15px !important;
+    padding: 10px 12px !important;
+  }
+  .modal-card .close{ font-size: 22px !important; right: 12px !important; top: 8px !important; }
+  .modal-actions{
+    display: flex !important;
+    gap: 12px !important;
+    margin-top: 12px !important;
+  }
+  .modal-actions .btn{
+    flex: 1 !important;
+    height: 46px !important;
+    font-size: 15px !important;
+  }
+
+  /* ---------- Toast ---------- */
+  .toast{
+    right: 18px !important;
+    bottom: 18px !important;
+    font-size: 14px !important;
+    padding: 10px 14px !important;
+  }
+}
+
+/* ============================================================
+   RECHARGE — 768–899px (Medium Tablets)
+   ============================================================ */
+/* ============================================================
+   RECHARGE — 768–899px FINAL ALIGNMENT FIX
+   - Force 2-rail grid with named areas
+   - Reset any stray positioning that caused overlap
+   - Keep right rail fixed width, left rail fluid
+   ============================================================ */
+@media (min-width: 768px) and (max-width: 899px) {
+
+  html, body { overflow-x: hidden !important; }
+
+  /* Slightly compact sidebar + outer spacing so both rails fit comfortably */
+  .sidebar{ width: 178px !important; padding: 14px 12px !important; top: 16px !important; }
+  .app{ gap: 14px !important; }
+  .main{ padding: 14px !important; }
+
+  /* Header search kept modest so it doesn't push layout */
+  #search-input{
+    width: 260px !important;
+    max-width: 45vw !important;
+    height: 42px !important;
+    font-size: 14px !important;
+  }
+
+  /* --- HARD-LOCK two-column grid with named areas --- */
+  .recharge-panel{
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) 320px !important; /* fluid left + fixed right */
+    grid-template-areas: "left right" !important;
+    align-items: start !important;
+    gap: 14px !important;
+    position: relative !important;
+  }
+  .left{ grid-area: left !important; }
+  .right{ grid-area: right !important; }
+
+  /* --- RESET any escaping layout on both rails & cards --- */
+  .left, .right,
+  .operator-card, .operator-list, .circle-card,
+  .plans-card, .summary-card{
+    min-width: 0 !important;
+    width: 100% !important;
+    position: static !important;   /* cancel any relative/absolute leftover */
+    float: none !important;        /* cancel floats if any */
+    transform: none !important;    /* avoid visual offsets */
+    margin: 0 !important;          /* cards will rely on gap, not margins */
+  }
+
+  /* Stack right rail cards with proper spacing */
+  .right{
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    z-index: 0 !important;         /* ensure it doesn't overlay the left rail */
+  }
+  .card{ padding: 14px !important; border-radius: 12px !important; }
+
+  /* Left form rows */
+  .number-row{ gap: 10px !important; flex-wrap: nowrap !important; }
+  .number-row input{
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    height: 44px !important;
+    font-size: 14px !important;
+    padding: 10px 12px !important;
+  }
+  .number-row select{
+    width: 120px !important;
+    height: 44px !important;
+    font-size: 14px !important;
+  }
+
+  /* Operators compact */
+  .operators-grid{ gap: 10px !important; }
+  .operator-btn{ width: 100% !important; padding: 12px !important; }
+
+  /* Right rail plans: single column so nothing overflows 320px */
+  .plans-card .plans-header{ gap: 8px !important; margin-bottom: 10px !important; }
+  .tabs{ gap: 6px !important; flex-wrap: wrap !important; }
+  .tab{ padding: 6px 10px !important; font-size: 13px !important; }
+
+  .plans-container{
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+  .plan{ padding: 12px !important; }
+  .plan .price{ font-size: 16px !important; }
+  .plan .meta{ font-size: 12.5px !important; }
+  .plan .select{ padding: 5px 8px !important; font-size: 12px !important; }
+
+  /* Summary button fills the narrow rail */
+  .selected-summary{ min-height: 64px !important; }
+  .actions-row{ justify-content: stretch !important; }
+  #proceed-btn{
+    width: 100% !important;
+    height: 44px !important;
+    font-size: 14px !important;
+    padding: 10px 12px !important;
+  }
+
+  /* Images/text never force overflow */
+  img{ max-width: 100% !important; height: auto !important; display: block !important; }
+}
+
+
+/* ============================================================
+   RECHARGE — 900–1023px (large tablets / small laptops)
+   ============================================================ */
+@media (min-width: 899px) and (max-width: 1023px) {
+
+  html, body { overflow-x: hidden !important; }
+
+  /* ---------- App layout ---------- */
+  .app{
+    flex-direction: row !important;
+    gap: 22px !important;
+    min-height: 100vh !important;
+  }
+
+  /* ---------- Sidebar (full vertical) ---------- */
+  .sidebar{
+    width: 210px !important;
+    padding: 18px 16px !important;
+    border-radius: 14px !important;
+    position: sticky !important;
+    top: 18px !important;
+    height: auto !important;
+    border-right: none !important;
+  }
+  .sidebar .menu-item{ padding: 12px 16px !important; font-size: 15px !important; }
+  .sidebar .menu-item a i{ font-size: 18px !important; }
+  .profile-thumb{ width: 50px !important; height: 50px !important; }
+
+  /* ---------- Main ---------- */
+  .main{
+    flex: 1 1 auto !important;
+    padding: 24px !important;
+    gap: 18px !important;
+  }
+  .main-header{
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    gap: 12px !important;
+    margin-bottom: 4px !important;
+  }
+  .welcome h1{ font-size: 28px !important; }
+  .welcome .sub{ font-size: 14px !important; }
+  .actions .search input#search-input{
+    width: 360px !important;
+    height: 48px !important;
+    font-size: 15px !important;
+  }
+
+  /* ---------- Recharge panel (2 columns) ---------- */
+  .recharge-panel{
+    display: grid !important;
+    grid-template-columns: 380px 1fr !important; /* left fixed, right fluid */
+    gap: 20px !important;
+    align-items: start !important;
+  }
+  .left, .right{ width: 100% !important; gap: 16px !important; }
+  .card{ padding: 18px !important; border-radius: 14px !important; }
+
+  /* ---------- Number + type ---------- */
+  .operator-card label{ font-size: 14px !important; }
+  .number-row{
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 12px !important;
+    margin-top: 10px !important;
+  }
+  .number-row input{
+    flex: 1 !important;
+    height: 50px !important;
+    font-size: 16px !important;
+    padding: 12px !important;
+  }
+  .number-row select{
+    width: 150px !important;
+    height: 50px !important;
+    font-size: 15px !important;
+    padding: 12px !important;
+  }
+
+  /* ---------- Operators ---------- */
+  .operator-list label{ font-size: 14px !important; }
+  .operators-grid{
+    gap: 12px !important;
+    margin-top: 12px !important;
+    justify-content: flex-start !important;
+  }
+  .operator-btn{
+    min-width: calc(25% - 9px) !important; /* 4 per row in the left rail */
+    padding: 12px !important;
+    border-radius: 12px !important;
+  }
+  .operator-btn img{ width: 44px !important; height: 44px !important; }
+  .operator-btn strong{ font-size: 13px !important; }
+
+  /* ---------- Circle ---------- */
+  .circle-card label{ font-size: 14px !important; }
+  #circle-select{
+    width: 100% !important;
+    height: 48px !important;
+    font-size: 15px !important;
+    padding: 10px 12px !important;
+    margin-top: 8px !important;
+  }
+
+  /* ---------- Plans (3 columns) ---------- */
+  .plans-card .plans-header{
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    gap: 10px !important;
+    margin-bottom: 12px !important;
+  }
+  .tabs{ gap: 8px !important; flex-wrap: wrap !important; }
+  .tab{ padding: 8px 12px !important; font-size: 14px !important; }
+
+  .plans-container{
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 16px !important;
+  }
+  .plan{
+    padding: 14px !important;
+    border-radius: 12px !important;
+  }
+  .plan .price{ font-size: 18px !important; }
+  .plan .meta{ font-size: 13px !important; }
+  .plan .select{ padding: 6px 10px !important; font-size: 12px !important; }
+
+  /* ---------- Summary ---------- */
+  .summary-card h4{ font-size: 18px !important; }
+  .selected-summary{ min-height: 76px !important; }
+  .actions-row{ justify-content: flex-end !important; }
+  #proceed-btn{
+    height: 46px !important;
+    font-size: 15px !important;
+    padding: 12px 16px !important;
+  }
+
+  /* ---------- Modal (conflict-free) ---------- */
+  .modal.hidden{ display: none !important; }
+  .modal{
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 22px !important;
+    background: rgba(6,12,18,0.45) !important;
+  }
+  .modal-card{
+    width: 64vw !important;
+    max-width: 520px !important;
+    padding: 22px !important;
+    border-radius: 14px !important;
+  }
+  .modal-card h3{ font-size: 21px !important; margin-bottom: 12px !important; }
+  .modal-card .field{ margin-top: 12px !important; }
+  .modal-card input{
+    height: 48px !important;
+    font-size: 15px !important;
+    padding: 10px 12px !important;
+  }
+  .modal-card .close{ font-size: 22px !important; right: 12px !important; top: 8px !important; }
+  .modal-actions{
+    display: flex !important;
+    gap: 12px !important;
+    margin-top: 12px !important;
+  }
+  .modal-actions .btn{
+    flex: 1 !important;
+    height: 46px !important;
+    font-size: 15px !important;
+  }
+
+  /* ---------- Toast ---------- */
+  .toast{
+    right: 18px !important;
+    bottom: 18px !important;
+    font-size: 14px !important;
+    padding: 10px 14px !important;
+  }
+}

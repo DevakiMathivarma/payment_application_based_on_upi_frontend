@@ -1,0 +1,1142 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Gapy — Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap + icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+
+    <style>
+        /* ---------- Page-specific styles ---------- */
+        body {
+            background: #f7f8fa;
+        }
+
+        main {
+            padding-top: 18px;
+        }
+
+       
+.feature-icons {
+  display: flex;
+  justify-content: center;
+  gap: 2.25rem;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 28px 0 30px;
+  padding: 6px 12px;
+}
+.check-balance-btn { pointer-events: auto; }
+
+/* Bigger tile */
+.feature-item {
+  width: 156px;              /* larger tile */
+  height: 156px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #ffffff 0%, #fffaf4 100%); /* subtle warm */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  cursor: pointer;
+  transition: transform .28s cubic-bezier(.2,.9,.2,1), box-shadow .22s ease, background .22s ease;
+  box-shadow: 0 12px 36px rgba(14,28,60,0.06);
+  text-align: center;
+  will-change: transform, box-shadow;
+  transform-origin: center;
+  border: 1px solid rgba(0,0,0,0.02);
+  opacity: 0;
+  animation: tileIn .5s forwards;
+}
+
+/* enlarge icon + label */
+.feature-item .fi-icon {
+  font-size: 40px;          /* bigger icon */
+  color: #ff7a00;           /* orange tone */
+  display: block;
+  line-height: 1;
+}
+.feature-item .fi-text {
+  font-size: 15px;
+  color: #2d2d2d;
+  font-weight: 600;
+  line-height: 1.05;
+}
+
+/* Hover / active */
+.feature-item:hover {
+  transform: translateY(-12px) scale(1.03) rotate(-0.5deg);
+  box-shadow: 0 26px 60px rgba(20,40,80,0.10);
+}
+.feature-item:active { transform: translateY(-6px) scale(.995); }
+
+/* active state (when banks exist) - stronger orange background */
+.feature-item.active {
+  background: linear-gradient(180deg, #fff7ef, #fff4ea);
+  box-shadow: 0 24px 52px rgba(255,138,0,0.08);
+}
+.feature-item.active .fi-icon { color: #ff6b00; }
+
+/* entrance animation (staggered) */
+@keyframes tileIn {
+  from { opacity: 0; transform: translateY(18px) scale(.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Apply stagger using nth-child in container */
+.feature-icons .feature-item:nth-child(1){ animation-delay: 0.06s; }
+.feature-icons .feature-item:nth-child(2){ animation-delay: 0.16s; }
+.feature-icons .feature-item:nth-child(3){ animation-delay: 0.28s; }
+.feature-icons .feature-item:nth-child(4){ animation-delay: 0.40s; }
+
+/* subtle pulsing glow on hover */
+.feature-item::after{
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  pointer-events: none;
+  transition: opacity .25s;
+  opacity: 0;
+}
+.feature-item:hover::after{
+  box-shadow: 0 18px 80px rgba(255,160,60,0.07);
+  opacity: 1;
+}
+
+/* responsive sizes */
+@media (max-width: 1000px) {
+  .feature-item { width: 140px; height: 140px; }
+  .feature-item .fi-icon { font-size: 36px; }
+  .feature-item .fi-text { font-size: 14px; }
+  .feature-icons { gap: 1.6rem; }
+}
+@media (max-width: 480px) {
+  .feature-item { width: 110px; height: 110px; border-radius: 14px; }
+  .feature-item .fi-icon { font-size: 30px; }
+  .feature-item .fi-text { font-size: 13px; }
+  .feature-icons { gap: 1rem; }
+}
+
+
+/* ---------- Enhanced Feature Icons Section ---------- */
+
+.feature-icons {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 40px auto;
+  padding: 10px;
+}
+
+/* Tile base style */
+.feature-item {
+  width: 160px;
+  height: 160px;
+  border-radius: 22px;
+  background: linear-gradient(180deg, #fffdf8, #fff6e9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 14px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  transform: translateY(0) scale(1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  transition: all 0.35s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+  animation: featureFadeIn 0.6s ease forwards;
+  opacity: 0;
+}
+
+@keyframes featureFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(25px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.feature-item:nth-child(1) { animation-delay: 0.1s; }
+.feature-item:nth-child(2) { animation-delay: 0.2s; }
+.feature-item:nth-child(3) { animation-delay: 0.3s; }
+.feature-item:nth-child(4) { animation-delay: 0.4s; }
+
+/* Icon styling */
+.feature-item .fi-icon {
+  font-size: 45px;
+  color: #ff8200;
+  transition: all 0.3s ease;
+  animation: iconPulse 2.5s infinite ease-in-out;
+}
+
+@keyframes iconPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.08); opacity: 0.9; }
+}
+
+.feature-item .fi-text {
+  font-size: 15px;
+  font-weight: 600;
+  color: #3c3c3c;
+  line-height: 1.2;
+}
+
+/* Hover effects */
+.feature-item:hover {
+  transform: translateY(-14px) scale(1.05);
+  box-shadow: 0 22px 60px rgba(255, 136, 0, 0.25);
+  background: linear-gradient(180deg, #fff5e1, #ffe9c4);
+}
+
+.feature-item:hover .fi-icon {
+  color: #ff6b00;
+  animation: bounce 0.8s ease;
+}
+
+.feature-item:hover .fi-text {
+  color: #2b2b2b;
+  letter-spacing: 0.3px;
+}
+
+/* glowing effect on hover */
+.feature-item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 22px;
+  box-shadow: 0 0 25px 6px rgba(255, 173, 66, 0.2);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.feature-item:hover::after {
+  opacity: 1;
+}
+
+/* Bounce animation for icon */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  25% { transform: translateY(-10px); }
+  50% { transform: translateY(3px); }
+  75% { transform: translateY(-4px); }
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .feature-item {
+    width: 140px;
+    height: 140px;
+    border-radius: 18px;
+  }
+  .feature-item .fi-icon {
+    font-size: 38px;
+  }
+}
+
+@media (max-width: 576px) {
+  .feature-item {
+    width: 120px;
+    height: 120px;
+  }
+  .feature-item .fi-icon {
+    font-size: 32px;
+  }
+  .feature-item .fi-text {
+    font-size: 13px;
+  }
+}
+
+        /* Center action cards */
+        .center-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 18px 0;
+            flex-wrap: wrap;
+        }
+
+        .action-card {
+            width: 240px;
+            background: #fff;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 8px 22px rgba(11, 22, 50, 0.04);
+        }
+
+        .action-card h6 {
+            margin-bottom: 8px;
+        }
+
+        .action-card p {
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        /* Linked banks display (hidden initially) */
+        #linked-banks {
+            max-width: 900px;
+            margin: 18px auto 40px;
+            display: none;
+        }
+
+        #linked-banks .bank-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fff;
+            padding: 12px 16px;
+            border-radius: 10px;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 12px rgba(10, 20, 40, 0.04);
+        }
+
+        .bank-left {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .bank-left .bank-meta {
+            font-size: 14px;
+        }
+
+        .bank-right {
+            text-align: right;
+        }
+
+        /* The transient banner (now hidden by default) */
+        .transient-banner {
+            max-width: 1100px;
+            margin: 12px auto;
+            padding: 10px 16px;
+            border-radius: 8px;
+            background: #eafaf1;
+            color: #0f8d3a;
+            text-align: center;
+            display: none;
+            box-shadow: 0 6px 18px rgba(10, 20, 40, 0.03);
+        }
+
+        .muted-small {
+            color: #6b7280;
+            font-size: 13px;
+        }
+
+        .pin-input {
+            font-size: 28px;
+            letter-spacing: 12px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .add-bank-cta {
+            max-width: 720px;
+            margin: 18px auto;
+        }
+
+        @media (max-width:900px) {
+            .feature-item {
+                width: 110px;
+                height: 110px;
+            }
+
+            .action-card {
+                width: 48%;
+                min-width: 200px;
+            }
+
+            #linked-banks {
+                padding: 0 14px;
+            }
+        }
+
+        @media (max-width:480px) {
+            .action-card {
+                width: 100%;
+            }
+
+            .feature-item {
+                width: 90px;
+                height: 90px;
+            }
+        }
+        .avatar-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #4f46e5; /* any color you want */
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 20px;
+  text-transform: uppercase;
+}
+
+    </style>
+</head>
+
+<body>
+    <div class="dashboard-wrapper d-flex">
+        <!-- Sidebar (unchanged) -->
+        <aside class="sidebar bg-white shadow-sm">
+      <div class="sidebar-top text-center py-4">
+        <div class="brand-circle mb-3"><i class="fa fa-bolt"></i></div>
+      </div>
+      <nav class="menu">
+        <ul class="list-unstyled">
+          <li class="menu-item active"><a href="/dashboard.html"><i class="fa fa-tachometer-alt"></i> Dashboard</a></li>
+          <li class="menu-item"><a href="/transactions.html"><i class="fa fa-exchange-alt"></i> Transactions</a></li>
+         
+          <li class="menu-item "><a href="/analytics.html"><i class="fa fa-user"></i> Smart Insights</a></li>
+        </ul>
+      </nav>
+      <div class="sidebar-bottom text-center py-4" id="profile-change">
+<!-- Replace your old avatar.png with this img -->
+<img  src="assets\images\avatar.PNG"id="profileAvatar" alt="profile" class="rounded-circle profile-thumb" width="40" height="40" />
+        <!-- <div id="side-profile-name" class="small mt-2">Devaki</div> -->
+         <div id="owner-name"></div>
+      </div>
+    </aside>
+
+
+        <!-- Main content -->
+        <main class="flex-fill p-4">
+            <header class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                    <h4 id="welcome-text">Welcome, <span id="owner-name">User</span></h4>
+                    <div class="muted-small" id="welcome-sub">Today</div>
+                </div>
+
+                <div class="d-flex align-items-center gap-3">
+                    <div class="search-box">
+                        <input id="search-input" class="form-control" placeholder="Search">
+                    </div>
+                    <div class="profile-mini d-flex align-items-center gap-2">
+                        <div id="top-profile-name" class="small text-muted"></div>
+                        <img id="top-profile-img" src="assets\images\avatar.PNG" class="rounded-circle"
+                            style="width:36px;height:36px;">
+                    </div>
+                </div>
+            </header>
+
+            <!-- transient banner (shows temporarily) -->
+            <div id="transientBanner" class="transient-banner">Bank successfully linked</div>
+
+            <!-- Feature icons -->
+            <div class="feature-icons" id="feature-icons">
+                <div class="feature-item" id="f-scan" title="Scan any QR code">
+                    <i class="fa fa-qrcode fi-icon"></i>
+                    <div class="fi-text">Scan any<br />QR code</div>
+                </div>
+                <div class="feature-item" id="f-pay" title="Pay anyone">
+                    
+                    <i class="fa fa-arrow-up-right-from-square fi-icon"></i>
+                    <div class="fi-text">Pay<br />anyone</div>
+                </div>
+                <div class="feature-item" id="f-bank" title="Bank transfer">
+                    <i class="fa fa-university fi-icon"></i>
+                    <div class="fi-text">Bank<br />transfer</div>
+                </div>
+                <div class="feature-item" id="f-mobile" title="Mobile recharge">
+                    <i class="fa fa-bolt fi-icon"></i>
+                    <div class="fi-text">Mobile<br />recharge</div>
+                </div>
+                <div class="feature-item" id="f-bill" title="Bill Payments">
+                    <i class="fa fa-bolt fi-icon"></i>
+                    <div class="fi-text">Bill<br />Payments</div>
+                </div>
+            </div>
+
+            <!-- Add bank CTA (shown only if no banks present) -->
+            <div id="add-bank-block" class="card p-4 text-center add-bank-cta">
+                <i class="fa fa-university fa-2x mb-3 text-muted"></i>
+                <h5 id="addbank-title">Add Bank Account to proceed</h5>
+                <p class="text-muted small">Link a bank account to create UPI id and enable transactions</p>
+                <button id="open-add-bank" class="btn btn-warning btn-round mt-2">Add Bank Account</button>
+            </div>
+
+            <!-- After bank(s) added: show centered actions -->
+            <div id="after-bank-block" class="d-none text-center mb-3">
+                <div class="center-actions mt-3">
+                    <div class="action-card">
+                        <h6>View Transactions</h6>
+                        <p>Check your recent activity</p>
+                        <button class="btn btn-outline-primary" id="btn-trans">View</button>
+                    </div>
+                    <div class="action-card">
+                        <h6>View Balance</h6>
+                        <p>Check balances of linked banks</p>
+                        <button class="btn btn-primary" id="btn-balance">View Balance</button>
+                    </div>
+                    <div class="action-card">
+                        <h6>View CIBIL Score</h6>
+                        <p>Check your credit score (demo)</p>
+                        <button class="btn btn-outline-secondary" id="btn-cibil">View</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Linked banks area (hidden until View Balance + correct tx-PIN) -->
+            <div id="linked-banks" class="mt-3"></div>
+
+            <!-- Add Bank Modal (existing form kept intact) -->
+            <div class="modal fade" id="addBankModal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-sm">
+                    <div class="modal-content p-3">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Add Bank Account</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="add-bank-form">
+                                <div class="mb-2">
+                                    <input id="bank-holder" class="form-control" placeholder="Account holder name"
+                                        required>
+                                </div>
+                                <div class="mb-2">
+                                    <input id="bank-name" class="form-control"
+                                        placeholder="Bank name (e.g., State Bank)" required>
+                                </div>
+                                <div class="mb-2">
+                                    <input id="bank-branch" class="form-control" placeholder="Branch (optional)">
+                                </div>
+                                <div class="mb-2">
+                                    <input id="bank-account" class="form-control" placeholder="Account number" required>
+                                </div>
+                                <div class="mb-2">
+                                    <input id="bank-account-confirm" class="form-control"
+                                        placeholder="Confirm account number" required>
+                                </div>
+                                <div class="mb-2">
+                                    <input id="bank-ifsc" class="form-control" placeholder="IFSC (11 char)" required>
+                                </div>
+                                <div class="mb-2">
+                                    <input id="bank-mobile" class="form-control" placeholder="Mobile (optional)">
+                                </div>
+            <div class="mb-2">
+              <input id="initial-pin" class="form-control" placeholder="Enter PIN">
+            </div>
+            <div class="mb-2">
+              <input id="confirm-pin" class="form-control" placeholder="Confirm PIN">
+            </div>
+                                <div id="bank-msg" class="small text-danger mb-2"></div>
+                                <button class="btn btn-warning w-100" type="submit">Add Bank</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+           
+            <div class="modal fade" id="pinModal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content p-4 text-center">
+                        <h5 id="pinTitle" class="mb-3">Enter your 4-digit transaction PIN</h5>
+
+                        <div id="setPinArea" class="d-none">
+                            <input id="set-pin-1" type="password" maxlength="4" class="form-control pin-input mb-2"
+                                placeholder="Enter PIN">
+                            <input id="set-pin-2" type="password" maxlength="4" class="form-control pin-input mb-2"
+                                placeholder="Confirm PIN">
+                            <div id="set-pin-msg" class="muted-small mb-2"></div>
+                            <button id="save-pin-btn" class="btn btn-primary w-100">Save PIN</button>
+                        </div>
+
+                        
+                        <div id="verifyPinArea" class="d-none">
+                            <input id="verify-pin" type="password" maxlength="4" class="form-control pin-input mb-3"
+                                placeholder="****">
+                            <div id="verify-pin-msg" class="muted-small mb-2"></div>
+                            <button id="verify-pin-btn" class="btn btn-primary w-100">Verify</button>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+<div id="popup" style="
+  display:none;position:fixed;inset:0;
+  background:rgba(0,0,0,0.5);
+  justify-content:center;align-items:center;">
+  <div style="
+    background:#fff;padding:25px 35px;
+    border-radius:10px;text-align:center;
+    font-family:sans-serif;">
+    <h3>Your CIBIL Score</h3>
+
+    <!-- Meter -->
+    <div style="position:relative;width:150px;height:75px;margin:20px auto;">
+      <div style="
+        width:150px;height:75px;
+        border-top-left-radius:150px;
+        border-top-right-radius:150px;
+        background:linear-gradient(90deg,red,orange,yellow,green);
+        overflow:hidden;">
+      </div>
+      <div id="needle" style="
+        position:absolute;bottom:0;left:50%;
+        width:2px;height:70px;background:#333;
+        transform-origin:bottom center;
+        transform:rotate(0deg);
+        transition:transform 0.6s ease;">
+      </div>
+    </div>
+
+    <p id="score" style="font-size:24px;font-weight:700;margin:5px 0;"></p>
+
+    <button style="padding:6px 12px;border:1px solid #aaa;border-radius:6px;cursor:pointer;"
+            onclick="popup.style.display='none'">
+      Close
+    </button>
+  </div>
+</div>
+        </main>
+    </div>
+
+    <!-- scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        (function () {
+            const API_BASE = "http://127.0.0.1:8000/api";
+            const token = localStorage.getItem('gapytoken');
+
+            // UI refs
+            const transientBanner = document.getElementById('transientBanner');
+            const addBankBlock = document.getElementById('add-bank-block');
+            const afterBankBlock = document.getElementById('after-bank-block');
+            const featureItems = document.querySelectorAll('.feature-item');
+            const openAddBtn = document.getElementById('open-add-bank');
+            const linkedBanksDiv = document.getElementById('linked-banks');
+            const btnBalance = document.getElementById('btn-balance');
+            const btnTrans = document.getElementById('btn-trans');
+            const btnCibil = document.getElementById('btn-cibil');
+// ONE delegated listener that works for current + future buttons
+linkedBanksDiv.addEventListener('click', (e) => {
+  const btn = e.target.closest('.check-balance-btn');
+  if (!btn) return;
+
+  const acct = JSON.parse(decodeURIComponent(btn.dataset.account));
+  pinModalEl.dataset.selectedBank = JSON.stringify(acct);
+  pinModalEl.dataset.mode = 'check-balance';
+  openPinFlow('check-balance');
+});
+
+            // PIN modal elements
+            const pinModalEl = document.getElementById('pinModal');
+            const pinModal = new bootstrap.Modal(pinModalEl);
+            const setPinArea = document.getElementById('setPinArea');
+            const verifyPinArea = document.getElementById('verifyPinArea');
+            const setPin1 = document.getElementById('set-pin-1');
+            const setPin2 = document.getElementById('set-pin-2');
+            const setPinMsg = document.getElementById('set-pin-msg');
+            const savePinBtn = document.getElementById('save-pin-btn');
+            const verifyPinInput = document.getElementById('verify-pin');
+            const verifyPinMsg = document.getElementById('verify-pin-msg');
+
+            // transient banner show function (auto-hide after 4s)
+            function showTransient(msg) {
+                transientBanner.textContent = msg;
+                transientBanner.style.display = 'block';
+                setTimeout(() => transientBanner.style.display = 'none', 4000);
+            }
+
+            // toggle feature visuals
+            function setFeaturesActive(active) {
+                featureItems.forEach(it => {
+                    if (active) it.classList.add('active'); else it.classList.remove('active');
+                });
+            }
+
+            // fetch banks (backend)
+            async function fetchBanksRaw() {
+                if (!token) return [];
+                try {
+                    const res = await fetch(`${API_BASE}/banks/`, { headers: { 'Authorization': `Token ${token}` } });
+                    console.log(res)
+                    if (!res.ok) return [];
+                    const data = await res.json();
+                    
+                    if (Array.isArray(data)) return data;
+                    if (data && data.bank) return [data.bank];
+                    return [];
+                } catch (e) {
+                    return [];
+                }
+            }
+
+            // on load, check banks existence; do not show bank list yet
+            window.addEventListener('load', async () => {
+                const banks = await fetchBanksRaw();
+                if (banks.length) {
+                    addBankBlock.classList.add('d-none');
+                    afterBankBlock.classList.remove('d-none');
+                    setFeaturesActive(true);
+                    // show a small transient success only when the page first detects banks (once)
+                    showTransient('Bank successfully linked');
+                } else {
+                    addBankBlock.classList.remove('d-none');
+                    afterBankBlock.classList.add('d-none');
+                    setFeaturesActive(false);
+                }
+            });
+
+            // open add bank modal
+            if (openAddBtn) {
+                openAddBtn.addEventListener('click', () => {
+                    const m = new bootstrap.Modal(document.getElementById('addBankModal'));
+                    m.show();
+                });
+            }
+            
+            // View Transactions placeholder (requires PIN)
+            btnTrans.addEventListener('click', () => {
+                openPinFlow('trans');
+            });
+
+const popup = document.getElementById("popup");
+const score = document.getElementById("score");
+const needle = document.getElementById("needle");
+
+btnCibil.addEventListener('click', () => {
+  const val = Math.floor(Math.random() * 601) + 300; // 300–900
+  score.textContent = val;
+
+  // Map 300–900 to -90° to +90°
+  const angle = ((val - 300) / 600) * 180 - 90;
+  needle.style.transform = `rotate(${angle}deg)`;
+
+  popup.style.display = "flex";
+});
+
+            // View Balance: load banks list (but keep amounts hidden until PIN)
+            btnBalance.addEventListener('click', async () => {
+                // show the bank list area (empty) and then populate rows
+                linkedBanksDiv.style.display = 'block';
+                linkedBanksDiv.innerHTML = '<div class="muted-small text-center p-3">Loading linked banks…</div>';
+
+                const banks = await fetchBanksRaw();
+                if (!banks.length) {
+                    linkedBanksDiv.innerHTML = '<div class="alert alert-light text-center">No linked banks. Please add a bank account first.</div>';
+                    return;
+                }
+
+                // render bank rows with "Check Balance" button (amount hidden)
+                linkedBanksDiv.innerHTML = '';
+                banks.forEach((b, idx) => {
+                    const row = document.createElement('div');
+                    row.className = 'bank-card';
+                    row.innerHTML = `
+          <div class="bank-left">
+            <div style="width:46px;height:46px;border-radius:8px;background:#fff7ed;display:flex;align-items:center;justify-content:center;color:#ff8a00">
+              <i class="fa fa-university"></i>
+            </div>
+            <div class="bank-meta">
+              <div><strong>${b.bank_name}</strong> • ${b.branch || ''}</div>
+              <div class="muted-small">${b.holder_name} • ****${(b.account_number || '').slice(-4)}</div>
+            </div>
+          </div>
+          <div class="bank-right">
+            <div class="muted-small">${b.upi_id}</div>
+            <div style="margin-top:8px;">
+              <button class="btn btn-outline-primary btn-sm check-balance-btn" data-account='${encodeURIComponent(JSON.stringify(b))}'>Check Balance</button>
+            </div>
+          </div>
+        `;
+                    linkedBanksDiv.appendChild(row);
+                });
+
+                // attach click handler (delegated)
+                // linkedBanksDiv.querySelectorAll('.check-balance-btn').forEach(btn => {
+                //     btn.addEventListener('click', (e) => {
+                //         const acct = JSON.parse(decodeURIComponent(btn.dataset.account));
+                //         // store selected bank data on the modal element for later reveal
+                //         pinModalEl.dataset.selectedBank = JSON.stringify(acct);
+                //         // start pin flow
+                //         openPinFlow('check-balance');
+                //     });
+                // });
+
+                // scroll into view
+                linkedBanksDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            });
+
+            // open PIN flow: mode = 'check-balance' | 'trans' | 'cibil'
+            function openPinFlow(mode) {
+                // check if a tx-pin exists in localStorage
+                const txPin = localStorage.getItem('gapy_txpin'); // stored as plain for demo
+                setPinMsg.textContent = '';
+                verifyPinMsg.textContent = '';
+                setPin1.value = setPin2.value = verifyPinInput.value = '';
+
+                document.getElementById('pinTitle').textContent = (mode === 'check-balance' ? 'Enter your transaction PIN to check balance' : (mode === 'trans' ? 'Enter your transaction PIN to view transactions' : 'Enter your transaction PIN to view CIBIL score'));
+
+                if (!txPin) {
+                    // show set PIN area
+                    setPinArea.classList.remove('d-none');
+                    verifyPinArea.classList.add('d-none');
+                    pinModal.show();
+                } else {
+                    // show verify PIN area
+                    setPinArea.classList.add('d-none');
+                    verifyPinArea.classList.remove('d-none');
+                    pinModal.show();
+                    // store the mode to modal dataset so after verification we can act
+                    pinModalEl.dataset.mode = mode;
+                }
+            }
+
+            // Save PIN (first time)
+            savePinBtn.addEventListener('click', () => {
+                const p1 = setPin1.value.trim();
+                const p2 = setPin2.value.trim();
+                if (p1.length !== 4 || p2.length !== 4) { setPinMsg.textContent = 'PIN must be 4 digits'; return; }
+                if (p1 !== p2) { setPinMsg.textContent = 'PINs do not match'; return; }
+                // save to localStorage (demo). For production, call server endpoint to save securely.
+                localStorage.setItem('gapy_txpin', p1);
+                setPinMsg.textContent = 'PIN saved';
+                setTimeout(() => pinModal.hide(), 700);
+
+                // If modal had a selectedBank (we came from Check Balance), reveal that bank after saving
+                const mode = pinModalEl.dataset.mode || 'set';
+                if (mode === 'check-balance') {
+                    // simulate click reveal after modal closes
+                    setTimeout(() => revealSelectedBankAfterPin(), 800);
+                }
+            });
+
+            // // Verify PIN (subsequent uses)
+            // document.getElementById('verify-pin-btn').addEventListener('click', () => {
+            //     const pin = verifyPinInput.value.trim();
+            //     const stored = localStorage.getItem('gapy_txpin');
+            //     if (!pin || pin.length !== 4) { verifyPinMsg.textContent = 'Enter 4-digit PIN'; return; }
+            //     if (pin !== stored) { verifyPinMsg.textContent = 'Invalid PIN'; return; }
+            //     // success
+            //     verifyPinMsg.textContent = 'PIN verified';
+            //     const mode = pinModalEl.dataset.mode || 'verify';
+            //     pinModal.hide();
+
+            //     // If the user requested reveal (check-balance) the selected bank will be shown
+            //     if (mode === 'check-balance') {
+            //         setTimeout(() => revealSelectedBankAfterPin(), 400);
+            //     } else if (mode === 'trans') {
+            //         setTimeout(() => alert('Transactions view (demo) — future implementation'), 400);
+            //     } else if (mode === 'cibil') {
+            //         setTimeout(() => alert('CIBIL score (demo) — future implementation'), 400);
+            //     }
+            // });
+document.getElementById('verify-pin-btn').addEventListener('click', async () => {
+  const pin = verifyPinInput.value.trim();
+  verifyPinMsg.textContent = '';
+
+  if (!/^\d{4,6}$/.test(pin)) {
+    verifyPinMsg.textContent = 'Enter a 4–6 digit PIN';
+    return;
+  }
+
+  try {
+    // Selected bank (when checking balance)
+    const selectedRaw = pinModalEl.dataset.selectedBank || null;
+    const selected = selectedRaw ? JSON.parse(selectedRaw) : null;
+
+    // Call backend only when needed (e.g., balance check)
+    const token = localStorage.getItem('gapytoken');
+    const headers = {
+      'Content-Type': 'application/json',
+      ...(token ? { 'Authorization': `Token ${token}` } : {})
+    };
+
+    if (selected) {
+      const payload = { id: selected.id, pin };
+      const res = await fetch(`${API_BASE}/bank/verify-pin/`, {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({ payload })
+      });
+
+      if (!res.ok) {
+        verifyPinMsg.textContent = 'Incorrect PIN';
+        return;
+      }
+    }
+
+    // success
+    verifyPinMsg.textContent = 'PIN verified';
+    pinModal.hide();
+
+    const mode = pinModalEl.dataset.mode || 'verify';
+    setTimeout(() => {
+      if (mode === 'check-balance') revealSelectedBankAfterPin();
+      else if (mode === 'trans') alert('Transactions view (demo)');
+      else if (mode === 'cibil') alert('CIBIL score (demo)');
+    }, 300);
+  } catch (err) {
+    verifyPinMsg.textContent = 'Network error';
+  }
+});
+
+
+            // reveals the selected bank's balance after pin success or pin set
+            async function revealSelectedBankAfterPin() {
+                const raw = pinModalEl.dataset.selectedBank;
+                if (!raw) return;
+                const acct = JSON.parse(raw);
+                // fetch banks to get latest amount for this upi
+                const banks = await fetchBanksRaw();
+                const found = banks.find(b => b.upi_id === acct.upi_id);
+                // rebuild the linked banks list but show amount for selected bank only
+                linkedBanksDiv.innerHTML = '';
+                if (!banks.length) { linkedBanksDiv.innerHTML = '<div class="alert alert-light text-center">No linked banks found.</div>'; return; }
+                banks.forEach((b) => {
+                    const isSelected = (b.upi_id === acct.upi_id);
+                    const row = document.createElement('div');
+                    row.className = 'bank-card';
+                    row.innerHTML = `
+          <div class="bank-left">
+            <div style="width:46px;height:46px;border-radius:8px;background:#fff7ed;display:flex;align-items:center;justify-content:center;color:#ff8a00">
+              <i class="fa fa-university"></i>
+            </div>
+            <div class="bank-meta">
+              <div><strong>${b.bank_name}</strong> • ${b.branch || ''}</div>
+              <div class="muted-small">${b.holder_name} • ****${(b.account_number || '').slice(-4)}</div>
+            </div>
+          </div>
+          <div class="bank-right">
+            <div class="muted-small">${b.upi_id}</div>
+            <div style="margin-top:8px;">
+                
+              ${isSelected ? `<div class="h6">Balance: ₹${Number(b.amount || 0).toFixed(2)}</div>` : `<button class="btn btn-outline-primary btn-sm check-balance-btn" data-account='${encodeURIComponent(JSON.stringify(b))}'>Check Balance</button>`}
+            </div>
+          </div>
+        `;
+                    linkedBanksDiv.appendChild(row);
+                });
+                linkedBanksDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                // clear stored selected bank afterwards
+                delete pinModalEl.dataset.selectedBank;
+            }
+
+            // small helper: when Add Bank form completes (you already have add-bank JS) we listen for a storage event or show transient message:
+            // We'll watch localStorage flag 'gapy_bank_added' set by your add bank code when a bank is added (if you want).
+            // But if not available, we rely on page reload detection (on load we show transient).
+            window.addEventListener('storage', (e) => {
+                if (e.key === 'gapy_bank_added' && e.newValue === '1') {
+                    // refresh bank state UI
+                    (async () => {
+                        const banks = await fetchBanksRaw();
+                        if (banks.length) {
+                            addBankBlock.classList.add('d-none');
+                            afterBankBlock.classList.remove('d-none');
+                            setFeaturesActive(true);
+                            showTransient('Bank successfully linked');
+                            localStorage.removeItem('gapy_bank_added');
+                        }
+                    })();
+                }
+            });
+
+            // Also, if your existing add-bank JS does not set that localStorage item, we suggest adding:
+            // localStorage.setItem('gapy_bank_added','1'); after successful add (so the page can react without reload).
+            // But if you prefer not to change that script, refreshing the page will make the UI switch as well.
+
+        })();
+
+
+    </script>
+
+    <!-- keep existing dashboard.js loaded last — it won't conflict -->
+    <script src="js/dashboard.js"></script>
+
+ <!-- PIN setup modal
+<div id="pinSetupModal" class="popup" aria-hidden="true">
+  <div class="popup-content" role="dialog" aria-modal="true">
+    <h3>Set transaction PIN</h3>
+    <p>Create a 4-6 digit PIN to secure payments.</p>
+    <input id="pin" type="password" placeholder="Enter PIN" maxlength="8" autocomplete="new-password" />
+    <input id="confirm_pin" type="password" placeholder="Confirm PIN" maxlength="8" autocomplete="new-password" />
+    <div id="pinSetupError" style="color:red;display:none;"></div>
+    <button id="setPinBtn">Set PIN</button>
+  </div>
+</div> -->
+
+<!-- PIN verify modal -->
+<div id="verifyPinModal" class="popup" aria-hidden="true">
+  <div class="popup-content" role="dialog" aria-modal="true">
+    <h3>Enter PIN to continue</h3>
+    <input id="verify_pin" type="password" placeholder="Enter PIN" maxlength="8" autocomplete="current-password" />
+    <div id="verifyError" style="color:red;display:none;"></div>
+    <button id="verifyPinBtn">Verify</button>
+  </div>
+</div>
+
+<style>
+  /* minimal popup styling + small appear animation (200ms) */
+  .popup {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;        /* non-interactive when hidden */
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: opacity 200ms ease, transform 200ms ease;
+    z-index: 999;
+  }
+
+  .popup.show {
+    pointer-events: auto;        /* interactive when visible */
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .popup-content {
+    background: #fff;
+    padding: 18px;
+    border-radius: 8px;
+    width: 320px;
+    max-width: 90%;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    text-align: center;
+  }
+
+  input { display:block; margin:10px auto; padding:8px; width:90%; }
+  button { padding:8px 16px; margin-top:8px; cursor:pointer; }
+
+  /* keep error visible styles simple, JS toggles display:block/none */
+  #pinSetupError, #verifyError { min-height: 18px; }
+</style>
+
+<script>
+      document.getElementById("btn-trans").addEventListener("click", () => {
+    window.location.href = "transactions.html"; // replace with your page URL
+  });
+
+const API_BASE_URL = "http://127.0.0.1:8000";
+(function() {
+  const token = localStorage.getItem('gapytoken'); // adapt as needed
+  const headers = {
+    'Content-Type': 'application/json',
+    'Authorization': token ? `Token ${token}` : ''
+  };
+
+  // helper: toggle popup by class (no inline style)
+  function showPopup(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.classList.add('show');
+    el.setAttribute('aria-hidden', 'false');
+    // focus first input inside
+    const f = el.querySelector('input');
+    if (f) f.focus();
+  }
+  function hidePopup(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    // remove 'show' immediately; allow 200ms transition to finish for visual close
+    el.classList.remove('show');
+    el.setAttribute('aria-hidden', 'true');
+  }
+
+  // auto-close helper after n ms (keeps CSS animation natural)
+  function autoClose(id, delay = 200) {
+    setTimeout(() => hidePopup(id), delay);
+  }
+
+  // 1) Check if PIN is enabled for logged-in user
+  async function checkPinStatus() {
+    try {
+      const res = await fetch(`${API_BASE_URL}/api/bank/pin-status/`, { headers });
+      if (!res.ok) {
+        return;
+      }
+      const data = await res.json();
+      if (!data.pin_enabled) {
+        showPopup('pinSetupModal');
+      }
+    } catch (err) {
+      console.error('Pin status check failed', err);
+    }
+  }
+
+  // 2) Set PIN handler
+//   document.getElementById('setPinBtn').addEventListener('click', async () => {
+//     const pin = document.getElementById('pin').value.trim();
+//     const confirm_pin = document.getElementById('confirm_pin').value.trim();
+//     const errorDiv = document.getElementById('pinSetupError');
+//     errorDiv.style.display = 'none';
+
+//     if (!pin || !confirm_pin) {
+//       errorDiv.textContent = 'Both fields are required'; errorDiv.style.display = 'block'; return;
+//     }
+//     if (pin !== confirm_pin) {
+//       errorDiv.textContent = 'PINs do not match'; errorDiv.style.display = 'block'; return;
+//     }
+//     if (!/^\d{4,8}$/.test(pin)) {
+//       errorDiv.textContent = 'PIN must be 4-8 digits'; errorDiv.style.display = 'block'; return;
+//     }
+
+//     try {
+//       const res = await fetch(`${API_BASE_URL}/api/bank/set-pin/`, {
+//         method: 'POST',
+//         headers,
+//         body: JSON.stringify({ pin, confirm_pin })
+//       });
+//       if (res.ok) {
+//         // visual success, auto-close after 200ms
+//         errorDiv.style.display = 'none';
+//         autoClose('pinSetupModal', 200);
+//         alert('PIN set successfully');
+//       } else {
+//         const err = await res.json();
+//         errorDiv.textContent = err.detail || JSON.stringify(err);
+//         errorDiv.style.display = 'block';
+//       }
+//     } catch (e) {
+//       errorDiv.textContent = 'Network error'; errorDiv.style.display = 'block';
+//     }
+//   });
+  
+  // Example usage: attach to a Pay button on your page
+  const payButton = document.getElementById('payButton'); // your pay button id
+  if (payButton) {
+    payButton.addEventListener('click', async (e) => {
+      const ok = await requirePinVerification();
+      if (!ok) {
+        alert('Payment aborted: PIN verification failed');
+        return;
+      }
+      // proceed with payment flow
+    });
+  }
+
+  // Run initial check
+  checkPinStatus();
+})();
+
+document.getElementById("bankCard").addEventListener("click", () => {
+  window.location.href = "profile.html?tab=banks";
+});
+
+</script>
+
+</body>
+
+</html>

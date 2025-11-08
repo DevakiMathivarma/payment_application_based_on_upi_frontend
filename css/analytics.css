@@ -1,0 +1,1574 @@
+/* ---------------------------------------------
+   GLOBAL
+--------------------------------------------- */
+:root {
+  --accent: #ff7b00;
+  --accent-soft: #fff5eb;
+  --light-bg: #f8f9fc;
+  --card-shadow: 0 10px 25px rgba(0,0,0,0.04);
+}
+
+body {
+  background: var(--light-bg);
+}
+
+/* ---------------------------------------------
+   PAGE TRANSITIONS
+--------------------------------------------- */
+.main {
+  animation: fadeInPage 0.45s ease-in-out;
+}
+
+@keyframes fadeInPage {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Chart wrappers smoothly fade-in */
+.chart-wrap {
+  width: 100%;
+  min-height: 250px;
+  animation: fadeSlideUp 0.6s ease-in-out;
+}
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------------------------------------------
+   SUMMARY METRIC CARDS
+--------------------------------------------- */
+.metric-card {
+  border-radius: 14px;
+  background: #fff;
+  transition: all 0.25s ease;
+  cursor: default;
+}
+
+.metric-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(255, 122, 0, 0.10);
+}
+
+/* ---------------------------------------------
+   HIGHLIGHT CARDS
+--------------------------------------------- */
+.highlight-card {
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: var(--card-shadow);
+  transition: all 0.25s ease;
+}
+
+.highlight-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 30px rgba(0,0,0,0.08);
+}
+
+.icon-dot {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+/* ---------------------------------------------
+   FILTER BAR
+--------------------------------------------- */
+.card select,
+.card input,
+.card button {
+  transition: all 0.25s ease;
+}
+
+#btnApplyFilter:hover,
+#btnFilterAll:hover,
+#btnFilterDebited:hover,
+#btnFilterCredited:hover {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+/* Active buttons */
+#btnFilterAll.active,
+#btnFilterDebited.active,
+#btnFilterCredited.active {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* ---------------------------------------------
+   TABLE
+--------------------------------------------- */
+table.table tbody tr {
+  transition: all 0.25s ease;
+}
+
+table.table tbody tr:hover {
+  background: #fff3e6;
+}
+
+/* ---------------------------------------------
+   PAYEE TABLE BAR ANIMATION
+--------------------------------------------- */
+.payee-bar {
+  height: 6px;
+  border-radius: 4px;
+  background: var(--accent);
+  width: 0%;
+  animation: growBar 1s ease forwards;
+}
+
+@keyframes growBar {
+  from { width: 0%; }
+  to   { width: var(--value); }
+}
+
+/* ---------------------------------------------
+   INSIGHTS ANIMATION
+--------------------------------------------- */
+#insightsList li {
+  background: #fff;
+  padding: 12px 14px;
+  margin-bottom: 6px;
+  border-radius: 10px;
+  box-shadow: var(--card-shadow);
+  list-style: none;
+  opacity: 0;
+  transform: translateX(-12px);
+  animation: fadeList 0.45s ease forwards;
+}
+
+#insightsList li:nth-child(1) { animation-delay: 0.1s; }
+#insightsList li:nth-child(2) { animation-delay: 0.2s; }
+#insightsList li:nth-child(3) { animation-delay: 0.3s; }
+#insightsList li:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes fadeList {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ---------------------------------------------
+   TRANSACTION LIST
+--------------------------------------------- */
+#txnList .txn-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 14px 16px;
+  box-shadow: var(--card-shadow);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.25s ease;
+}
+
+#txnList .txn-card:hover {
+  transform: translateX(5px);
+  box-shadow: 0 12px 26px rgba(0,0,0,0.1);
+}
+
+/* Debit / Credit colors */
+.txn-debit {
+  color: #d9534f;
+}
+
+.txn-credit {
+  color: #28a745;
+}
+
+/* ---------------------------------------------
+   SECTION HEADERS
+--------------------------------------------- */
+.card h6 {
+  font-weight: 600;
+  color: #2b2b2b;
+}
+
+.text-muted.small {
+  color: #6d6d6d !important;
+}
+
+/* ---------------------------------------------
+   EXPORT CSV BUTTON
+--------------------------------------------- */
+#btnExportCSV {
+  transition: all 0.25s ease;
+}
+
+#btnExportCSV:hover {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+/* ---------------------------------------------
+   RESPONSIVE IMPROVEMENTS
+--------------------------------------------- */
+
+
+/* ============================================================
+   ULTRA SMALL DEVICES — 320px to 374px (Analytics Page)
+   ============================================================ */
+@media (min-width: 320px) and (max-width: 374px) {
+
+  html, body {
+    overflow-x: hidden;
+  }
+
+  /* ----------------- SIDEBAR ------------------- */
+  .layout {
+    flex-direction: column;
+    gap: 12px;
+    padding: 0;
+  }
+
+  .sidebar {
+    width: 82px;
+    padding: 12px 6px;
+    border-right: none;
+    border-radius: 0;
+    height: auto;
+    position: relative;
+    top: 0;
+  }
+
+  .sidebar .brand-circle {
+    width: 38px;
+    height: 38px;
+    font-size: 16px;
+    margin: 0 auto 8px;
+  }
+
+  /* Icon-only menu */
+  .sidebar .menu-item a {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 0;
+    gap: 4px;
+  }
+
+  .sidebar .menu-item a i {
+    font-size: 18px;
+  }
+
+  .sidebar-bottom .profile-thumb {
+    width: 38px;
+    height: 38px;
+  }
+
+  #side-profile-name {
+    font-size: 0; /* hide name */
+  }
+
+
+  /* ----------------- MAIN AREA ----------------- */
+  .main {
+    width: 100%;
+    padding: 12px;
+  }
+
+  header h4 {
+    font-size: 18px;
+  }
+
+  header input {
+    width: 160px !important;
+    font-size: 13px;
+  }
+
+  /* ----------------- FILTER BAR ---------------- */
+  .card.p-3 {
+    padding: 14px !important;
+  }
+
+  .card .d-flex.flex-wrap {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start !important;
+  }
+
+  select,
+  input[type="number"] {
+    width: 100%;
+    height: 40px;
+    font-size: 14px;
+  }
+
+  .btn-group button {
+    width: 100%;
+    font-size: 14px;
+  }
+
+  #btnExportCSV {
+    width: 100%;
+    font-size: 14px;
+  }
+
+
+  /* ----------------- SUMMARY CARDS ---------------- */
+  .row.g-3 .col-md-4 {
+    width: 100%;
+    max-width: 100%;
+    flex: 0 0 100%;
+  }
+
+  .metric-card {
+    padding: 14px !important;
+  }
+
+  .metric-card .h4 {
+    font-size: 20px !important;
+  }
+
+
+  /* ----------------- CHARTS ---------------------- */
+  .row.g-3 .col-lg-5,
+  .row.g-3 .col-lg-7 {
+    width: 100%;
+    flex: 0 0 100%;
+  }
+
+  .chart-wrap {
+    min-height: 200px !important;
+  }
+
+  canvas {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+
+  /* ----------------- CATEGORY + TOP PAYEES ------- */
+  .col-xl-6 {
+    width: 100%;
+    flex: 0 0 100%;
+  }
+
+  table.table {
+    font-size: 13px;
+  }
+
+  .table-responsive {
+    overflow-x: auto;
+  }
+
+
+  /* ----------------- HIGHLIGHT CARDS -------------- */
+  .col-md-4 {
+    width: 100%;
+    flex: 0 0 100%;
+  }
+
+  .highlight-card {
+    padding: 14px;
+  }
+
+  .icon-dot {
+    width: 38px;
+    height: 38px;
+    font-size: 16px;
+  }
+
+
+  /* ----------------- PREDICTION + INSIGHTS -------- */
+  .col-lg-5,
+  .col-lg-7 {
+    width: 100%;
+    flex: 0 0 100%;
+  }
+
+  #predictionValue {
+    font-size: 28px !important;
+  }
+
+
+  /* ----------------- TRANSACTION LIST ------------- */
+  #txnList .txn-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 14px !important;
+  }
+
+  #txnList .txn-card .txn-amount {
+    font-size: 16px;
+  }
+
+  #listCount {
+    font-size: 12px;
+  }
+}
+
+
+/* ============================================================
+   SMALL PHONES — 375px to 424px (Analytics Page)
+   ============================================================ */
+@media (min-width: 374px) and (max-width: 424px) {
+
+  html, body {
+    overflow-x: hidden;
+  }
+
+  /* ----------------- LAYOUT + SIDEBAR ------------------- */
+  .layout {
+    flex-direction: column;
+    gap: 14px;
+    padding: 0;
+  }
+
+  .sidebar {
+    width: 100%;
+    padding: 14px 10px;
+    height: auto;
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .sidebar-top {
+    display: none; /* hide big top logo */
+  }
+
+  .sidebar .menu {
+    display: flex;
+    flex-direction: row;
+    gap: 18px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .sidebar .menu-item {
+    margin-bottom: 0;
+    border-radius: 12px;
+    padding: 8px 10px;
+  }
+
+  .sidebar .menu-item a {
+    flex-direction: column;
+    font-size: 11px;
+    align-items: center;
+    gap: 6px;
+    color: #555;
+  }
+
+  .sidebar .menu-item a i {
+    font-size: 18px;
+  }
+
+  .sidebar-bottom {
+    display: none;
+  }
+
+
+  /* ----------------- MAIN AREA ------------------- */
+  .main {
+    width: 100%;
+    padding: 14px;
+  }
+
+  header h4 {
+    font-size: 20px;
+  }
+
+  #search-input {
+    width: 180px !important;
+    font-size: 14px;
+  }
+
+
+  /* ----------------- FILTER BAR ------------------- */
+  .card.p-3 {
+    padding: 16px !important;
+  }
+
+  .card .d-flex.flex-wrap {
+    gap: 14px;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  /* Left filter items: Month + Year */
+  .card .d-flex.flex-wrap > div:first-child,
+  .card .d-flex.flex-wrap > div:nth-child(2) {
+    width: 48%;
+  }
+
+  select,
+  input[type="number"] {
+    width: 100%;
+    height: 42px;
+    font-size: 14px;
+  }
+
+  #btnApplyFilter {
+    width: 100%;
+    font-size: 15px;
+  }
+
+  /* Filter buttons */
+  .btn-group {
+    width: 100%;
+  }
+
+  .btn-group button {
+    font-size: 14px;
+    flex: 1;
+  }
+
+  #btnExportCSV {
+    width: 100%;
+    font-size: 14px;
+  }
+
+
+  /* ----------------- SUMMARY CARDS ------------------- */
+  .row.g-3 .col-md-4 {
+    width: 100%;
+    flex: 0 0 100%;
+  }
+
+  .metric-card {
+    padding: 16px !important;
+  }
+
+  .metric-card .h4 {
+    font-size: 22px !important;
+  }
+
+
+  /* ----------------- CHARTS ---------------------- */
+  .col-lg-5,
+  .col-lg-7 {
+    width: 100%;
+    flex: 0 0 100%;
+  }
+
+  .chart-wrap {
+    min-height: 240px !important;
+  }
+
+  canvas {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+
+  /* ----------------- CATEGORY + PAYEES ---------------- */
+  .col-xl-6 {
+    width: 100%;
+  }
+
+  table.table {
+    font-size: 14px;
+  }
+
+  .table-responsive {
+    overflow-x: auto;
+  }
+
+
+  /* ----------------- HIGHLIGHT CARDS ------------------ */
+  .col-md-4 {
+    flex: 0 0 100%;
+    width: 100%;
+  }
+
+  .highlight-card {
+    padding: 16px;
+  }
+
+  .icon-dot {
+    width: 42px;
+    height: 42px;
+    font-size: 17px;
+  }
+
+
+  /* ----------------- PREDICTION + INSIGHTS ------------- */
+  .col-lg-5,
+  .col-lg-7 {
+    width: 100%;
+  }
+
+  #predictionValue {
+    font-size: 32px !important;
+  }
+
+  #predictionDelta {
+    font-size: 13px;
+  }
+
+
+  /* ----------------- TRANSACTION LIST ----------------- */
+  #txnList .txn-card {
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px !important;
+    align-items: flex-start;
+  }
+
+  #txnList .txn-card .txn-amount {
+    font-size: 18px;
+  }
+
+  #listCount {
+    font-size: 13px;
+  }
+}
+
+
+/* ============================================================
+   MEDIUM-SMALL MOBILES — 425px to 599px (Analytics Page)
+   ============================================================ */
+@media (min-width: 424px) and (max-width: 599px) {
+
+  html, body {
+    overflow-x: hidden;
+  }
+
+  /* ----------------- LAYOUT + SIDEBAR ------------------- */
+  .layout {
+    flex-direction: column;
+    gap: 16px;
+    padding: 0;
+  }
+
+  .sidebar {
+    width: 100%;
+    padding: 16px 14px;
+    border-radius: 0;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .sidebar-top {
+    display: none;
+  }
+
+  .sidebar .menu {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    gap: 20px;
+  }
+
+  .sidebar .menu-item {
+    margin: 0;
+    padding: 10px 12px;
+  }
+
+  .sidebar .menu-item a {
+    flex-direction: column;
+    gap: 6px;
+    font-size: 12px;
+    color: #444;
+  }
+
+  .sidebar .menu-item a i {
+    font-size: 20px;
+  }
+
+  .sidebar-bottom {
+    display: none;
+  }
+
+  /* ----------------- MAIN AREA ------------------- */
+  .main {
+    width: 100%;
+    padding: 16px;
+  }
+
+  header h4 {
+    font-size: 22px;
+  }
+
+  #search-input {
+    width: 200px !important;
+    font-size: 14px;
+  }
+
+  /* ----------------- FILTER BAR ------------------- */
+  .card.p-3 {
+    padding: 18px !important;
+  }
+
+  .card .d-flex.flex-wrap {
+    gap: 16px;
+    justify-content: space-between;
+  }
+
+  /* Month + Year fields → 2 columns */
+  .card .d-flex.flex-wrap > div:first-child,
+  .card .d-flex.flex-wrap > div:nth-child(2) {
+    width: 47%;
+  }
+
+  select,
+  input[type="number"] {
+    width: 100%;
+    height: 44px;
+    font-size: 15px;
+  }
+
+  /* Apply button */
+  #btnApplyFilter {
+    width: 100%;
+    height: 44px;
+    font-size: 15px;
+  }
+
+  /* Filter buttons become full width in one row */
+  .btn-group {
+    width: 100%;
+  }
+
+  .btn-group button {
+    flex: 1;
+    font-size: 14px;
+    padding: 10px 12px;
+  }
+
+  #btnExportCSV {
+    width: 100%;
+    font-size: 15px;
+    padding: 10px;
+  }
+
+  /* ----------------- SUMMARY CARDS ------------------- */
+  .row.g-3 .col-md-4 {
+    width: 50%;
+    flex: 0 0 50%;
+  }
+
+  .metric-card {
+    padding: 18px !important;
+  }
+
+  .metric-card .h4 {
+    font-size: 24px !important;
+  }
+
+  /* ----------------- CHARTS ---------------------- */
+  .col-lg-5,
+  .col-lg-7 {
+    width: 100%;
+    flex: 0 0 100%;
+  }
+
+  .chart-wrap {
+    min-height: 260px !important;
+  }
+
+  canvas {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  /* ----------------- CATEGORY + PAYEES ---------------- */
+  .col-xl-6 {
+    width: 100%;
+    flex: 0 0 100%;
+  }
+
+  table.table {
+    font-size: 14px;
+  }
+
+  .table-responsive {
+    overflow-x: auto;
+  }
+
+  /* ----------------- HIGHLIGHT CARDS ------------------ */
+  .col-md-4 {
+    width: 50%;
+    flex: 0 0 50%;
+  }
+
+  .highlight-card {
+    padding: 16px;
+  }
+
+  .icon-dot {
+    width: 42px;
+    height: 42px;
+    font-size: 18px;
+  }
+
+  /* ----------------- PREDICTION + INSIGHTS ------------- */
+  .col-lg-5, 
+  .col-lg-7 {
+    width: 100%;
+  }
+
+  #predictionValue {
+    font-size: 34px !important;
+  }
+
+  #predictionDelta {
+    font-size: 14px;
+  }
+
+  /* ----------------- TRANSACTION LIST ----------------- */
+  #txnList .txn-card {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 16px 18px !important;
+  }
+
+  #txnList .txn-card .txn-amount {
+    font-size: 19px;
+  }
+
+  #listCount {
+    font-size: 13px;
+  }
+}
+
+/* ============================================================
+   LARGE MOBILES + SMALL TABLETS — 600px to 767px
+   ============================================================ */
+@media (min-width: 599px) and (max-width: 767px) {
+
+  html, body {
+    overflow-x: hidden;
+  }
+
+  /* ----------------- SIDEBAR ------------------- */
+  .layout {
+    flex-direction: column;
+    gap: 18px;
+    padding: 0;
+  }
+
+  .sidebar {
+    width: 100%;
+    padding: 18px 14px;
+    height: auto;
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .sidebar-top {
+    display: none;
+  }
+
+  .sidebar .menu {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 26px;
+  }
+
+  .sidebar .menu-item {
+    margin: 0;
+    padding: 10px 14px;
+  }
+
+  .sidebar .menu-item a {
+    flex-direction: column;
+    font-size: 13px;
+    color: #444;
+    gap: 6px;
+  }
+
+  .sidebar .menu-item a i {
+    font-size: 22px;
+  }
+
+  .sidebar-bottom {
+    display: none;
+  }
+
+  /* ----------------- MAIN ------------------- */
+  .main {
+    width: 100%;
+    padding: 18px;
+  }
+
+  header h4 {
+    font-size: 24px;
+  }
+
+  #search-input {
+    width: 240px !important;
+    font-size: 15px;
+  }
+
+  /* ----------------- FILTER BAR ------------------- */
+  .card.p-3 {
+    padding: 20px !important;
+  }
+
+  .card .d-flex.flex-wrap {
+    gap: 18px;
+    justify-content: space-between;
+  }
+
+  /* Month + Year fields */
+  .card .d-flex.flex-wrap > div:first-child,
+  .card .d-flex.flex-wrap > div:nth-child(2) {
+    width: 32%;
+  }
+
+  select,
+  input[type="number"] {
+    width: 100%;
+    height: 46px;
+    font-size: 15px;
+  }
+
+  #btnApplyFilter {
+    width: 32%;
+    height: 46px;
+    font-size: 15px;
+  }
+
+  .btn-group {
+    width: 100%;
+  }
+
+  .btn-group button {
+    flex: 1;
+    font-size: 15px;
+    padding: 10px 12px;
+  }
+
+  #btnExportCSV {
+    width: 100%;
+    padding: 12px;
+    font-size: 15px;
+  }
+
+  /* ----------------- SUMMARY CARDS ------------------- */
+  .row.g-3 .col-md-4 {
+    width: 50%;
+    flex: 0 0 50%;
+  }
+
+  .metric-card {
+    padding: 20px !important;
+  }
+
+  .metric-card .h4 {
+    font-size: 26px !important;
+  }
+
+  /* ----------------- CHARTS ---------------------- */
+  .col-lg-5,
+  .col-lg-7 {
+    width: 100%;
+    flex: 0 0 100%;
+  }
+
+  .chart-wrap {
+    min-height: 280px !important;
+  }
+
+  canvas {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  /* ----------------- CATEGORY + TOP PAYEES ---------------- */
+  .col-xl-6 {
+    width: 100%;
+  }
+
+  table.table {
+    font-size: 15px;
+  }
+
+  /* ----------------- HIGHLIGHT CARDS ------------------ */
+  .col-md-4 {
+    width: 50%;
+    flex: 0 0 50%;
+  }
+
+  .highlight-card {
+    padding: 18px;
+  }
+
+  .icon-dot {
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+  }
+
+  /* ----------------- PREDICTION + INSIGHTS ------------- */
+  .col-lg-5,
+  .col-lg-7 {
+    width: 100%;
+  }
+
+  #predictionValue {
+    font-size: 36px !important;
+  }
+
+  #predictionDelta {
+    font-size: 14px;
+  }
+
+  /* ----------------- TRANSACTION LIST ----------------- */
+  #txnList .txn-card {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 18px !important;
+  }
+
+  #txnList .txn-card .txn-amount {
+    font-size: 20px;
+  }
+}
+
+/* ============================================================
+   TABLETS (PORTRAIT) — 768px to 899px
+   ============================================================ */
+@media (min-width: 767px) and (max-width: 899px) {
+
+  html, body {
+    overflow-x: hidden;
+  }
+
+  /* ----------------- LAYOUT + SIDEBAR ------------------- */
+  .layout {
+   
+    gap: 20px;
+    padding: 0;
+  }
+
+  .sidebar {
+    width: 100%;
+    padding: 20px 24px;
+    height: auto;
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .sidebar-top {
+    display: none;
+  }
+
+  .sidebar .menu {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+  }
+
+  .sidebar .menu-item {
+    margin: 0;
+    padding: 10px 14px;
+  }
+
+  .sidebar .menu-item a {
+    flex-direction: column;
+    gap: 6px;
+    font-size: 13px;
+  }
+
+  .sidebar .menu-item a i {
+    font-size: 22px;
+  }
+
+  .sidebar-bottom {
+    display: none;
+  }
+
+  /* ----------------- MAIN ------------------- */
+  .main {
+    width: 100%;
+    padding: 22px;
+  }
+
+  header h4 {
+    font-size: 26px;
+  }
+
+  #search-input {
+    width: 260px !important;
+    font-size: 15px;
+  }
+
+  /* ----------------- FILTER BAR ------------------- */
+  .card.p-3 {
+    padding: 22px !important;
+  }
+
+  .card .d-flex.flex-wrap {
+    gap: 18px;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  /* 3-column layout: Month, Year, Apply */
+  .card .d-flex.flex-wrap > div:first-child,
+  .card .d-flex.flex-wrap > div:nth-child(2),
+  #btnApplyFilter {
+    width: 30%;
+  }
+
+  select,
+  input[type="number"] {
+    width: 100%;
+    height: 46px;
+  }
+
+  #btnApplyFilter {
+    height: 46px;
+    font-size: 15px;
+  }
+
+  .btn-group {
+    width: 100%;
+  }
+
+  .btn-group button {
+    flex: 1;
+    font-size: 15px;
+  }
+
+  #btnExportCSV {
+    width: 100%;
+    padding: 12px;
+    font-size: 15px;
+  }
+
+  /* ----------------- SUMMARY CARDS ------------------- */
+  .row.g-3 .col-md-4 {
+    width: 33.333%;
+    flex: 0 0 33.333%;
+  }
+
+  .metric-card {
+    padding: 22px !important;
+  }
+
+  .metric-card .h4 {
+    font-size: 26px !important;
+  }
+
+  /* ----------------- CHARTS ---------------------- */
+  /* Charts stacked vertically for tablet */
+  .col-lg-5,
+  .col-lg-7 {
+    width: 100%;
+    flex: 0 0 100%;
+  }
+
+  .chart-wrap {
+    min-height: 300px !important;
+  }
+
+  canvas {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  /* ----------------- CATEGORY + PAYEES ---------------- */
+  .col-xl-6 {
+    width: 100%;
+  }
+
+  table.table {
+    font-size: 15px;
+  }
+
+  /* ----------------- HIGHLIGHT CARDS ------------------ */
+  /* Tablet: 3 highlight cards in one row */
+  .col-md-4 {
+    width: 33.333%;
+    flex: 0 0 33.333%;
+  }
+
+  .highlight-card {
+    padding: 20px;
+  }
+
+  .icon-dot {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+  }
+
+  /* ----------------- PREDICTION + INSIGHTS ------------- */
+  .col-lg-5,
+  .col-lg-7 {
+    width: 100%;
+  }
+
+  #predictionValue {
+    font-size: 38px !important;
+  }
+
+  #predictionDelta {
+    font-size: 14px;
+  }
+
+
+  /* ----------------- TRANSACTION LIST ----------------- */
+  #txnList .txn-card {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px !important;
+  }
+
+  #txnList .txn-card .txn-amount {
+    font-size: 20px;
+  }
+}
+
+
+
+/* ============================================================
+   TABLET LANDSCAPE / SMALL DESKTOP — 900px to 1023px
+   ============================================================ */
+@media (min-width: 899px) and (max-width: 1023px) {
+
+  html, body {
+    overflow-x: hidden;
+  }
+
+  /* ----------------- SIDEBAR ------------------- */
+  .layout {
+    flex-direction: row;
+    gap: 24px;
+  }
+
+  .sidebar {
+    width: 180px;
+    height: auto;
+    padding: 24px 14px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .sidebar-top,
+  .sidebar-bottom {
+    display: block;
+  }
+
+  .sidebar .menu-item a {
+    flex-direction: row;
+    font-size: 14px;
+  }
+
+  .sidebar .menu-item a i {
+    font-size: 18px;
+  }
+
+  /* ----------------- MAIN LAYOUT ------------------- */
+  .main {
+    width: calc(100% - 180px);
+    padding: 22px;
+  }
+
+  header h4 {
+    font-size: 28px;
+  }
+
+  #search-input {
+    width: 260px !important;
+    font-size: 15px;
+  }
+
+  /* ----------------- FILTER BAR ------------------- */
+  .card.p-3 {
+    padding: 22px !important;
+  }
+
+  .card .d-flex.flex-wrap {
+    gap: 18px;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  /* Month, Year, Apply → 3-columns */
+  .card .d-flex.flex-wrap > div:first-child,
+  .card .d-flex.flex-wrap > div:nth-child(2),
+  #btnApplyFilter {
+    width: 30%;
+  }
+
+  select,
+  input[type="number"],
+  #btnApplyFilter {
+    height: 46px;
+    font-size: 15px;
+  }
+
+  .btn-group {
+    width: 48%;
+  }
+
+  #btnExportCSV {
+    width: 48%;
+  }
+
+  /* ----------------- SUMMARY CARDS ------------------- */
+  .row.g-3 .col-md-4 {
+    width: 33.333%;
+    flex: 0 0 33.333%;
+  }
+
+  .metric-card {
+    padding: 22px !important;
+  }
+
+  .metric-card .h4 {
+    font-size: 26px !important;
+  }
+
+  /* ----------------- CHARTS ---------------------- */
+  .col-lg-5 {
+    width: 40%;
+    flex: 0 0 40%;
+  }
+
+  .col-lg-7 {
+    width: 60%;
+    flex: 0 0 60%;
+  }
+
+  .chart-wrap {
+    min-height: 320px !important;
+  }
+
+  canvas {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  /* ----------------- CATEGORY + TOP PAYEES -------- */
+  .col-xl-6 {
+    width: 50%;
+    flex: 0 0 50%;
+  }
+
+  table.table {
+    font-size: 15px;
+  }
+
+  /* ----------------- HIGHLIGHT CARDS ------------------ */
+  .col-md-4 {
+    width: 33.333%;
+    flex: 0 0 33.333%;
+  }
+
+  .highlight-card {
+    padding: 22px;
+  }
+
+  .icon-dot {
+    width: 52px;
+    height: 52px;
+    font-size: 20px;
+  }
+
+  /* ----------------- PREDICTION + INSIGHTS ------------- */
+  .col-lg-5 {
+    width: 40%;
+  }
+
+  .col-lg-7 {
+    width: 60%;
+  }
+
+  #predictionValue {
+    font-size: 40px !important;
+  }
+
+  /* ----------------- TRANSACTION LIST ----------------- */
+  #txnList .txn-card {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px !important;
+  }
+
+  #txnList .txn-card .txn-amount {
+    font-size: 20px;
+  }
+}
+
+/* ============================================================
+   STANDARD DESKTOP (LAPTOP) — 1024px to 1199px
+   ============================================================ */
+@media (min-width: 1023px) and (max-width: 1199px) {
+
+  html, body {
+    overflow-x: hidden;
+  }
+
+  /* ----------------- SIDEBAR ------------------- */
+  .sidebar {
+    width: 200px;
+    padding: 26px 18px;
+    border-radius: 18px;
+  }
+
+  .sidebar .menu-item a {
+    font-size: 15px;
+  }
+
+  /* ----------------- LAYOUT ------------------- */
+  .layout {
+    flex-direction: row;
+    gap: 28px;
+  }
+
+  .main {
+    width: calc(100% - 200px);
+    padding: 26px;
+  }
+
+  header h4 {
+    font-size: 30px;
+  }
+
+  #search-input {
+    width: 280px !important;
+  }
+
+  /* ----------------- FILTER BAR ------------------- */
+  .card.p-3 {
+    padding: 24px !important;
+  }
+
+  .card .d-flex.flex-wrap {
+    gap: 20px;
+    justify-content: space-between;
+  }
+
+  /* Month / Year / Apply Filter → 3 columns */
+  .card .d-flex.flex-wrap > div:first-child,
+  .card .d-flex.flex-wrap > div:nth-child(2),
+  #btnApplyFilter {
+    width: 30%;
+  }
+
+  select,
+  input[type="number"] {
+    height: 48px;
+    font-size: 15px;
+  }
+
+  .btn-group {
+    width: 48%;
+  }
+
+  #btnExportCSV {
+    width: 48%;
+  }
+
+  /* ----------------- SUMMARY CARDS ------------------- */
+  .row.g-3 .col-md-4 {
+    width: 33.333%;
+    flex: 0 0 33.333%;
+  }
+
+  .metric-card {
+    padding: 24px !important;
+  }
+
+  .metric-card .h4 {
+    font-size: 28px !important;
+  }
+
+  /* ----------------- CHARTS ---------------------- */
+  .col-lg-5 {
+    width: 40%;
+    flex: 0 0 40%;
+  }
+
+  .col-lg-7 {
+    width: 60%;
+    flex: 0 0 60%;
+  }
+
+  .chart-wrap {
+    min-height: 340px !important;
+  }
+
+  canvas {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  /* ----------------- CATEGORY + TOP PAYEES -------- */
+  .col-xl-6 {
+    width: 50%;
+    flex: 0 0 50%;
+  }
+
+  table.table {
+    font-size: 15px;
+  }
+
+  /* ----------------- HIGHLIGHT CARDS ------------------ */
+  .col-md-4 {
+    width: 33.333%;
+    flex: 0 0 33.333%;
+  }
+
+  .highlight-card {
+    padding: 24px !important;
+  }
+
+  .icon-dot {
+    width: 52px;
+    height: 52px;
+    font-size: 20px;
+  }
+
+  /* ----------------- PREDICTION + INSIGHTS ------------- */
+  .col-lg-5 {
+    width: 42%;
+    flex: 0 0 42%;
+  }
+
+  .col-lg-7 {
+    width: 58%;
+    flex: 0 0 58%;
+  }
+
+  #predictionValue {
+    font-size: 42px !important;
+  }
+
+  /* ----------------- TRANSACTION LIST ----------------- */
+  #txnList .txn-card {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 22px !important;
+  }
+
+  #txnList .txn-card .txn-amount {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 768px) {
+  .metric-card,
+  .highlight-card {
+    margin-bottom: 10px;
+  }
+  .chart-wrap {
+    min-height: 210px;
+  }
+}
+

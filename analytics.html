@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Gapy — Transaction Analytics</title>
+
+  <!-- Bootstrap + Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+  <!-- Your global styles (keep these) -->
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/transaction.css">
+
+  <!-- Page-specific styles will go in analytics.css (next step B) -->
+  <link rel="stylesheet" href="css/analytics.css">
+</head>
+<body>
+  <div class="layout d-flex">
+
+    <!-- Sidebar (kept consistent with your app) -->
+    <aside class="sidebar bg-white shadow-sm">
+      <div class="sidebar-top text-center py-4">
+        <div class="brand-circle mb-3"><i class="fa fa-bolt"></i></div>
+      </div>
+      <nav class="menu">
+        <ul class="list-unstyled">
+          <li class="menu-item">
+            <a class="d-flex align-items-center text-decoration-none" href="/dashboard.html">
+              <i class="fa fa-tachometer-alt me-2"></i> <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="menu-item active">
+            <a class="d-flex align-items-center text-decoration-none" href="/transactions.html">
+              <i class="fa fa-chart-pie me-2"></i> <span>Transactions</span>
+            </a>
+          </li>
+          <li class="menu-item">
+            <a class="d-flex align-items-center text-decoration-none" href="/profile.html">
+              <i class="fa fa-user me-2"></i> <span>Profile</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      
+      <div class="sidebar-bottom text-center py-4" id="profile-change">
+      
+        <img src="assets\images\avatar.PNG" alt="profile" class="rounded-circle profile-thumb"></a>
+        <div id="side-profile-name" class="small mt-2">Devaki</div>
+     
+      </div>
+   
+    </aside>
+
+    <!-- Main -->
+    <main class="main flex-fill p-4">
+      <!-- Header -->
+      <header class="d-flex justify-content-between align-items-center mb-3">
+        <div>
+          <h4 class="mb-1">Transactions</h4>
+          <div class="text-muted small">Analytics & insights</div>
+        </div>
+        <div class="d-flex align-items-center gap-2">
+          <input id="search-input" class="form-control form-control-sm" style="width:220px" placeholder="Search transactions"/>
+          <img src="assets/avatar.png" class="rounded-circle" width="36" height="36" alt="me">
+        </div>
+      </header>
+
+      <!-- Filters row -->
+      <section class="card p-3 shadow-sm mb-3">
+        <div class="d-flex flex-wrap align-items-end gap-3">
+          <div>
+            <label class="form-label mb-1">Filter by month</label>
+            <select id="filterMonth" class="form-select">
+              <option value="">All</option>
+              <option value="1">Jan</option><option value="2">Feb</option><option value="3">Mar</option>
+              <option value="4">Apr</option><option value="5">May</option><option value="6">Jun</option>
+              <option value="7">Jul</option><option value="8">Aug</option><option value="9">Sep</option>
+              <option value="10">Oct</option><option value="11">Nov</option><option value="12">Dec</option>
+            </select>
+          </div>
+          <div>
+            <label class="form-label mb-1">Year</label>
+            <input id="filterYear" type="number" min="2000" max="2100" class="form-control" placeholder="2025">
+          </div>
+          <div>
+            <button id="btnApplyFilter" class="btn btn-outline-secondary">Apply</button>
+          </div>
+
+          <div class="ms-auto d-flex gap-2">
+            <div class="btn-group" role="group" aria-label="Type filter">
+              <button id="btnFilterAll" class="btn btn-light active">All</button>
+              <button id="btnFilterDebited" class="btn btn-light">Debited</button>
+              <button id="btnFilterCredited" class="btn btn-light">Credited</button>
+            </div>
+            <button id="btnExportCSV" class="btn btn-outline-primary">
+              <i class="fa fa-file-export me-1"></i> Export CSV
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Summary cards -->
+      <section class="mb-3">
+        <div class="row g-3">
+          <div class="col-md-4">
+            <div class="card metric-card p-3 shadow-sm">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <div class="text-muted small">Total Debited</div>
+                  <div id="summaryDebited" class="h4 mb-0">₹ 0.00</div>
+                </div>
+                <i class="fa fa-arrow-trend-down text-danger fs-4"></i>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card metric-card p-3 shadow-sm">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <div class="text-muted small">Total Credited</div>
+                  <div id="summaryCredited" class="h4 mb-0">₹ 0.00</div>
+                </div>
+                <i class="fa fa-arrow-trend-up text-success fs-4"></i>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card metric-card p-3 shadow-sm">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <div class="text-muted small">Net Change</div>
+                  <div id="summaryNet" class="h4 mb-0">₹ 0.00</div>
+                </div>
+                <i class="fa fa-scale-balanced text-secondary fs-4"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Charts row -->
+      <section class="mb-3">
+        <div class="row g-3">
+          <!-- Pie: Debited vs Credited -->
+          <div class="col-lg-5">
+            <div class="card shadow-sm p-3 h-100">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <h6 class="mb-0">Debited vs Credited</h6>
+                <span class="small text-muted" id="pieRangeLabel">This period</span>
+              </div>
+              <div class="chart-wrap">
+                <canvas id="chartPie"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- Monthly trend -->
+          <div class="col-lg-7">
+            <div class="card shadow-sm p-3 h-100">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <h6 class="mb-0">Monthly Trend</h6>
+                <span class="small text-muted" id="trendRangeLabel">Last 6 months</span>
+              </div>
+              <div class="chart-wrap">
+                <canvas id="chartMonthly"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Deep insights row -->
+      <section class="mb-3">
+        <div class="row g-3">
+          <!-- Category-wise analytics -->
+          <div class="col-xl-6">
+            <div class="card shadow-sm p-3 h-100">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <h6 class="mb-0">Category Breakdown</h6>
+                <span class="small text-muted">Auto-detected</span>
+              </div>
+              <div class="chart-wrap">
+                <canvas id="chartCategory"></canvas>
+              </div>
+              <div id="categoryLegend" class="small text-muted mt-2"></div>
+            </div>
+          </div>
+
+          <!-- Top 5 payees -->
+          <div class="col-xl-6">
+            <div class="card shadow-sm p-3 h-100">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <h6 class="mb-0">Top 5 Payees (by spend)</h6>
+                <span class="small text-muted" id="topPayeesRangeLabel">This period</span>
+              </div>
+              <div class="table-responsive">
+                <table class="table table-sm align-middle mb-0">
+                  <thead>
+                    <tr class="text-muted small">
+                      <th>Payee</th>
+                      <th class="text-end">Amount</th>
+                      <th class="text-end">Share</th>
+                    </tr>
+                  </thead>
+                  <tbody id="topPayeesTable">
+                    <!-- rows injected by JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Highlights row -->
+      <section class="mb-3">
+        <div class="row g-3">
+          <!-- Largest debit -->
+          <div class="col-md-4">
+            <div class="card highlight-card shadow-sm p-3 h-100">
+              <div class="d-flex align-items-center gap-3">
+                <div class="icon-dot bg-danger-subtle text-danger"><i class="fa fa-arrow-down"></i></div>
+                <div>
+                  <div class="text-muted small">Largest Debit</div>
+                  <div id="largestDebitValue" class="h5 mb-0">₹ 0.00</div>
+                  <div id="largestDebitMeta" class="small text-muted">—</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Largest credit -->
+          <div class="col-md-4">
+            <div class="card highlight-card shadow-sm p-3 h-100">
+              <div class="d-flex align-items-center gap-3">
+                <div class="icon-dot bg-success-subtle text-success"><i class="fa fa-arrow-up"></i></div>
+                <div>
+                  <div class="text-muted small">Largest Credit</div>
+                  <div id="largestCreditValue" class="h5 mb-0">₹ 0.00</div>
+                  <div id="largestCreditMeta" class="small text-muted">—</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Biggest day & activity -->
+          <div class="col-md-4">
+            <div class="card highlight-card shadow-sm p-3 h-100">
+              <div class="d-flex align-items-center gap-3">
+                <div class="icon-dot bg-warning-subtle text-warning"><i class="fa fa-calendar-day"></i></div>
+                <div>
+                  <div class="text-muted small">Biggest Spend Day</div>
+                  <div id="biggestDayValue" class="h6 mb-0">—</div>
+                  <div id="activeDaysValue" class="small text-muted">Active days: —</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Prediction + Insights -->
+      <section class="mb-4">
+        <div class="row g-3">
+          <!-- Spend prediction -->
+          <div class="col-lg-5">
+            <div class="card shadow-sm p-3 h-100">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <h6 class="mb-0">Next Month Prediction</h6>
+                <span class="small text-muted">Simple trend</span>
+              </div>
+              <div class="d-flex align-items-center justify-content-between">
+                <div>
+                  <div class="text-muted small">Estimated spend</div>
+                  <div id="predictionValue" class="display-6 mb-1">₹ 0.00</div>
+                  <div id="predictionDelta" class="small text-muted">—</div>
+                </div>
+                <div class="w-50">
+                  <canvas id="chartPrediction"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Smart insights -->
+          <div class="col-lg-7">
+            <div class="card shadow-sm p-3 h-100">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <h6 class="mb-0">Smart Insights</h6>
+                <span class="small text-muted">Auto-generated</span>
+              </div>
+              <ul id="insightsList" class="list-unstyled mb-0">
+                <!-- insights injected by JS -->
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Transactions list (optional, re-use your list layout) -->
+      <section class="card p-3 shadow-sm">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <h6 class="mb-0">Transactions</h6>
+          <div class="small text-muted" id="listCount">0 items</div>
+        </div>
+        <div id="txnList" class="d-flex flex-column gap-2">
+          <!-- transaction cards appended here -->
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- We will load Chart.js & page JS in step C -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script> 
+   <script src="js/analytics.js"></script>
+</body>
+</html>

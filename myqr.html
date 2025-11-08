@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>My QR - Gapy</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="css/myqr.css">
+</head>
+<body>
+  <div class="wrap">
+    <aside class="left-panel">
+      <div class="logo">Gapy</div>
+      <nav>
+        <a href="/dashboard.html">Dashboard</a>
+        <a href="/scanqr.html">Scan QR</a>
+        <a class="active" href="/myqr.html">My QR</a>
+      </nav>
+    </aside>
+
+    <main class="main">
+      <header>
+        <h1>My QR</h1>
+        <div class="sub">Show this to receive payments</div>
+      </header>
+
+      <section class="qr-card">
+        <div class="qr-image">
+          <!-- server-provided image (fallback script will replace with canvas if the fetch fails) -->
+          <img id="qr-img" src="http://127.0.0.1:8000/api/qr/myqr/" alt="My QR code">
+        </div>
+
+       <div class="qr-actions">
+  <button id="share-btn" class="btn primary">Share</button>
+  <button id="download-btn" class="btn">Download</button>
+</div>
+
+        <div id="qr-status" class="muted">Share your QR to request payments</div>
+      </section>
+    </main>
+  </div>
+
+  <!-- QR library used for client-side fallback generation -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+
+  <!-- your fallback/robust QR script (place the myqr.js provided earlier here) -->
+  <script src="js/myqr.js"></script>
+</body>
+</html>

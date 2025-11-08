@@ -1,0 +1,133 @@
+:root{
+  --bg:#071126;
+  --panel:#071527;
+  --muted:#9fb3c6;
+  --accent:#ff7a00;
+  --card:#081425;
+}
+
+/* body + layout */
+body{
+  margin:0;
+  font-family:Inter,system-ui,Arial;
+  background:linear-gradient(180deg,#041223 0%,#03101a 100%);
+  color:#e8f0ff;
+}
+
+.wrap{
+  display:flex;
+  gap:20px;
+  padding:28px;
+}
+
+/* left panel */
+.left-panel{
+  width:220px;
+  background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);
+  border-radius:14px;
+  padding:18px;
+  box-shadow:0 10px 40px rgba(0,0,0,0.45);
+}
+
+.left-panel .logo{
+  color:var(--accent);
+  font-weight:700;
+  margin-bottom:12px;
+}
+
+.left-panel nav a{
+  display:block;
+  color:var(--muted);
+  padding:10px;
+  border-radius:8px;
+  text-decoration:none;
+  transition:all .18s;
+}
+
+.left-panel nav a:hover{
+  color:#fff;
+  transform:translateX(6px);
+}
+
+.left-panel nav a.active{
+  color:var(--accent);
+  background:rgba(255,255,255,0.03);
+}
+
+/* main */
+.main{ flex:1; }
+
+header h1{
+  margin:0;
+  font-size:28px;
+}
+
+header .sub{
+  margin-top:4px;
+  color:var(--muted);
+}
+
+/* QR Card */
+.qr-card{
+  margin-top:18px;
+  padding:20px;
+  border-radius:14px;
+  background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);
+  box-shadow:0 12px 40px rgba(1,6,11,0.55);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:14px;
+}
+
+/* QR image */
+.qr-image{
+  width:260px;
+  height:260px;
+  border-radius:12px;
+  background:#ffffff;
+  padding:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 6px 20px rgba(0,0,0,0.4);
+}
+
+.qr-image img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+
+/* actions */
+.qr-actions{
+  display:flex;
+  gap:12px;
+}
+
+.btn{
+  padding:10px 14px;
+  border-radius:8px;
+  border:none;
+  cursor:pointer;
+  background:rgba(255,255,255,0.04);
+  color:#d8e8ff;
+  transition:background .18s,transform .18s;
+}
+
+.btn:hover{
+  background:rgba(255,255,255,0.08);
+  transform:translateY(-2px);
+}
+
+.btn.primary{
+  background:linear-gradient(90deg,var(--accent),#ff9c3c);
+  color:#04141b;
+  font-weight:700;
+  box-shadow:0 8px 24px rgba(255,122,0,0.18);
+}
+
+.muted{
+  color:var(--muted);
+  font-size:13px;
+}

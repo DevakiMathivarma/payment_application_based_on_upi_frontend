@@ -1,0 +1,158 @@
+/* frontend/css/style.css */
+:root{
+  --card-bg: #fff;
+  --accent: #ffbf00;
+  --muted: #bdbdbd;
+}
+
+body{
+  font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+  background: #e9e9ea;
+  margin:0;
+}
+
+/* Card similar to image: rounded large with soft shadow */
+.auth-card{
+  width: 420px;
+  border-radius: 22px;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.98));
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+.auth-card:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.15);
+}
+
+/* Tab buttons */
+.tabs button{
+  color: #9aa0a6;
+  font-weight: 600;
+  border: none;
+  background: transparent;
+}
+.tabs button.active{
+  color: #333;
+  position: relative;
+}
+.tabs button.active::after{
+  content: '';
+  position: absolute;
+  left:0;
+  right:0;
+  bottom:-8px;
+  height:4px;
+  background: var(--accent);
+  border-radius: 8px;
+}
+
+/* avatar */
+.avatar{
+  width:76px;
+  height:76px;
+  border-radius: 18px;
+  background: #f6f6f6;
+  color: #aaa;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:28px;
+  margin: 0 auto 12px auto;
+}
+
+/* round button */
+.btn-round{
+  border-radius: 999px;
+  padding: 10px 18px;
+  background: linear-gradient(90deg,var(--accent), #ffb400);
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 6px 12px rgba(255,191,0,0.14);
+  transition: transform 180ms ease;
+}
+.btn-round:active{
+  transform: translateY(2px) scale(.997);
+}
+
+/* small text */
+.small { font-size: 0.9rem; }
+
+/* hide and show containers with fade */
+.auth-container{
+  animation: fadeIn 360ms ease;
+}
+.d-none { display:none !important; }
+
+/* responsive */
+@media (max-width: 480px){
+  .auth-card{ width: 92%; border-radius:16px; padding: 6px; }
+}
+
+/* transaction modal */
+#acc-balance{
+  color:#333;
+  font-weight:700;
+}
+
+/* fade animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity:1; transform: translateY(0); }
+}
+
+/* subtle placeholder coloring */
+input::placeholder { color: #c8c8c8; }
+
+/* ====== Smooth transition animations ====== */
+
+/* Wrap both auth containers for animation */
+.auth-container {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 0.5s ease-in-out;
+  position: relative;
+}
+
+/* Hidden state (when switching forms) */
+.auth-container.hidden {
+  opacity: 0;
+  transform: translateX(-40px);
+  pointer-events: none;
+  position: absolute;
+}
+
+/* When showing new container */
+.auth-container.show {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: all;
+  position: relative;
+}
+
+/* Button transitions */
+.tabs button {
+  transition: all 0.3s ease;
+}
+
+/* Subtle hover effect on tab buttons */
+.tabs button:hover {
+  color: #ffbf00;
+  transform: scale(1.03);
+}
+
+/* Add fade to messages */
+#message {
+  transition: opacity 0.4s ease;
+}
+
+/* Responsive: make sure containers stack properly */
+@media (max-width: 480px) {
+  .auth-card {
+    width: 92%;
+    border-radius: 16px;
+  }
+}
+

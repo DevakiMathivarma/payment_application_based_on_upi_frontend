@@ -1,0 +1,869 @@
+/* payanyone.css */
+:root{
+  --bg: #0f1724;
+  --card: #0b1320;
+  --accent: #06b6d4;
+  --muted: #93a3b8;
+  --glass: rgba(255,255,255,0.03);
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Inter, system-ui, Arial, sans-serif;
+  background: #F7F8FA;
+  color:black;
+  min-height:100vh;
+}
+.layout{display:flex;gap:20px;padding:24px}
+/* //////////////// */
+
+/* ---------- sidebar ---------- */
+.sidebar{
+  width:220px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(255,255,255,0.98));
+  border-radius:14px;
+  padding:18px;
+  box-shadow: 0 8px 30px rgba(14,28,60,0.04);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  height: calc(100vh - 36px);
+  position: sticky;
+  top: 18px;
+}
+.brand-circle { width:54px; height:54px; border-radius:10px; display:inline-flex; align-items:center; justify-content:center; background: linear-gradient(180deg,#fff6ef,#fff0e6); color:var(--accent); font-weight:700; box-shadow: 0 6px 20px rgba(255,122,0,0.06); margin:0 auto; }
+.menu { margin-top:12px; }
+.menu .menu-item { margin-bottom:6px; padding:10px 8px; border-radius:8px; color:var(--muted); display:flex; align-items:center; gap:10px; font-weight:600; }
+.menu .menu-item a { text-decoration:none; color:inherit; display:flex; gap:10px; align-items:center; }
+.menu .menu-item.active, .menu .menu-item:hover { background: var(--accent-soft); color:var(--accent); transform: translateX(4px); transition: transform .16s ease, box-shadow .16s ease; }
+
+/* ---------------- Sidebar ---------------- */
+.sidebar {
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 1px solid #eee;
+}
+
+.sidebar .brand-circle {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #fff5e6;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #ff7b00;
+  font-size: 22px;
+  box-shadow: 0 4px 8px rgba(255, 160, 60, 0.1);
+}
+
+.sidebar .menu {
+  flex-grow: 1;
+  text-align: left;
+}
+
+.sidebar .menu-item {
+  padding: 14px 22px;
+  font-weight: 500;
+  color: #555;
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.sidebar .menu-item:hover {
+  background: #fff9f3;
+  color: #ff7a00;
+}
+
+.sidebar .menu-item.active {
+  background: linear-gradient(90deg, #fff2e5 0%, #fff 100%);
+  border-left: 4px solid #ff7b00;
+  color: #ff7a00;
+  font-weight: 600;
+}
+
+.profile-thumb {
+  width: 54px;
+  height: 54px;
+  border: 2px solid #ffb870;
+}
+
+.left-nav{
+  width:220px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+  border-radius:14px;padding:18px;backdrop-filter: blur(6px);
+  display:flex;flex-direction:column;gap:8px;
+  box-shadow: 0 6px 30px rgba(2,6,23,0.6);
+}
+.left-nav a{
+  color:var(--muted);text-decoration:none;padding:10px;border-radius:8px;display:block;
+  transition:transform .18s ease, background .18s ease, color .18s;
+}
+.left-nav a.active, .left-nav a:hover{background:var(--glass);color:var(--accent);transform:translateX(6px)}
+.main{flex:1}
+.main-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.main-header h1{margin:0;font-size:24px;letter-spacing:0.3px}
+.balance{background:linear-gradient(90deg, rgba(255,255,255,0.02), transparent);padding:10px 14px;border-radius:10px;color:var(--muted)}
+.search-card, .saved-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:18px;border-radius:12px;margin-bottom:16px;box-shadow: 0 8px 40px rgba(2,6,23,0.45)}
+#search-input{width:calc(100% - 120px);padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit;outline:none;font-size:15px;margin-right:8px}
+#search-btn{padding:11px 14px;border-radius:8px;border:none;background:var(--accent);color:#042028;font-weight:600;cursor:pointer;transition:transform .12s}
+#search-btn:active{transform:scale(.98)}
+.results, .saved-list{display:flex;flex-direction:column;gap:12px;margin-top:12px}
+.payee-card{display:flex;justify-content:space-between;align-items:center;padding:12px;border-radius:10px;background:rgba(255,255,255,0.02);animation:cardIn .35s cubic-bezier(.2,.9,.3,1)}
+.payee-meta{display:flex;gap:12px;align-items:center}
+.avatar{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent), #7C3AED);display:flex;align-items:center;justify-content:center;font-weight:700}
+.payee-info{display:flex;flex-direction:column}
+.payee-info .name{font-weight:600}
+.payee-actions{display:flex;gap:8px;align-items:center}
+.btn{padding:8px 12px;border-radius:8px;border:none;cursor:pointer}
+.btn-outline{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+.btn-add{background:linear-gradient(90deg,var(--accent), #7C3AED);color:#031519;font-weight:700;box-shadow: 0 6px 18px rgba(6,182,212,0.14)}
+.message-template{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;backdrop-filter: blur(4px)}
+.message-template .template-box{width:480px;background:#96b5dd;border-radius:14px;padding:18px;box-shadow: 0 20px 80px rgba(243, 240, 242, 0.7);transform:translateY(20px);animation:pop .26s ease both}
+.template-box textarea{width:100%;height:120px;border-radius:10px;padding:12px;background:transparent;border:1px solid rgba(255,255,255,0.04);color:inherit;outline:none;resize:none}
+.template-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:12px}
+.hidden{display:none}
+
+/* animations */
+@keyframes pop{from{opacity:0;transform:translateY(40px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes cardIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+/* ===== ULTRA-SMALL PHONES: 320–374px (Pay Anyone) ===== */
+
+/* ============================================================
+   PAY ANYONE — 320–374px (ultra-small phones)
+   ============================================================ */
+@media (min-width: 320px) and (max-width: 374px) {
+
+  html, body { overflow-x: hidden !important; }
+
+  /* Layout */
+  .layout { flex-direction: column !important; gap: 12px !important; padding: 10px !important; }
+
+  /* Sidebar -> compact top bar (override sticky rail) */
+  .layout .sidebar{
+    width: 100% !important;
+    padding: 10px 8px !important;
+    border-radius: 10px !important;
+    position: static !important;
+    top: auto !important;
+    height: auto !important;
+    border-right: 0 !important;
+  }
+  .layout .sidebar .sidebar-top{ display: none !important; }
+  .layout .sidebar .menu{ margin-top: 0 !important; flex-grow: 0 !important; }
+  .layout .sidebar .menu .list-unstyled{
+    display: flex !important; gap: 12px !important;
+    justify-content: space-around !important; align-items: center !important;
+    padding-left: 0 !important; margin: 0 !important;
+  }
+  .layout .sidebar .menu-item{ margin: 0 !important; padding: 8px 10px !important; border-radius: 10px !important; }
+  .layout .sidebar .menu-item a{
+    display: flex !important; flex-direction: column !important; align-items: center !important;
+    gap: 4px !important; text-decoration: none !important; color: inherit !important; font-size: 0 !important;
+  }
+  .layout .sidebar .menu-item a i{ font-size: 18px !important; }
+  .layout .sidebar .sidebar-bottom{ display: none !important; }
+
+  /* Main */
+  .main{ flex: 1 1 auto !important; width: 100% !important; }
+  .main-header{ flex-direction: column !important; align-items: flex-start !important; gap: 8px !important; margin-bottom: 10px !important; }
+  .main-header h1{ font-size: 18px !important; }
+  .balance{ font-size: 12px !important; padding: 8px 10px !important; }
+
+  /* Search */
+  .search-card{ padding: 14px !important; margin-bottom: 12px !important; }
+  .search-card{ display: flex !important; flex-direction: column !important; }
+  #search-input{ width: 100% !important; margin: 0 0 10px 0 !important; height: 42px !important; font-size: 14px !important; }
+  #search-btn{ width: 100% !important; padding: 10px 12px !important; font-size: 14px !important; }
+
+  /* Saved list */
+  .saved-card{ padding: 14px !important; }
+  .saved-card h2{ font-size: 16px !important; margin: 0 0 8px !important; }
+  .saved-list{ gap: 10px !important; }
+
+  /* Payee card */
+  .payee-card{
+    padding: 12px !important; gap: 10px !important;
+    flex-direction: column !important; align-items: flex-start !important;
+  }
+  .payee-meta{ gap: 10px !important; }
+  .avatar{ width: 38px !important; height: 38px !important; font-size: 14px !important; }
+  .payee-info .name{ font-size: 14px !important; }
+  .payee-actions{ width: 100% !important; gap: 8px !important; }
+  .btn{ padding: 8px 10px !important; font-size: 13px !important; }
+  .btn-add{ width: 100% !important; }
+  .btn-outline{ flex: 1 1 auto !important; }
+
+  /* Modal / message template — keep box inside viewport */
+  .message-template{ padding: 12px !important; z-index: 1050 !important; }
+  .message-template .template-box{
+    width: 92vw !important; max-width: 92vw !important;
+    max-height: 82vh !important; overflow: auto !important;
+    padding: 14px !important; border-radius: 12px !important;
+    margin: 0 auto !important;
+  }
+  .template-box textarea{
+    width: 100% !important; height: 110px !important;
+    font-size: 14px !important; padding: 10px !important; box-sizing: border-box !important;
+  }
+  .template-actions{ display: flex !important; justify-content: flex-end !important; gap: 8px !important; flex-wrap: wrap !important; }
+  .template-actions button{ padding: 9px 12px !important; font-size: 14px !important; }
+
+  /* Misc */
+  .profile-thumb{ width: 36px !important; height: 36px !important; }
+  #side-profile-name{ display: none !important; }
+}
+
+/* ============================================================
+   PAY ANYONE — 375–424px (small phones)
+   ============================================================ */
+@media (min-width: 374px) and (max-width: 424px) {
+
+  html, body { overflow-x: hidden !important; }
+
+  .layout{ flex-direction: column !important; gap: 14px !important; padding: 14px !important; }
+
+  .layout .sidebar{
+    width: 100% !important;
+    padding: 12px 10px !important;
+    border-radius: 12px !important;
+    position: static !important; top: auto !important; height: auto !important; border-right: 0 !important;
+  }
+  .layout .sidebar .sidebar-top{ display: none !important; }
+  .layout .sidebar .menu .list-unstyled{
+    display: flex !important; justify-content: space-around !important; gap: 14px !important;
+    padding-left: 0 !important; margin: 0 !important;
+  }
+  .layout .sidebar .menu-item{ margin: 0 !important; padding: 10px 12px !important; border-radius: 10px !important; }
+  .layout .sidebar .menu-item a{
+    display: flex !important; flex-direction: column !important; align-items: center !important;
+    gap: 4px !important; font-size: 11px !important; text-decoration: none !important; color: inherit !important;
+  }
+  .layout .sidebar .menu-item a i{ font-size: 18px !important; }
+  .layout .sidebar .sidebar-bottom{ display: none !important; }
+
+  .main{ flex: 1 1 auto !important; width: 100% !important; }
+  .main-header{ flex-direction: column !important; align-items: flex-start !important; gap: 8px !important; margin-bottom: 12px !important; }
+  .main-header h1{ font-size: 20px !important; }
+  .balance{ font-size: 13px !important; padding: 10px 12px !important; }
+
+  .search-card{ padding: 16px !important; margin-bottom: 14px !important; display: flex !important; flex-direction: column !important; }
+  #search-input{ width: 100% !important; margin: 0 0 10px 0 !important; height: 46px !important; font-size: 15px !important; }
+  #search-btn{ width: 100% !important; height: 44px !important; font-size: 15px !important; }
+  .results{ gap: 10px !important; }
+
+  .saved-card{ padding: 16px !important; }
+  .saved-card h2{ font-size: 18px !important; }
+  .saved-list{ gap: 12px !important; }
+
+  .payee-card{
+    padding: 14px !important; border-radius: 12px !important;
+    flex-direction: column !important; gap: 12px !important; align-items: flex-start !important;
+  }
+  .payee-meta{ gap: 12px !important; }
+  .avatar{ width: 46px !important; height: 46px !important; font-size: 16px !important; }
+  .payee-info .name{ font-size: 15px !important; }
+  .payee-actions{ width: 100% !important; gap: 10px !important; }
+  .btn{ padding: 10px 14px !important; font-size: 14px !important; }
+  .btn-add{ width: 100% !important; }
+  .btn-outline{ flex: 1 1 auto !important; }
+
+  /* Modal fixes (keep inside viewport; fix “Send/Cancel” drifting) */
+  .message-template{ padding: 14px !important; z-index: 1050 !important; }
+  .message-template .template-box{
+    width: 90vw !important; max-width: 90vw !important;
+    max-height: 82vh !important; overflow: auto !important;
+    padding: 16px !important; border-radius: 12px !important;
+    margin: 0 auto !important;
+  }
+  .template-box textarea{
+    width: 100% !important; height: 130px !important;
+    font-size: 15px !important; padding: 12px !important; box-sizing: border-box !important;
+  }
+  .template-actions{
+    display: flex !important; justify-content: flex-end !important;
+    gap: 10px !important; flex-wrap: wrap !important;
+  }
+  .template-actions button{ font-size: 15px !important; padding: 10px 14px !important; }
+}
+
+
+/* ============================================================
+   PAY ANYONE — 425–599px (normal phones)
+   ============================================================ */
+@media (min-width: 425px) and (max-width: 599px) {
+
+  html, body { overflow-x: hidden !important; }
+
+  /* ---------- Layout ---------- */
+  .layout{
+    flex-direction: column !important;
+    gap: 16px !important;
+    padding: 16px !important;
+  }
+
+  /* ---------- Sidebar → top bar ---------- */
+  .layout .sidebar{
+    width: 100% !important;
+    padding: 14px 12px !important;
+    border-radius: 12px !important;
+    position: static !important; top: auto !important; height: auto !important;
+    border-right: 0 !important;
+  }
+  .layout .sidebar .sidebar-top{ display: none !important; }
+  .layout .sidebar .menu{ margin-top: 0 !important; flex-grow: 0 !important; }
+  .layout .sidebar .menu .list-unstyled{
+    display: flex !important; justify-content: space-evenly !important;
+    gap: 18px !important; padding-left: 0 !important; margin: 0 !important;
+  }
+  .layout .sidebar .menu-item{ margin: 0 !important; padding: 10px 12px !important; border-radius: 10px !important; }
+  .layout .sidebar .menu-item a{
+    display: flex !important; flex-direction: column !important; align-items: center !important;
+    gap: 6px !important; text-decoration: none !important; color: inherit !important;
+    font-size: 12px !important; /* show short label */
+  }
+  .layout .sidebar .menu-item a i{ font-size: 20px !important; }
+  .layout .sidebar .sidebar-bottom{ display: none !important; }
+
+  /* ---------- Main header ---------- */
+  .main{ flex: 1 1 auto !important; width: 100% !important; }
+  .main-header{
+    margin-bottom: 14px !important;
+    display: flex !important; flex-wrap: wrap !important; gap: 8px !important;
+    align-items: center !important; justify-content: space-between !important;
+  }
+  .main-header h1{ font-size: 22px !important; margin: 0 !important; }
+  .balance{ font-size: 14px !important; padding: 10px 12px !important; border-radius: 10px !important; }
+
+  /* ---------- Search card (2-column: input + button) ---------- */
+  .search-card{
+    padding: 18px !important; margin-bottom: 14px !important;
+    display: grid !important; grid-template-columns: 1fr 120px !important; gap: 10px !important;
+  }
+  #search-input{ width: 100% !important; height: 46px !important; font-size: 15px !important; margin: 0 !important; }
+  #search-btn{ width: 100% !important; height: 46px !important; font-size: 15px !important; }
+  .search-card .results{ grid-column: 1 / -1 !important; gap: 12px !important; }
+
+  /* ---------- Saved payees ---------- */
+  .saved-card{ padding: 18px !important; }
+  .saved-card h2{ font-size: 18px !important; }
+  .saved-list{ gap: 12px !important; }
+
+  /* ---------- Payee card (horizontal, wraps nicely) ---------- */
+  .payee-card{
+    padding: 14px !important; border-radius: 12px !important;
+    display: flex !important; flex-direction: row !important; align-items: center !important;
+    gap: 12px !important; flex-wrap: wrap !important;
+  }
+  .payee-meta{ display: flex !important; gap: 12px !important; align-items: center !important; min-width: 0 !important; }
+  .avatar{ width: 44px !important; height: 44px !important; font-size: 15px !important; }
+  .payee-info .name{ font-size: 15px !important; }
+  .payee-actions{
+    margin-left: auto !important; display: flex !important; gap: 10px !important; align-items: center !important;
+    width: auto !important; /* will wrap under on narrow widths */
+  }
+  .btn{ padding: 10px 12px !important; font-size: 14px !important; }
+  .btn-outline{ min-width: 90px !important; }
+  .btn-add{ min-width: 110px !important; }
+
+  /* ---------- Modal / message template ---------- */
+  .message-template{ padding: 14px !important; z-index: 1050 !important; }
+  .message-template .template-box{
+    width: 88vw !important; max-width: 88vw !important;
+    max-height: 80vh !important; overflow: auto !important;
+    padding: 16px !important; border-radius: 12px !important; margin: 0 auto !important;
+  }
+  .template-box textarea{ height: 140px !important; font-size: 15px !important; padding: 12px !important; }
+  .template-actions{ display: flex !important; justify-content: flex-end !important; gap: 10px !important; flex-wrap: wrap !important; }
+  .template-actions button{ padding: 10px 14px !important; font-size: 15px !important; }
+
+  /* ---------- Small misc ---------- */
+  .profile-thumb{ width: 42px !important; height: 42px !important; }
+  #side-profile-name{ display: none !important; }
+}
+/* ============================================================
+   PAY ANYONE — 600–767px (Large phones / small tablets)
+   ============================================================ */
+@media (min-width: 599px) and (max-width: 767px) {
+
+  html, body { overflow-x: hidden !important; }
+
+  /* ------------ Layout ------------ */
+  .layout{
+    flex-direction: column !important;
+    gap: 20px !important;
+    padding: 20px !important;
+  }
+
+  /* ------------ Sidebar → full-width top bar ------------ */
+  .layout .sidebar{
+    width: 100% !important;
+    padding: 16px 14px !important;
+    border-radius: 14px !important;
+    position: static !important;
+    height: auto !important;
+    border-right: none !important;
+  }
+
+  .layout .sidebar .sidebar-top{ display: none !important; }
+
+  .layout .sidebar .menu{
+    margin-top: 0 !important;
+    flex-grow: 0 !important;
+  }
+
+  .layout .sidebar .menu .list-unstyled{
+    display: flex !important;
+    justify-content: space-evenly !important;
+    align-items: center !important;
+    gap: 20px !important;
+    padding-left: 0 !important;
+    margin: 0 !important;
+  }
+
+  .layout .sidebar .menu-item{
+    padding: 12px 16px !important;
+    border-radius: 12px !important;
+    margin: 0 !important;
+  }
+
+  .layout .sidebar .menu-item a{
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 6px !important;
+    font-size: 13px !important;
+    text-decoration: none !important;
+    color: inherit !important;
+  }
+
+  .layout .sidebar .menu-item a i{
+    font-size: 22px !important;
+  }
+
+  .layout .sidebar .sidebar-bottom{ display: none !important; }
+
+  /* ------------ Main Header ------------ */
+  .main{
+    flex: 1 1 auto !important;
+    width: 100% !important;
+  }
+
+  .main-header{
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin-bottom: 18px !important;
+  }
+
+  .main-header h1{
+    font-size: 24px !important;
+  }
+
+  .balance{
+    font-size: 15px !important;
+    padding: 10px 14px !important;
+  }
+
+  /* ------------ Search Section ------------ */
+  .search-card{
+    padding: 20px !important;
+    margin-bottom: 18px !important;
+    display: grid !important;
+    grid-template-columns: 1fr 140px !important;
+    column-gap: 12px !important;
+    row-gap: 12px !important;
+  }
+
+  #search-input{
+    width: 100% !important;
+    height: 48px !important;
+    font-size: 16px !important;
+    margin: 0 !important;
+  }
+
+  #search-btn{
+    width: 100% !important;
+    height: 48px !important;
+    font-size: 16px !important;
+  }
+
+  .results{
+    grid-column: 1 / -1 !important;
+    gap: 14px !important;
+  }
+
+  /* ------------ Saved Payees ------------ */
+  .saved-card{
+    padding: 20px !important;
+  }
+
+  .saved-card h2{
+    font-size: 20px !important;
+    margin-bottom: 12px !important;
+  }
+
+  .saved-list{
+    gap: 14px !important;
+  }
+
+  /* ------------ Payee Card ------------ */
+  .payee-card{
+    padding: 16px !important;
+    border-radius: 14px !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 14px !important;
+    flex-wrap: wrap !important;
+  }
+
+  .payee-meta{
+    display: flex !important;
+    gap: 14px !important;
+    align-items: center !important;
+    min-width: 0 !important;
+  }
+
+  .avatar{
+    width: 48px !important;
+    height: 48px !important;
+    font-size: 16px !important;
+  }
+
+  .payee-info .name{
+    font-size: 16px !important;
+  }
+
+  .payee-actions{
+    margin-left: auto !important;
+    display: flex !important;
+    gap: 12px !important;
+    align-items: center !important;
+    width: auto !important;
+  }
+
+  .btn{
+    padding: 10px 14px !important;
+    font-size: 15px !important;
+  }
+
+  .btn-outline{ min-width: 100px !important; }
+  .btn-add{ min-width: 120px !important; }
+
+  /* ------------ Modal / Template ------------ */
+  .message-template{ padding: 20px !important; }
+
+  .message-template .template-box{
+    width: 80vw !important;
+    max-width: 80vw !important;
+    max-height: 80vh !important;
+    padding: 20px !important;
+    border-radius: 14px !important;
+    overflow-y: auto !important;
+  }
+
+  .template-box textarea{
+    height: 150px !important;
+    font-size: 16px !important;
+    padding: 14px !important;
+  }
+
+  .template-actions{
+    display: flex !important;
+    justify-content: flex-end !important;
+    gap: 12px !important;
+    flex-wrap: wrap !important;
+  }
+
+  .template-actions button{
+    padding: 10px 16px !important;
+    font-size: 16px !important;
+  }
+
+  /* ------------ Misc ------------ */
+  #side-profile-name{ display: none !important; }
+}
+/* ============================================================
+   PAY ANYONE — 768–899px (Tablets Portrait / Small Landscape)
+   ============================================================ */
+@media (min-width: 767px) and (max-width: 899px) {
+
+  html, body { overflow-x: hidden !important; }
+
+  /* ---------- Layout: Sidebar left again ---------- */
+  .layout{
+    flex-direction: row !important;
+    gap: 24px !important;
+    padding: 22px !important;
+  }
+
+  /* ---------- Sidebar (tablet left rail) ---------- */
+  .layout .sidebar{
+    width: 200px !important;
+    padding: 18px 14px !important;
+    border-radius: 16px !important;
+    height: auto !important;
+    position: sticky !important;
+    top: 20px !important;
+    border-right: none !important;
+  }
+
+  .layout .sidebar .sidebar-top{
+    display: block !important;
+    margin-bottom: 10px !important;
+  }
+
+  .layout .sidebar .menu{
+    margin-top: 8px !important;
+  }
+
+  .layout .sidebar .menu .list-unstyled{
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+  }
+
+  .layout .sidebar .menu-item{
+    padding: 12px 14px !important;
+    border-radius: 10px !important;
+  }
+
+  .layout .sidebar .menu-item a{
+    font-size: 15px !important;
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 10px !important;
+    align-items: center !important;
+  }
+
+  .layout .sidebar .menu-item a i{
+    font-size: 18px !important;
+  }
+
+  .layout .sidebar .sidebar-bottom{
+    display: block !important;
+  }
+
+  /* ---------- Main Area ---------- */
+  .main{
+    flex: 1 1 auto !important;
+    padding-right: 10px !important;
+  }
+
+  .main-header{
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin-bottom: 20px !important;
+  }
+
+  .main-header h1{
+    font-size: 26px !important;
+  }
+
+  .balance{
+    font-size: 15px !important;
+    padding: 10px 14px !important;
+  }
+
+  /* ---------- Search Card (2-column) ---------- */
+  .search-card{
+    padding: 20px !important;
+    display: grid !important;
+    grid-template-columns: 1fr 150px !important;
+    gap: 14px !important;
+    margin-bottom: 20px !important;
+  }
+
+  #search-input{
+    width: 100% !important;
+    height: 48px !important;
+    font-size: 16px !important;
+  }
+
+  #search-btn{
+    width: 100% !important;
+    height: 48px !important;
+    font-size: 16px !important;
+  }
+
+  .results{
+    grid-column: 1 / -1 !important;
+    gap: 16px !important;
+  }
+
+  /* ---------- Saved Payees ---------- */
+  .saved-card{
+    padding: 20px !important;
+  }
+
+  .saved-card h2{
+    font-size: 20px !important;
+    margin-bottom: 10px !important;
+  }
+
+  .saved-list{
+    gap: 16px !important;
+  }
+
+  /* ---------- Payee Card ---------- */
+  .payee-card{
+    padding: 16px !important;
+    border-radius: 14px !important;
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 14px !important;
+    align-items: center !important;
+    flex-wrap: wrap !important;
+  }
+
+  .payee-meta{
+    display: flex !important;
+    gap: 14px !important;
+    align-items: center !important;
+  }
+
+  .avatar{
+    width: 50px !important;
+    height: 50px !important;
+    font-size: 18px !important;
+  }
+
+  .payee-info .name{
+    font-size: 16px !important;
+  }
+
+  .payee-actions{
+    margin-left: auto !important;
+    display: flex !important;
+    gap: 12px !important;
+    align-items: center !important;
+  }
+
+  .btn{
+    padding: 10px 14px !important;
+    font-size: 15px !important;
+  }
+
+  .btn-outline{ min-width: 110px !important; }
+  .btn-add{ min-width: 130px !important; }
+
+  /* ---------- Modal ---------- */
+  .message-template .template-box{
+    width: 70vw !important;
+    max-width: 70vw !important;
+    max-height: 78vh !important;
+    padding: 20px !important;
+    border-radius: 16px !important;
+  }
+
+  .template-box textarea{
+    height: 160px !important;
+    font-size: 16px !important;
+    padding: 14px !important;
+  }
+
+  .template-actions{
+    display: flex !important;
+    justify-content: flex-end !important;
+    gap: 14px !important;
+  }
+
+  .template-actions button{
+    font-size: 16px !important;
+    padding: 11px 16px !important;
+  }
+}
+
+/* ============================================================
+   PAY ANYONE — 900–1023px (Tablet landscape / Small desktop)
+   ============================================================ */
+@media (min-width: 899px) and (max-width: 1023px) {
+
+  html, body { overflow-x: hidden !important; }
+
+  /* ---- Layout: sidebar left, roomy content ---- */
+  .layout{
+    flex-direction: row !important;
+    gap: 24px !important;
+    padding: 22px !important;
+  }
+
+  /* ---- Sidebar (desktop-like) ---- */
+  .layout .sidebar{
+    width: 210px !important;
+    padding: 18px 16px !important;
+    border-radius: 16px !important;
+    position: sticky !important;
+    top: 20px !important;
+    height: auto !important;
+    border-right: none !important;
+  }
+  .layout .sidebar .sidebar-top{ display: block !important; }
+  .layout .sidebar .menu{ margin-top: 10px !important; }
+  .layout .sidebar .menu .list-unstyled{
+    display: flex !important; flex-direction: column !important; gap: 8px !important;
+  }
+  .layout .sidebar .menu-item{ padding: 12px 14px !important; border-radius: 10px !important; }
+  .layout .sidebar .menu-item a{
+    display: flex !important; flex-direction: row !important; gap: 10px !important;
+    align-items: center !important; font-size: 15px !important;
+  }
+  .layout .sidebar .menu-item a i{ font-size: 18px !important; }
+  .layout .sidebar .sidebar-bottom{ display: block !important; }
+
+  /* ---- Main ---- */
+  .main{ flex: 1 1 auto !important; padding-right: 6px !important; }
+  .main-header{
+    display: flex !important; justify-content: space-between !important; align-items: center !important;
+    margin-bottom: 20px !important;
+  }
+  .main-header h1{ font-size: 28px !important; }
+  .balance{ font-size: 15px !important; padding: 10px 14px !important; }
+
+  /* ---- Search (2-column: input + button) ---- */
+  .search-card{
+    padding: 20px !important;
+    display: grid !important;
+    grid-template-columns: 1fr 160px !important;
+    gap: 14px !important;
+    margin-bottom: 20px !important;
+  }
+  #search-input{ width: 100% !important; height: 48px !important; font-size: 16px !important; margin: 0 !important; }
+  #search-btn{ width: 100% !important; height: 48px !important; font-size: 16px !important; }
+  .results{ grid-column: 1 / -1 !important; gap: 16px !important; }
+
+  /* ---- Saved payees ---- */
+  .saved-card{ padding: 20px !important; }
+  .saved-card h2{ font-size: 20px !important; margin-bottom: 10px !important; }
+  .saved-list{ gap: 16px !important; }
+
+  /* ---- Payee card (horizontal, wraps nicely) ---- */
+  .payee-card{
+    padding: 16px !important; border-radius: 14px !important;
+    display: flex !important; flex-direction: row !important; align-items: center !important;
+    gap: 14px !important; flex-wrap: wrap !important;
+  }
+  .payee-meta{ gap: 14px !important; align-items: center !important; }
+  .avatar{ width: 50px !important; height: 50px !important; font-size: 18px !important; }
+  .payee-info .name{ font-size: 16px !important; }
+  .payee-actions{
+    margin-left: auto !important; display: flex !important; gap: 12px !important; align-items: center !important;
+  }
+  .btn{ padding: 10px 14px !important; font-size: 15px !important; }
+  .btn-outline{ min-width: 110px !important; }
+  .btn-add{ min-width: 130px !important; }
+
+  /* ---- Modal / message template ---- */
+  .message-template{ padding: 18px !important; }
+  .message-template .template-box{
+    width: 66vw !important; max-width: 66vw !important;
+    max-height: 78vh !important; overflow: auto !important;
+    padding: 20px !important; border-radius: 16px !important;
+  }
+  .template-box textarea{ height: 160px !important; font-size: 16px !important; padding: 14px !important; }
+  .template-actions{ gap: 14px !important; }
+  .template-actions button{ font-size: 16px !important; padding: 11px 16px !important; }
+}
