@@ -283,7 +283,7 @@ window.addEventListener('load', async () => {
   // document.getElementById("avatarCircle").textContent = profile.username;
   welcomeSub.textContent = new Date().toLocaleDateString();
   topProfileName.textContent = profile.username;
-  sideProfileName.textContent = profile.username;
+  // sideProfileName.textContent = profile.username;
 
   await fetchBalance();
   await loadBanks();
