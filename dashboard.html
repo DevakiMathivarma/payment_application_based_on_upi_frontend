@@ -615,7 +615,7 @@
 
     <script>
         (function () {
-            const API_BASE = "http://127.0.0.1:8000/api";
+            const API_BASE = "https://payment-application-based-on-upi-backend-12jg.onrender.com/api";
             const token = localStorage.getItem('gapytoken');
 
             // UI refs
@@ -1029,7 +1029,7 @@ document.getElementById('verify-pin-btn').addEventListener('click', async () => 
     window.location.href = "transactions.html"; // replace with your page URL
   });
 
-const API_BASE_URL = "http://127.0.0.1:8000";
+const API_BASE_URL = "https://payment-application-based-on-upi-backend-12jg.onrender.com";
 (function() {
   const token = localStorage.getItem('gapytoken'); // adapt as needed
   const headers = {
@@ -1131,9 +1131,6 @@ const API_BASE_URL = "http://127.0.0.1:8000";
   checkPinStatus();
 })();
 
-document.getElementById("bankCard").addEventListener("click", () => {
-  window.location.href = "profile.html?tab=banks";
-});
 
 </script>
 
